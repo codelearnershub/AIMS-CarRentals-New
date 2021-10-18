@@ -1,0 +1,46 @@
+﻿@model IEnumerable<AimsCarRentals.Models.ViewModel.CategoryViewModel>
+@{
+    ViewData["Title"] = "Category";
+    int id = 1;
+}
+
+<style>
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 16px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2
+    }
+</style>
+
+
+<h2>Branch Table</h2>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var category in Model)
+    {
+        <tr>
+            <td>@(id++)</td>
+            <td>@category.Name</td>
+            <td>
+                <a asp-controller="Bookings" asp-action="Details" class="btn btn-danger" asp-route-Id="@category.Id">Details</a>
+                <a asp-controller="Bookings" asp-action="Edit" class="btn btn-danger" asp-route-Id="@category.Id">Edit</a>
+                <a asp-controller="Bookings" asp-action="Delete" class="btn btn-danger" asp-route-Id="@category.Id">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+

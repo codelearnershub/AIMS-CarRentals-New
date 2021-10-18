@@ -1,0 +1,53 @@
+﻿@model IEnumerable<AimsCarRentals.Models.ViewModel.BookingsViewModel>
+@{
+    ViewData["Title"] = "Add Car ";
+    int id = 1;
+}
+
+<style>
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 16px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2
+    }
+</style>
+
+
+    <h2>Bookings Table</h2>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Car Id</th>
+            <th>User Id</th>
+            <th>Booking ref</th>
+            <th>Pick Up Date</th>
+            <th>Return Date</th>
+            <th>Actions</th>
+        </tr>
+        @foreach (var booking in Model)
+        {
+            <tr>
+                <td>@(id++)</td>
+                <td>@booking.CarId</td>
+                <td>@booking.UserId</td>
+                <td>@booking.Booking_ref</td>
+                <td>@booking.PickUpDate</td>
+                <td>@booking.ReturnDate</td>
+                <td>
+                    <a asp-controller="Bookings" asp-action="Details" class="btn btn-danger" asp-route-Id="@booking.Id">Details</a>
+                    <a asp-controller="Bookings" asp-action="Edit" class="btn btn-danger"asp-route-Id="@booking.Id">Edit</a>
+                    <a asp-controller="Bookings" asp-action="Delete" class="btn btn-danger" asp-route-Id="@booking.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
