@@ -85,10 +85,6 @@ namespace AimsCarRentals.Models.ViewModel
         public DateTime CreatedAt { get; set; }
 
         [Required(ErrorMessage = "Fill out this field")]
-        [Display(Name = "Register As")]
-        public int UserType { get; set; }
-
-        [Required(ErrorMessage = "Fill out this field")]
         [Display(Name = "Gender")]
         public string Gender { get; set; }
         [Required(ErrorMessage = "Fill out this field")]

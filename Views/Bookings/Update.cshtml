@@ -1,0 +1,48 @@
+﻿@model AimsCarRentals.Models.ViewModel.UpdateBookingsViewModel 
+
+<div class="card">
+
+</div>
+<div class="container">
+    <form method="post">
+
+        <div class="card">
+            <div class="justify-content-center">
+                <div class="justify-content-between">
+                    <div class="card-header"><h2>PickUp Date And Time</h2></div>
+                </div>
+                <div class="card-body">
+                    <div class="input-group">
+
+                        <label>Pickup Date</label>
+                        <div class="col-md-4">
+                            <input asp-for="PickUpDate" class="form-control" placeholder="Pick-Up Date" />
+                            <span type="datetime" asp-validation-for="PickUpDate" class="text-danger"></span><br>
+
+                        </div>
+
+
+                        <label>Return Date</label>
+                        <div class="col-md-4">
+                            <input asp-for="ReturnDate" class="form-control" placeholder="Return Date" />
+                            <span asp-validation-for="ReturnDate" class="text-danger"></span><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <div class="justify-content-between">
+            <div>
+                <input type="submit" value="Update" class="btn btn-dark" />
+                @*<a asp-controller="Car" asp-action="MakePayment" class="btn btn-danger">Book</a>
+                *@
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
