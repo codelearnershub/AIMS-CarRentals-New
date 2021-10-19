@@ -1,0 +1,15 @@
+﻿@model AimsCarRentals.Models.ViewModel.UpdateBranchViewModel
+<div class="card header"><h3>Update Category</h3></div>
+
+<div class="container">
+    <div class="card-body">
+        <label for="uname"><b>Name</b></label>
+        <input type="text" placeholder="Name" name="Name" required>
+        <span asp-validation-for="Name"></span>
+    </div>
+    <button class="justify-content-between" type="submit">Update</button>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

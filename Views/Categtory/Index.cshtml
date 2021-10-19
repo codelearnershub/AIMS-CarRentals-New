@@ -21,7 +21,7 @@
         background-color: #f2f2f2
     }
 </style>
-
+<a asp-controller="Category" asp-action="Create" class="btn btn-danger">Create Category</a>
 
 <h2>Branch Table</h2>
 <table>
@@ -36,9 +36,9 @@
             <td>@(id++)</td>
             <td>@category.Name</td>
             <td>
-                <a asp-controller="Bookings" asp-action="Details" class="btn btn-danger" asp-route-Id="@category.Id">Details</a>
-                <a asp-controller="Bookings" asp-action="Edit" class="btn btn-danger" asp-route-Id="@category.Id">Edit</a>
-                <a asp-controller="Bookings" asp-action="Delete" class="btn btn-danger" asp-route-Id="@category.Id">Delete</a>
+                <a  asp-action="Details" class="btn btn-danger" asp-route-Id="@category.Id">Details</a>
+                <a  asp-action="Edit" class="btn btn-danger" asp-route-Id="@category.Id">Edit</a>
+                <a  asp-action="Delete" class="btn btn-danger" asp-route-Id="@category.Id">Delete</a>
             </td>
         </tr>
     }

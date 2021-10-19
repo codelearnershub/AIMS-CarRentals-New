@@ -22,15 +22,15 @@
     }
 </style>
 
-
+<a asp-controller="Auth" asp-action="Index" class="btn btn-danger">Register Customer</a>
 <h2>Branch Table</h2>
 <table>
     <tr>
         <th>Id</th>
         <th>First Name</th>
         <th>Middle Name</th>
-        <td>Last Name</td>
-        <td>Email</td>
+        <th>Last Name</th>
+        <th>Email</th>
         <th>Actions</th>
     </tr>
     @foreach (var user in Model)

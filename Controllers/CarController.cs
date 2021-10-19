@@ -1,4 +1,5 @@
-﻿using AimsCarRentals.Models;
+﻿using AimsCarRentals.Interfaces;
+using AimsCarRentals.Models;
 using AimsCarRentals.Models.ViewModel;
 using AimsCarRentals.ServiceInterfaces;
 using Microsoft.AspNetCore.Hosting;
@@ -16,11 +17,15 @@ namespace AimsCarRentals.Controllers
     {
         public readonly ICarService carService;
         private readonly IWebHostEnvironment _webHostEnvironment;
-      
-        public CarController(ICarService carService,/* IBookingsService bookingsService,*//* ILocationService locationService,*//* IUserService userService*/ IWebHostEnvironment webHostEnvironment/* ICategoryService categoryService*/)
+        private readonly ICategoryService categoryService;
+        private readonly IBranchService _branchService;
+        public CarController(ICarService carService, IUserService userService, IWebHostEnvironment webHostEnvironment, ICategoryService categoryService, IBranchService branchService)
         {
+
             this.carService = carService;
             _webHostEnvironment = webHostEnvironment;
+            this.categoryService = categoryService;
+            _branchService = branchService;
         }
         public IActionResult Index()
         {
@@ -31,21 +36,20 @@ namespace AimsCarRentals.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-          /*  CreateCarViewModel carVM = new CreateCarViewModel
+          CreateCarViewModel carVM = new CreateCarViewModel
             {
-                CategoryList = _categoryService.GetAllCategory().Select(c => new SelectListItem
+                CategoryList = categoryService.GetAllCategories().Select(c => new SelectListItem
                 {
                     Text = c.Name,
                     Value = c.Id.ToString(),
                 }),
-                LocationList = _locationService.GetAllLocation().Select(c => new SelectListItem
+                BranchList = _branchService.GetAll().Select(c => new SelectListItem
                 {
                     Text = c.Name,
                     Value = c.Id.ToString(),
                 })
             };
 
-*/
             return View(/*carVM*/);
         }
 
@@ -72,22 +76,20 @@ namespace AimsCarRentals.Controllers
         }
         public IActionResult Update()
         {
-            /*  CreateCarViewModel carVM = new CreateCarViewModel
+              CreateCarViewModel carVM = new CreateCarViewModel
               {
-                  CategoryList = _categoryService.GetAllCategory().Select(c => new SelectListItem
+                  CategoryList = categoryService.GetAllCategories().Select(c => new SelectListItem
                   {
                       Text = c.Name,
                       Value = c.Id.ToString(),
                   }),
-                  LocationList = _locationService.GetAllLocation().Select(c => new SelectListItem
+                  BranchList = _branchService.GetAll().Select(c => new SelectListItem
                   {
                       Text = c.Name,
                       Value = c.Id.ToString(),
                   })
               };
-
-  */
-            return View(/*carVM*/);
+            return View(carVM);
         }
 
         [HttpPost]
@@ -119,6 +121,16 @@ namespace AimsCarRentals.Controllers
         public void Delete(int id)
         {
             carService.Delete(id);
+            RedirectToAction("Index");
+        }
+        public IActionResult Details(int id)
+        {
+            var car = carService.Find(id);
+            if (car == null)
+            {
+                return NotFound();
+            }
+            return View(car);
         }
     }
 }

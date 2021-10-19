@@ -1,6 +1,7 @@
 ﻿using AimsCarRentals.Interfaces;
 using AimsCarRentals.Models;
 using AimsCarRentals.Models.ViewModel;
+using AimsCarRentals.ServiceInterfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AimsCarRentals.Services
 {
-    public class BookingsService
+    public class BookingsService:IBookingsService
     {
         public readonly IBookingsRepository bookingsRepository;
         public BookingsService(IBookingsRepository bookingsRepository)

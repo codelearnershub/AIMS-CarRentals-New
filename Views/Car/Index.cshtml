@@ -22,8 +22,8 @@
     }
 </style>
 
-
-<h2>Branch Table</h2>
+<a asp-controller="Car" asp-action="Create" class="btn btn-danger">Create Car</a>
+<h2>Car Table</h2>
 <table>
     <tr>
         <th>Id</th>
@@ -40,9 +40,9 @@
     <td>@car.SerialNo</td>
     <td>@car.IsAvailable</td>
     <td>
-        <a asp-controller="Bookings" asp-action="Details" class="btn btn-danger" asp-route-Id="@car.Id">Details</a>
-        <a asp-controller="Bookings" asp-action="Edit" class="btn btn-danger" asp-route-Id="@car.Id">Edit</a>
-        <a asp-controller="Bookings" asp-action="Delete" class="btn btn-danger" asp-route-Id="@car.Id">Delete</a>
+        <a  asp-action="Details" class="btn btn-danger" asp-route-Id="@car.Id">Details</a>
+        <a  asp-action="Edit" class="btn btn-danger" asp-route-Id="@car.Id">Update</a>
+        <a  asp-action="Delete" class="btn btn-danger" asp-route-Id="@car.Id">Delete</a>
     </td>
 </tr>
     }

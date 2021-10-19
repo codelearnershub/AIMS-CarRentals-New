@@ -22,7 +22,7 @@
     }
 </style>
 
-
+<a asp-controller="Auth" asp-action="Index" class="btn btn-danger">Register Customer</a>
     <h2>Bookings Table</h2>
     <table>
         <tr>
@@ -44,9 +44,9 @@
                 <td>@booking.PickUpDate</td>
                 <td>@booking.ReturnDate</td>
                 <td>
-                    <a asp-controller="Bookings" asp-action="Details" class="btn btn-danger" asp-route-Id="@booking.Id">Details</a>
-                    <a asp-controller="Bookings" asp-action="Edit" class="btn btn-danger"asp-route-Id="@booking.Id">Edit</a>
-                    <a asp-controller="Bookings" asp-action="Delete" class="btn btn-danger" asp-route-Id="@booking.Id">Delete</a>
+                    <a  asp-action="Details" class="btn btn-danger" asp-route-Id="@booking.Id">Details</a>
+                    <a  asp-action="Edit" class="btn btn-danger"asp-route-Id="@booking.Id">Edit</a>
+                    <a  asp-action="Delete" class="btn btn-danger" asp-route-Id="@booking.Id">Delete</a>
                 </td>
             </tr>
         }

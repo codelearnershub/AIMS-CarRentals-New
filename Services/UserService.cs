@@ -171,7 +171,7 @@ namespace AimsCarRentals.Services
         {
             _userRepository.DeleteUser(id);
         }
-        public User Update(UpdateAdminViewModel model)
+        public User UpdateAdmin(UpdateAdminViewModel model)
         {
             byte[] salt = new byte[128 / 8];
 
@@ -197,5 +197,51 @@ namespace AimsCarRentals.Services
             };
             return _userRepository.UpdateUser(user);
         }
+
+      
+        public void UpdateCustomer(UpdateCustomerViewModel model)
+        {
+            byte[] salt = new byte[128 / 8];
+
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(salt);
+            }
+
+            string saltString = Convert.ToBase64String(salt);
+
+            string hashedPassword = HashPassword(model.Password, saltString);
+
+            var role = _roleRepository.FindRoleByName("Admin");
+            if (role != null)
+            {
+                User user = new User
+                {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    MiddleName = model.MiddleName,
+                    Email = model.Email,
+                    Gender = model.Gender,
+                    PasswordHash = hashedPassword,
+                    HashSalt = saltString,
+                    PhoneNo = model.PhoneNo,
+                    DateOfBirth = model.DateOfBirth,
+                    Address = model.Address,
+
+                };
+                var userRole = new UserRole
+                {
+                    UserId = user.Id,
+                    RoleId = role.Id,
+                };
+                user.UserRoles.Add(userRole);
+                _userRepository.AddUser(user);
+            }
+            else
+            {
+                throw new Exception("No Role found");
+            }
+        }
+
     }
 }

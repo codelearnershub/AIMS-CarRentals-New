@@ -41,22 +41,31 @@ namespace AimsCarRentals.Controllers
         {
             return View();
         }
-
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Update(UpdateBranchViewModel updateBranchViewModel)
+        public IActionResult Update(UpdateBranchViewModel model)
         {
-            branchService.UpdateBranch(updateBranchViewModel);
+            branchService.UpdateBranch(model);
             return RedirectToAction("Index");
         }
-
         public void Find(int id)
         {
             branchService.Find(id);
         }
-        public void Delete(int id)
+        [HttpGet]
+        public IActionResult Delete(int id)
         {
             branchService.Delete(id);
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public IActionResult Details(int id)
+        {
+            var branch = branchService.Find(id);
+            if (branch == null)
+            {
+                return NotFound();
+            }
+            return View(branch);
         }
     }
 }

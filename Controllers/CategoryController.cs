@@ -55,6 +55,16 @@ namespace AimsCarRentals.Controllers
         public void Delete(int id)
         {
             categoryService.DeleteCategory(id);
+            RedirectToAction("Index");
+        }
+        public IActionResult Details(int id)
+        {
+            var category = categoryService.FindCategory(id);
+            if (category == null)
+            {
+                return NotFound();
+            }
+            return View(category);
         }
     }
 }

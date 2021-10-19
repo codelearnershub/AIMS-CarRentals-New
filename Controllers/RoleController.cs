@@ -55,6 +55,16 @@ namespace AimsCarRentals.Controllers
         public void Delete(int id)
         {
             roleService.DeleteRole(id);
+            RedirectToAction("Index");
+        }
+        public IActionResult Details(int id)
+        {
+            var role = roleService.FindRole(id);
+            if (role == null)
+            {
+                return NotFound();
+            }
+            return View(role);
         }
     }
 }
