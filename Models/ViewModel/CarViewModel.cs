@@ -69,7 +69,7 @@ namespace AimsCarRentals.Models.ViewModel
         [Display(Name = "choose File")]
         public string CarPictureUrl { get; set; }
         public Category Category { get; set; }
-        public IEnumerable<SelectListItem> LocationList { get; set; }
+        public IEnumerable<SelectListItem> BranchList { get; set; }
         public IEnumerable<SelectListItem> CategoryList { get; set; }
         public bool IsAvailable { get; set; }
     }
@@ -105,7 +105,7 @@ namespace AimsCarRentals.Models.ViewModel
         [Display(Name = "choose File")]
         public string CarPictureUrl { get; set; }
         public Category Category { get; set; }
-        public IEnumerable<SelectListItem> LocationList { get; set; }
+        public IEnumerable<SelectListItem> BranchList { get; set; }
         public IEnumerable<SelectListItem> CategoryList { get; set; }
         public bool IsAvailable { get; set; }
     }

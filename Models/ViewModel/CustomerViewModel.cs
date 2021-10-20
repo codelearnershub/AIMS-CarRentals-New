@@ -54,7 +54,39 @@ namespace AimsCarRentals.Models.ViewModel
         public string HashSalt { get; set; }
         public string PasswordHash { get; set; }
     }
-   
 
+    public class UpdateCustomerViewModel : LoginViewModel
+    {
+        public int Id { get; set; }
+
+        [Required(ErrorMessage = "Fill out this field")]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+        [Required(ErrorMessage = "Fill out this field")]
+        [Display(Name = "Middle Name")]
+        public string MiddleName { get; set; }
+
+        [Required(ErrorMessage = "Fill out this field")]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+        public DateTime CreatedAt { get; set; }
+
+        [Required(ErrorMessage = "Fill out this field")]
+        [Display(Name = "Gender")]
+        public string Gender { get; set; }
+        [Required(ErrorMessage = "Fill out this field")]
+        [Display(Name = "Date Of Birth")]
+        public DateTime DateOfBirth { get; set; }
+        [Required(ErrorMessage = "Fill out this field")]
+        [Display(Name = "Phone No")]
+        public string PhoneNo { get; set; }
+        [Required(ErrorMessage = "Fill out this field")]
+        [Display(Name = "Address")]
+        public string Address { get; set; }
+        public List<Role> Roles { get; set; }
+        public string HashSalt { get; set; }
+        public string PasswordHash { get; set; }
     }
+
+}
 

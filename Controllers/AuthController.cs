@@ -48,7 +48,35 @@ namespace AimsCarRentals.Controllers
             _userService.RegisterCustomer(model);
             return RedirectToAction("Login");
         }
+        public IActionResult UpdateCustomer()
+        {
+            return View ();
+        }
+        [HttpPost]
+        public IActionResult UpdateCustomer(UpdateCustomerViewModel model)
+        {
+            var role = _roleService.FindRoleByName("Customer");
+            var roles = new List<Role>();
+            roles.Add(role);
+            model.Roles = roles;
+            _userService.UpdateCustomer(model);
+            return RedirectToAction("Index");
+        }
 
+        public IActionResult UpdateAdmin()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult UpdateAdmin(UpdateAdminViewModel model)
+        {
+            var role = _roleService.FindRoleByName("Admin");
+            var roles = new List<Role>();
+            roles.Add(role);
+            model.Roles = roles;
+            _userService.UpdateAdmin(model);
+            return RedirectToAction("Index");
+        }
         public IActionResult RegisterAdmin()
         {
             return View();
@@ -70,6 +98,7 @@ namespace AimsCarRentals.Controllers
         public void Delete(int id)
         {
             _userService.Delete(id);
+            RedirectToAction("Index");
         }
        
 
@@ -147,7 +176,15 @@ namespace AimsCarRentals.Controllers
             }
         }
 
-
+        public IActionResult Details(int id)
+        {
+            var user = _userService.FindUserById(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return View(user);
+        }
 
     }
 }

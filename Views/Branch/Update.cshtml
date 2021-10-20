@@ -1,0 +1,16 @@
+﻿@model AimsCarRentals.Models.ViewModel.UpdateBranchViewModel
+@{
+    ViewData["Title"] = "Update Branch";
+}
+<div class="card header"><h3>Update Branch</h3></div>
+
+
+<form method="post">
+    <div class="input-group">
+       <input placeholder="Name" asp-for="Name" name="Name" />
+      <input placeholder="Name" asp-for="Name" name="Address" />
+    </div>
+    <div>
+        <input type="submit" value="Update" class="btn btn-primary" />
+    </div>
+</form>

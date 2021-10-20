@@ -1,4 +1,5 @@
 ﻿using AimsCarRentals.Context;
+using AimsCarRentals.Interfaces;
 using AimsCarRentals.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AimsCarRentals.Repositories
 {
-    public class UserRoleRepository
+    public class UserRoleRepository :IUserRoleRepository
     {
 
         public readonly AimsDbContext _dbContext;

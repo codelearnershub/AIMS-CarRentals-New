@@ -22,7 +22,7 @@
     }
 </style>
 
-
+<a asp-controller="Branch" asp-action="Create" class="btn btn-danger">Create Branch</a>
 <h2>Branch Table</h2>
 <table>
     <tr>
@@ -38,9 +38,9 @@
             <td>@branch.Name</td>
             <td>@branch.Address</td>
             <td>
-                <a asp-controller="Bookings" asp-action="Details" class="btn btn-danger" asp-route-Id="@branch.Id">Details</a>
-                <a asp-controller="Bookings" asp-action="Edit" class="btn btn-danger"  asp-route-Id="@branch.Id">Edit</a>
-                <a asp-controller="Bookings" asp-action="Delete" class="btn btn-danger"  asp-route-Id="@branch.Id">Delete</a>
+                <a asp-action="Details" class="btn btn-danger" asp-route-Id="@branch.Id">Details</a>
+                <a  asp-action="Update" class="btn btn-danger"  asp-route-Id="@branch.Id">Update</a>
+                <a  asp-action="Delete" class="btn btn-danger"  asp-route-Id="@branch.Id">Delete</a>
             </td>
         </tr>
     }
