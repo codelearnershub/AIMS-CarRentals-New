@@ -19,6 +19,8 @@ namespace AimsCarRentals.Context
         public DbSet<Branch> Branches { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Admin> Admins { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -44,21 +46,26 @@ namespace AimsCarRentals.Context
                 .WithOne(r => r.Role)
                 .HasForeignKey(r => r.RoleId);
             modelBuilder.Entity<User>().HasData(
-                  new User
+                new User
+                {
+                    PasswordHash = "SehzKv9PAiawVd3TeV1QkkgBlCz67YoY7WMm4FB836c=",
+                    HashSalt = "d+RzYMAQvvCJ+aNedX1uDg==",
+                    Email = "okikiolalawal@gmail.com",
+                },
+                  new SuperAdmin
                   {
                       Id = 1,
                       FirstName = "Jafar",
                       MiddleName = "Okikiola",
                       LastName = "Lawal",
                       Gender = "Male",
-                      Email = "okikiolalawal@gmail.com",
                       DateOfBirth = DateTime.Now,
                       PhoneNo = "09071681776",
                       Address = "Asero,Abk",
-                      PasswordHash = "SehzKv9PAiawVd3TeV1QkkgBlCz67YoY7WMm4FB836c=",
-                      HashSalt = "d+RzYMAQvvCJ+aNedX1uDg=="
+                      UserId = 1
                   }
-                );
+
+               ) ; 
             modelBuilder.Entity<Role>().HasData(
              new Role { Id = 1, Name = "SuperAdmin", CreatedAt = DateTime.Now }, new Role { Id = 2, Name = "Admin", CreatedAt = DateTime.Now }, new Role { Id = 3, Name = "Customer", CreatedAt = DateTime.Now }
             );

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace AimsCarRentals.Models
 {
-    public class Customer:BaseEntity
-    {[Required]
+    public class SuperAdmin :BaseEntity
+    {
         public string FirstName { get; set; }
         [Required]
         public string MiddleName { get; set; }

@@ -15,12 +15,15 @@ namespace AimsCarRentals.Services
         private readonly IUserRepository _userRepository;
         private readonly IRoleRepository _roleRepository;
         private readonly IUserRoleRepository _userRoleRepository;
+        private readonly ICustomerRepository _customerRepository;
+        private readonly IAdminRepository _adminRepository;
 
-        public UserService(IUserRepository userRepository,IRoleRepository roleRepository, IUserRoleRepository userRoleRepository)
+        public UserService(IAdminRepository _adminRepository ,IUserRepository userRepository,IRoleRepository roleRepository, IUserRoleRepository userRoleRepository, ICustomerRepository customerRepository)
         {
             _userRepository = userRepository;
             _userRoleRepository = userRoleRepository;
             _roleRepository = roleRepository;
+            _customerRepository = customerRepository;
         }
         private string HashPassword(string password, string salt)
         {
@@ -53,23 +56,27 @@ namespace AimsCarRentals.Services
             {
                 User user = new User
                 {
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    MiddleName = model.MiddleName,
                     Email = model.Email,
-                    Gender = model.Gender,
                     PasswordHash = hashedPassword,
                     HashSalt = saltString,
-                    PhoneNo = model.PhoneNo,
-                    DateOfBirth = model.DateOfBirth,
-                    Address = model.Address,
-
                 };
                 var userRole = new UserRole
                 {
                     UserId = user.Id,
                     RoleId = role.Id,
                 };
+                var customer = new Customer
+                {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    MiddleName = model.MiddleName,
+                    PhoneNo = model.PhoneNo,
+                    DateOfBirth = model.DateOfBirth,
+                    Address = model.Address,
+                    Gender = model.Gender,
+                    UserId = user.Id
+                };
+                _customerRepository.AddUser(customer);
                 user.UserRoles.Add(userRole);
                 _userRepository.AddUser(user);
             }
@@ -96,23 +103,26 @@ namespace AimsCarRentals.Services
             {
                 User user = new User
                 {
+                    Email = model.Email,
+                    PasswordHash = hashedPassword,
+                    HashSalt = saltString,
+                };
+                var admin = new Admin
+                {
+                    Gender = model.Gender,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     MiddleName = model.MiddleName,
-                    Email = model.Email,
-                    Gender = model.Gender,
-                    PasswordHash = hashedPassword,
-                    HashSalt = saltString,
                     PhoneNo = model.PhoneNo,
                     DateOfBirth = model.DateOfBirth,
                     Address = model.Address,
-
                 };
                 var userRole = new UserRole
                 {
                     UserId = user.Id,
                     RoleId = role.Id,
                 };
+                _adminRepository.AddAdmin(admin);
                 user.UserRoles.Add(userRole);
                 _userRepository.AddUser(user);
             }
