@@ -71,3 +71,5 @@ C:\Users\JAFAR LAWAL\source\repos\AimsCarRentals\obj\Debug\net5.0\AimsCarRentals
 C:\Users\JAFAR LAWAL\source\repos\AimsCarRentals\obj\Debug\net5.0\Razor\Views\Bookings\Create.cshtml.g.cs
 C:\Users\JAFAR LAWAL\source\repos\AimsCarRentals\obj\Debug\net5.0\Razor\Views\Branch\Create.cshtml.g.cs
 C:\Users\JAFAR LAWAL\source\repos\AimsCarRentals\obj\Debug\net5.0\Razor\Views\Bookings\Details.cshtml.g.cs
+C:\Users\JAFAR LAWAL\source\repos\AimsCarRentals\obj\Debug\net5.0\Razor\Views\Shared\_SuperAdminDashboard.cshtml.g.cs
+C:\Users\JAFAR LAWAL\source\repos\AimsCarRentals\obj\Debug\net5.0\Razor\Views\SuperAdminDashboard\Index.cshtml.g.cs
