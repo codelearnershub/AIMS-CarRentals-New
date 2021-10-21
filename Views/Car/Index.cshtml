@@ -40,9 +40,9 @@
     <td>@car.SerialNo</td>
     <td>@car.IsAvailable</td>
     <td>
-        <a asp-controller="Bookings" asp-action="Details" class="btn btn-danger" asp-route-Id="@car.Id">Details</a>
-        <a asp-controller="Bookings" asp-action="Edit" class="btn btn-danger" asp-route-Id="@car.Id">Edit</a>
-        <a asp-controller="Bookings" asp-action="Delete" class="btn btn-danger" asp-route-Id="@car.Id">Delete</a>
+        <a  asp-action="Details" class="btn btn-danger" asp-route-Id="@car.Id">Details</a>
+        <a asp-action="Edit" class="btn btn-danger" asp-route-Id="@car.Id">Edit</a>
+        <a  asp-action="Delete" class="btn btn-danger" asp-route-Id="@car.Id">Delete</a>
     </td>
 </tr>
     }

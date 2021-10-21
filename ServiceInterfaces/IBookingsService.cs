@@ -14,5 +14,6 @@ namespace AimsCarRentals.ServiceInterfaces
         public Bookings Delete(int id);
         public Bookings Find(int id);
         public List<BookingsViewModel> GetAll();
+        public List<Bookings> BookingHistory(int userId);
     }
 }

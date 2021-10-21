@@ -1,0 +1,15 @@
+﻿@model AimsCarRentals.Models.Role
+<div class="card header"><h3>Add Branch</h3></div>
+
+<div class="container">
+    <ul>
+        @Model.Id
+        @Model.Name
+        @Model.CreatedAt
+    </ul>
+</div>
+<button asp-action="Index">Create</button>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

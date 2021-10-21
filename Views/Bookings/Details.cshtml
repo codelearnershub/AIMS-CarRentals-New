@@ -1,1 +1,12 @@
-﻿
+﻿@model AimsCarRentals.Models.Bookings
+
+<ul>
+    @Model.Id
+    @Model.CarId
+    @Model.UserId
+    @Model.Booking_ref
+    @Model.PickUpDate
+    @Model.ReturnDate
+    @Model.CreatedAt
+</ul>
+<a asp-action="Index" class="btn btn-danger">Back</a>

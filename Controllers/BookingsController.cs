@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace AimsCarRentals.Controllers
@@ -55,6 +56,12 @@ namespace AimsCarRentals.Controllers
         public void Delete(int id)
         {
             bookingsService.Delete(id);
+        }
+        public IActionResult BookingHistory()
+        {
+            int userId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
+            bookingsService.BookingHistory(userId);
+            return RedirectToAction("Index","Home");
         }
     }
 }

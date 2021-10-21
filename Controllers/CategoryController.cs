@@ -55,6 +55,7 @@ namespace AimsCarRentals.Controllers
         public void Delete(int id)
         {
             categoryService.DeleteCategory(id);
+            RedirectToAction("Index");
         }
     }
 }

@@ -9,4 +9,9 @@ namespace AimsCarRentals.Models.ViewModel
     {
         public User User { get; set; }
     }
+    public class AdminDashBoard 
+    {
+        public User User { get; set; }
+    }
+
 }

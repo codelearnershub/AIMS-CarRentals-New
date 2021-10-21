@@ -146,8 +146,5 @@ namespace AimsCarRentals.Controllers
                 return RedirectToAction("BookCar", "Car");
             }
         }
-
-
-
     }
 }

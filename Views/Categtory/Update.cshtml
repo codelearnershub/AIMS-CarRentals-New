@@ -1,0 +1,16 @@
+﻿@model AimsCarRentals.Models.ViewModel.UpdateCategoryViewModel
+<div class="card header"><h3>Add Category</h3></div>
+
+<div class="container">
+    <div class="card-body">
+        <label for="uname"><b>Name</b></label>
+        <input type="text" placeholder="Name" name="Name" required>
+        <span asp-validation-for="Name"></span>
+
+    <button class="justify-content-between" type="submit">Create</button>
+</div>
+    </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
