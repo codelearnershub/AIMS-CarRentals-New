@@ -13,8 +13,8 @@ namespace AimsCarRentals.Interfaces
         public User FindUserById(int id);
         public List<RegisterCustomerViewModel> GetAllUser();
         public void Delete(int id);
-        public User LoginUser(string email, string password);
-        public User UpdateAdmin(UpdateAdminViewModel model);
+        public User Login(string email, string password);
+        public void UpdateAdmin(UpdateAdminViewModel model);
         public void UpdateCustomer(UpdateCustomerViewModel model);
         public void RegisterAdmin(RegisterAdminViewModel model);
     }

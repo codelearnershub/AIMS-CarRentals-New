@@ -48,13 +48,10 @@ namespace AimsCarRentals.Context
             modelBuilder.Entity<User>().HasData(
                 new User
                 {
+                    Id = 1,
                     PasswordHash = "SehzKv9PAiawVd3TeV1QkkgBlCz67YoY7WMm4FB836c=",
                     HashSalt = "d+RzYMAQvvCJ+aNedX1uDg==",
                     Email = "okikiolalawal@gmail.com",
-                },
-                  new SuperAdmin
-                  {
-                      Id = 1,
                       FirstName = "Jafar",
                       MiddleName = "Okikiola",
                       LastName = "Lawal",
@@ -62,7 +59,6 @@ namespace AimsCarRentals.Context
                       DateOfBirth = DateTime.Now,
                       PhoneNo = "09071681776",
                       Address = "Asero,Abk",
-                      UserId = 1
                   }
 
                ) ; 

@@ -3,14 +3,16 @@ using System;
 using AimsCarRentals.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AimsCarRentals.Migrations
 {
     [DbContext(typeof(AimsDbContext))]
-    partial class AimsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211020161911_Init1")]
+    partial class Init1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -260,19 +262,19 @@ namespace AimsCarRentals.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2021, 10, 20, 5, 53, 29, 340, DateTimeKind.Local).AddTicks(426),
+                            CreatedAt = new DateTime(2021, 10, 20, 5, 19, 10, 205, DateTimeKind.Local).AddTicks(5907),
                             Name = "SuperAdmin"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2021, 10, 20, 5, 53, 29, 340, DateTimeKind.Local).AddTicks(1859),
+                            CreatedAt = new DateTime(2021, 10, 20, 5, 19, 10, 208, DateTimeKind.Local).AddTicks(1813),
                             Name = "Admin"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2021, 10, 20, 5, 53, 29, 340, DateTimeKind.Local).AddTicks(1874),
+                            CreatedAt = new DateTime(2021, 10, 20, 5, 19, 10, 208, DateTimeKind.Local).AddTicks(1897),
                             Name = "Customer"
                         });
                 });
@@ -283,44 +285,18 @@ namespace AimsCarRentals.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Address")
-                        .HasColumnType("text");
-
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime");
-
-                    b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("varchar(767)");
 
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Gender")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<string>("HashSalt")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("MiddleName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<string>("PasswordHash")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("PhoneNo")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -335,17 +311,10 @@ namespace AimsCarRentals.Migrations
                         new
                         {
                             Id = 1,
-                            Address = "Asero,Abk",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(2021, 10, 20, 5, 53, 29, 334, DateTimeKind.Local).AddTicks(7824),
                             Email = "okikiolalawal@gmail.com",
-                            FirstName = "Jafar",
-                            Gender = "Male",
                             HashSalt = "d+RzYMAQvvCJ+aNedX1uDg==",
-                            LastName = "Lawal",
-                            MiddleName = "Okikiola",
-                            PasswordHash = "SehzKv9PAiawVd3TeV1QkkgBlCz67YoY7WMm4FB836c=",
-                            PhoneNo = "09071681776"
+                            PasswordHash = "SehzKv9PAiawVd3TeV1QkkgBlCz67YoY7WMm4FB836c="
                         });
                 });
 
@@ -376,7 +345,7 @@ namespace AimsCarRentals.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2021, 10, 20, 5, 53, 29, 340, DateTimeKind.Local).AddTicks(4968),
+                            CreatedAt = new DateTime(2021, 10, 20, 5, 19, 10, 208, DateTimeKind.Local).AddTicks(7184),
                             RoleId = 1,
                             UserId = 1
                         });

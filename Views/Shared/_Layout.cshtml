@@ -37,14 +37,13 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">User</a>
                         </li>
                     </ul>
-                    <ul>
-                        <li>
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="RegisterCustomer">Register</a>
-                        </li>
-                        <li>
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="LoginCustomer">Branches</a>
-                        </li>
-                    </ul>
+                    <div class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="RegisterCustomer">Sign-Up</a>
+                    </div>
+                    &nbsp;
+                    <div>
+                        <a  asp-area="" asp-controller="Auth" asp-action="Login">Login</a>
+                    </div>
                 </div>
             </div>
         </nav>

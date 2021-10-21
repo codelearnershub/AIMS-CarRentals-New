@@ -1,4 +1,5 @@
 ﻿using AimsCarRentals.Context;
+using AimsCarRentals.Interfaces;
 using AimsCarRentals.Models;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AimsCarRentals.Repositories
 {
-    public class CustomerRepository
+    public class CustomerRepository:ICustomerRepository
     {
         public readonly AimsDbContext _dbContext;
         public CustomerRepository(AimsDbContext dbContext)
