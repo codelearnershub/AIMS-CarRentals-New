@@ -30,7 +30,8 @@ namespace AimsCarRentals
             services.AddDbContext<AimsDbContext>(option => option.UseMySQL(Configuration.GetConnectionString("AimsDbContext")));
             services.AddScoped<ICarRepository, CarRepository>();
             services.AddScoped<ICarService, CarService>();
-
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<IAdminRepository, AdminRepository>();
             services.AddScoped<IBookingsRepository, BookingsRepository>();
             services.AddScoped<IBookingsService, BookingsService>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
@@ -48,7 +49,7 @@ namespace AimsCarRentals
             {
                 config.LoginPath = "/Auth/Login";
                 config.LogoutPath = "/Auth/Logout";
-                config.Cookie.Name = "CarRentalsSystem";
+                config.Cookie.Name = "AimsCarRentals";
             });
 
         }

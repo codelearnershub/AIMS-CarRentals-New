@@ -100,7 +100,7 @@ namespace AimsCarRentals.Controllers
             _userService.Delete(id);
             RedirectToAction("Index");
         }
-       
+
 
         [HttpGet]
         public IActionResult Login()
@@ -111,7 +111,7 @@ namespace AimsCarRentals.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel vm)
         {
-            User user = _userService.LoginUser(vm.Email, vm.Password);
+            User user = _userService.Login(vm.Email, vm.Password);
 
             if (user == null) return View();
 
