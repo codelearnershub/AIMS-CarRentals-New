@@ -22,6 +22,7 @@ namespace AimsCarRentals.Services
             _userRoleRepository = userRoleRepository;
             _roleRepository = roleRepository;
         }
+
         private string HashPassword(string password, string salt)
         {
             byte[] saltByte = Convert.FromBase64String(salt);
@@ -147,9 +148,9 @@ namespace AimsCarRentals.Services
             return null;
 
         }
-        public List<RegisterCustomerViewModel> GetAllUser()
+        public List<UserViewModel> GetAllUser()
         {
-            var user = _userRepository.GetAllUsers().Select(c => new RegisterCustomerViewModel
+            var user = _userRepository.GetAllUsers().Select(c => new UserViewModel
             {
                 Id = c.Id,
                 FirstName = c.FirstName,
@@ -171,7 +172,7 @@ namespace AimsCarRentals.Services
         {
             _userRepository.DeleteUser(id);
         }
-        public User Update(UpdateAdminViewModel model)
+        public User UpdateAdmin(UpdateAdminViewModel model)
         {
             byte[] salt = new byte[128 / 8];
 
@@ -179,23 +180,46 @@ namespace AimsCarRentals.Services
             {
                 rng.GetBytes(salt);
             }
+
             string saltString = Convert.ToBase64String(salt);
 
             string hashedPassword = HashPassword(model.Password, saltString);
-            User user = new User
-            {
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                Email = model.Email,
-                Gender = model.Gender,
-                PasswordHash = hashedPassword,
-                HashSalt = saltString,
-                PhoneNo = model.PhoneNo,
-                DateOfBirth = model.DateOfBirth,
-                Address = model.Address,
 
-            };
-            return _userRepository.UpdateUser(user);
+            var role = _roleRepository.FindRoleByName("Admin");
+            if (role != null)
+            {
+                User user = new User
+                {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    MiddleName = model.MiddleName,
+                    Email = model.Email,
+                    Gender = model.Gender,
+                    PasswordHash = hashedPassword,
+                    HashSalt = saltString,
+                    PhoneNo = model.PhoneNo,
+                    DateOfBirth = model.DateOfBirth,
+                    Address = model.Address,
+
+                };
+                var userRole = new UserRole
+                {
+                    UserId = user.Id,
+                    RoleId = role.Id,
+                };
+                user.UserRoles.Add(userRole);
+                _userRepository.UpdateUser(user);
+            }
+                throw new Exception("No Role found");
         }
+
     }
 }
+
+/*public void RegisterCustomer(RegisterCustomerViewModel model);
+public User FindUserById(int id);
+public List<RegisterCustomerViewModel> GetAllUser();
+public void Delete(int id);
+public User LoginUser(string email, string password);
+public User Update(UpdateAdminViewModel model);
+public void RegisterAdmin(RegisterAdminViewModel model);*/

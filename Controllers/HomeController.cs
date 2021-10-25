@@ -1,4 +1,5 @@
 ﻿using AimsCarRentals.Models;
+using AimsCarRentals.ServiceInterfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,15 +13,19 @@ namespace AimsCarRentals.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ICarService carService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,ICarService carService)
         {
+            this.carService = carService;
             _logger = logger;
         }
 
         public IActionResult Index()
         {
-            return View();
+
+            var car = carService.GetAll();
+            return View(car);
         }
 
         public IActionResult Privacy()

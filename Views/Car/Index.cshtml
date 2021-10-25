@@ -23,7 +23,8 @@
 </style>
 
 
-<h2>Branch Table</h2>
+<h2>Car Table</h2>
+<a asp-controller="Car" asp-action="Create" class="btn-dark" style="width:100%">Add A Car</a>
 <table>
     <tr>
         <th>Id</th>
@@ -33,18 +34,18 @@
     </tr>
     @foreach (var car in Model)
     {
-<tr>
-    <td>@(id++)</td>
-    <td>@car.Name</td>
-    <td>@car.Make</td>
-    <td>@car.SerialNo</td>
-    <td>@car.IsAvailable</td>
-    <td>
-        <a  asp-action="Details" class="btn btn-danger" asp-route-Id="@car.Id">Details</a>
-        <a asp-action="Edit" class="btn btn-danger" asp-route-Id="@car.Id">Edit</a>
-        <a  asp-action="Delete" class="btn btn-danger" asp-route-Id="@car.Id">Delete</a>
-    </td>
-</tr>
+        <tr>
+            <td>@(id++)</td>
+            <td>@car.Name</td>
+            <td>@car.Make</td>
+            <td>@car.SerialNo</td>
+            <td>@car.IsAvailable</td>
+            <td>
+                <a asp-action="Details" class="btn btn-danger" asp-route-Id="@car.Id">Details</a>
+                <a asp-action="Edit" class="btn btn-secondary" asp-route-Id="@car.Id">Edit</a>
+                <a asp-action="Delete" class="btn btn-success" asp-route-Id="@car.Id">Delete</a>
+            </td>
+        </tr>
     }
 </table>
 

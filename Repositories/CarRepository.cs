@@ -45,5 +45,6 @@ namespace AimsCarRentals.Repositories
         {
            return aimsDbContext.Cars.ToList();
         }
+
     }
 }

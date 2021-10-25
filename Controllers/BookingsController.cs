@@ -23,19 +23,7 @@ namespace AimsCarRentals.Controllers
             return View(bookings);
 
         }
-        [HttpGet]
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Create(CreateBookingsViewModel createBookingsViewModel)
-        {
-            bookingsService.AddBookings(createBookingsViewModel);
-            return RedirectToAction("Index");
-        }
+       
         public IActionResult Update()
         {
             return View();

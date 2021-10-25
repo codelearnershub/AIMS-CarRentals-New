@@ -1,48 +1,166 @@
 ﻿@model IEnumerable<AimsCarRentals.Models.ViewModel.BranchViewModel>
 @{
-    ViewData["Title"] = "Branch";
-    int id = 1;
+    ViewData["Title"] = "AddUser";
+     int id = 1;
 }
-
 <style>
-    table {
-        border-collapse: collapse;
-        border-spacing: 0;
-        width: 100%;
-        border: 1px solid #ddd;
+    body {
+        font-family: "Lato", sans-serif;
     }
 
-    th, td {
-        text-align: left;
-        padding: 16px;
+    /* Fixed sidenav, full height */
+    .sidenav {
+        height: 100%;
+        width: 200px;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: red;
+        overflow-x: hidden;
+        padding-top: 20px;
     }
 
-    tr:nth-child(even) {
-        background-color: #f2f2f2
+        /* Style the sidenav links and the dropdown button */
+        .sidenav a, .dropdown-btn {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 20px;
+            color: black;
+            display: block;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            outline: none;
+        }
+
+            /* On mouse-over */
+            .sidenav a:hover, .dropdown-btn:hover {
+                color: #f1f1f1;
+            }
+
+    /* Main content */
+    .main {
+        margin-left: 200px; /* Same as the width of the sidenav */
+        font-size: 20px; /* Increased text to enable scrolling */
+        padding: 0px 10px;
     }
+
+    /* Add an active class to the active dropdown button */
+    .active {
+        background-color: green;
+        color: white;
+    }
+
+    /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+    .dropdown-container {
+        display: none;
+        background-color: white;
+        padding-left: 8px;
+    }
+
+    /* Optional: Style the caret down icon */
+    .fa-caret-down {
+        float: right;
+        padding-right: 8px;
+    }
+
+
+    .sidenav {
+        padding-top: 15px;
+    }
+
+        .sidenav a {
+            font-size: 18px;
+        }
 </style>
 
+<body>
+    <a asp-controller="Branch" asp-action="Create" class="btn-dark" style="width:100%">Create A New Branch </a>
+    <div class="sidenav">
+        <a asp-controller="Booking" asp-action="Index">Booking</a>
+        <a asp-controller="Car" asp-action="Index">Car</a>
+        <a asp-controller="Category" asp-action="Index">Categories</a>
+        <a asp-controller="Branch" asp-action="Index">Branches</a>
+        <a asp-controller="Role" asp-action="Index">Roles</a>
+        <a asp-controller="User" asp-action="Index">Users</a>
+        <button class="dropdown-btn">
+            Dropdown
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+            <a asp-controller="Auth" asp-action="RegisterCustomer">Register Customer</a>
+            <a asp-controller="Auth" asp-action="RegisterAdmin">Register Admin</a>
+        </div>
+        <a asp-controller="Auth" asp-action="Logout">Logout</a>
+    </div>
 
-<h2>Branch Table</h2>
-<table>
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Address</th>
-        <th>Actions</th>
-    </tr>
-    @foreach (var branch in Model)
-    {
+   
+
+         
+    <script>
+        /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+        var dropdown = document.getElementsByClassName("dropdown-btn");
+        var i;
+
+        for (i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var dropdownContent = this.nextElementSibling;
+                if (dropdownContent.style.display === "block") {
+                    dropdownContent.style.display = "none";
+                } else {
+                    dropdownContent.style.display = "block";
+                }
+            });
+        }
+    </script>
+
+</body>
+<div class="main">
+    <style>
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
+    </style>
+    <h2>Branch Table</h2>
+    <table>
         <tr>
-            <td>@(id++)</td>
-            <td>@branch.Name</td>
-            <td>@branch.Address</td>
-            <td>
-                <a asp-controller="Bookings" asp-action="Details" class="btn btn-danger" asp-route-Id="@branch.Id">Details</a>
-                <a asp-controller="Bookings" asp-action="Edit" class="btn btn-danger"  asp-route-Id="@branch.Id">Edit</a>
-                <a asp-controller="Bookings" asp-action="Delete" class="btn btn-danger"  asp-route-Id="@branch.Id">Delete</a>
-            </td>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Actions</th>
         </tr>
-    }
-</table>
+        @foreach (var branch in Model)
+        {
+            <tr>
+                <td>@(id++)</td>
+                <td>@branch.Name</td>
+                <td>@branch.Address</td>
+                <td>
+                    <a  asp-action="Details" class="btn btn-danger" asp-route-Id="@branch.Id">Details</a>
+                    <a  asp-action="Edit" class="btn btn-secondary" asp-route-Id="@branch.Id">Edit</a>
+                    <a  asp-action="Delete" class="btn btn-success" asp-route-Id="@branch.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
+
+
+
+</div>
 

@@ -9,12 +9,15 @@ namespace AimsCarRentals.Interfaces
 {
     public interface IUserService
     {
+
+      
         public void RegisterCustomer(RegisterCustomerViewModel model);
-        public User FindUserById(int id);
-        public List<RegisterCustomerViewModel> GetAllUser();
-        public void Delete(int id);
-        public User LoginUser(string email, string password);
-        public User Update(UpdateAdminViewModel model);
         public void RegisterAdmin(RegisterAdminViewModel model);
+        public User FindUserById(int id);
+        public User LoginUser(string email, string password);
+        public List<UserViewModel> GetAllUser();
+        public void Delete(int id);
+        public User UpdateAdmin(UpdateAdminViewModel model);
+
     }
 }

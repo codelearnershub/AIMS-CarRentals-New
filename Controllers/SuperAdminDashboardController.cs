@@ -1,6 +1,7 @@
 ﻿using AimsCarRentals.Interfaces;
 using AimsCarRentals.Models;
 using AimsCarRentals.Models.ViewModel;
+using AimsCarRentals.ServiceInterfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,9 +14,11 @@ namespace AimsCarRentals.Controllers
     public class SuperAdminDashboardController : Controller
     {
         public readonly IUserRepository _userRepository;
-        public SuperAdminDashboardController(IUserRepository userRepository)
+        public readonly IBranchService _branchService;
+        public SuperAdminDashboardController(IUserRepository userRepository, IBranchService branchService)
         {
             _userRepository = userRepository;
+            _branchService = branchService;
         }
         public IActionResult Index()
         { 
@@ -27,7 +30,8 @@ namespace AimsCarRentals.Controllers
             {
                 User = user
             };
-            return View();
+            var branch = _branchService.GetAll();
+            return View(branch);
         }
     }
 }

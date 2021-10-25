@@ -1,6 +1,8 @@
-﻿using AimsCarRentals.Models;
+﻿using AimsCarRentals.Interfaces;
+using AimsCarRentals.Models;
 using AimsCarRentals.Models.ViewModel;
 using AimsCarRentals.ServiceInterfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -8,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace AimsCarRentals.Controllers
@@ -18,13 +21,17 @@ namespace AimsCarRentals.Controllers
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IBranchService _branchService;
         private readonly ICategoryService _categoryService;
+        private readonly IBookingsService bookingsService;
+        private readonly IUserService userService;
       
-        public CarController(ICarService carService,IBookingsService bookingsService,IBranchService branchService, IWebHostEnvironment webHostEnvironment, ICategoryService categoryService)
+        public CarController(IUserService userService ,ICarService carService,IBookingsService bookingsService,IBranchService branchService, IWebHostEnvironment webHostEnvironment, ICategoryService categoryService)
         {
             this.carService = carService;
             _webHostEnvironment = webHostEnvironment;
             _branchService = branchService;
+            this.bookingsService = bookingsService;
             _categoryService = categoryService;
+            this.userService = userService;
         }
         public IActionResult Index()
         {
@@ -124,6 +131,24 @@ namespace AimsCarRentals.Controllers
         {
             carService.Delete(id);
             RedirectToAction("Index");
+        }
+          [HttpGet]
+        [Authorize]
+        public IActionResult BookCar()
+        {
+            return View();
+        }
+        [HttpPost]
+        [Authorize]
+        public IActionResult BookCar(int id, CreateBookingsViewModel model, CreatePaymentViewModel createPaymentViewModel, double price)
+        {
+
+            var car = carService.Find(id);
+            int userId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
+            var user = userService.FindUserById(userId);
+
+            bookingsService.AddBookings(model,car,user);
+            return RedirectToAction("BookingRef");
         }
     }
 }
