@@ -17,6 +17,51 @@ namespace AimsCarRentals.Migrations
                 .HasAnnotation("ProductVersion", "3.1.12")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            modelBuilder.Entity("AimsCarRentals.Models.Admin", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("MiddleName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("PhoneNo")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Admins");
+                });
+
             modelBuilder.Entity("AimsCarRentals.Models.Bookings", b =>
                 {
                     b.Property<int>("Id")
@@ -146,6 +191,52 @@ namespace AimsCarRentals.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("AimsCarRentals.Models.Customer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("MiddleName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("PhoneNo")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Customers");
+                });
+
             modelBuilder.Entity("AimsCarRentals.Models.Role", b =>
                 {
                     b.Property<int>("Id")
@@ -169,19 +260,19 @@ namespace AimsCarRentals.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2021, 10, 18, 5, 49, 19, 462, DateTimeKind.Local).AddTicks(5697),
+                            CreatedAt = new DateTime(2021, 10, 20, 5, 53, 29, 340, DateTimeKind.Local).AddTicks(426),
                             Name = "SuperAdmin"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2021, 10, 18, 5, 49, 19, 462, DateTimeKind.Local).AddTicks(7942),
+                            CreatedAt = new DateTime(2021, 10, 20, 5, 53, 29, 340, DateTimeKind.Local).AddTicks(1859),
                             Name = "Admin"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2021, 10, 18, 5, 49, 19, 462, DateTimeKind.Local).AddTicks(7968),
+                            CreatedAt = new DateTime(2021, 10, 20, 5, 53, 29, 340, DateTimeKind.Local).AddTicks(1874),
                             Name = "Customer"
                         });
                 });
@@ -246,7 +337,7 @@ namespace AimsCarRentals.Migrations
                             Id = 1,
                             Address = "Asero,Abk",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(2021, 10, 18, 5, 49, 19, 454, DateTimeKind.Local).AddTicks(8212),
+                            DateOfBirth = new DateTime(2021, 10, 20, 5, 53, 29, 334, DateTimeKind.Local).AddTicks(7824),
                             Email = "okikiolalawal@gmail.com",
                             FirstName = "Jafar",
                             Gender = "Male",
@@ -285,10 +376,19 @@ namespace AimsCarRentals.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2021, 10, 18, 5, 49, 19, 463, DateTimeKind.Local).AddTicks(5133),
+                            CreatedAt = new DateTime(2021, 10, 20, 5, 53, 29, 340, DateTimeKind.Local).AddTicks(4968),
                             RoleId = 1,
                             UserId = 1
                         });
+                });
+
+            modelBuilder.Entity("AimsCarRentals.Models.Admin", b =>
+                {
+                    b.HasOne("AimsCarRentals.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("AimsCarRentals.Models.Bookings", b =>
@@ -317,6 +417,15 @@ namespace AimsCarRentals.Migrations
                     b.HasOne("AimsCarRentals.Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AimsCarRentals.Models.Customer", b =>
+                {
+                    b.HasOne("AimsCarRentals.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

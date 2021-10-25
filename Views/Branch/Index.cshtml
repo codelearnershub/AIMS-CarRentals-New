@@ -77,6 +77,7 @@
         }
 </style>
 
+<<<<<<< HEAD
 <body>
     <a asp-controller="Branch" asp-action="Create" class="btn-dark" style="width:100%">Create A New Branch </a>
     <div class="sidenav">
@@ -144,6 +145,28 @@
             <th>Name</th>
             <th>Address</th>
             <th>Actions</th>
+=======
+<a asp-controller="Branch" asp-action="Create" class="btn btn-danger">Create Branch</a>
+<h2>Branch Table</h2>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var branch in Model)
+    {
+        <tr>
+            <td>@(id++)</td>
+            <td>@branch.Name</td>
+            <td>@branch.Address</td>
+            <td>
+                <a asp-action="Details" class="btn btn-danger" asp-route-Id="@branch.Id">Details</a>
+                <a  asp-action="Update" class="btn btn-danger"  asp-route-Id="@branch.Id">Update</a>
+                <a  asp-action="Delete" class="btn btn-danger"  asp-route-Id="@branch.Id">Delete</a>
+            </td>
+>>>>>>> origin/master
         </tr>
         @foreach (var branch in Model)
         {

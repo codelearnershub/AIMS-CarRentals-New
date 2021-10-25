@@ -1,5 +1,9 @@
 ﻿@model AimsCarRentals.Models.ViewModel.CreateBranchViewModel
+@{
+    ViewData["Title"] = "Add Branch";
+}
 <div class="card header"><h3>Add Branch</h3></div>
+<<<<<<< HEAD
 <div class="container">
     <div class="container">
         <form action="Create" method="post">
@@ -23,3 +27,18 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+=======
+
+<form method="post">
+
+    <div>
+        <input type="text" name="Name" placeholder=" Name" class="form-control" />
+    </div>
+    <div>
+        <input type="text" name="Address" placeholder=" Address" class="form-control" />
+    </div>
+    <div>
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+>>>>>>> origin/master

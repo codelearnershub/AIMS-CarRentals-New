@@ -1,4 +1,5 @@
 ﻿@model AimsCarRentals.Models.Role
+<<<<<<< HEAD
 <div class="card header"><h3>Add Branch</h3></div>
 
 <div class="container">
@@ -13,3 +14,21 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+=======
+
+<ul>
+    <li>
+        <label><b>Id</b></label>
+        <h4> @Model.Id</h4>
+    </li>
+    <li>
+        <label><b>Name</b></label>
+        <h4> @Model.Name</h4>
+    </li>
+    <li>
+        <label><b>Created At</b></label>
+        <h4> @Model.CreatedAt</h4>
+    </li>
+</ul>
+<a asp-controller="Home" asp-action="Index">Back To Home</a>
+>>>>>>> origin/master

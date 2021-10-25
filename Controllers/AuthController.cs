@@ -47,7 +47,35 @@ namespace AimsCarRentals.Controllers
             _userService.RegisterCustomer(model);
             return RedirectToAction("Login");
         }
+        public IActionResult UpdateCustomer()
+        {
+            return View ();
+        }
+        [HttpPost]
+        public IActionResult UpdateCustomer(UpdateCustomerViewModel model)
+        {
+            var role = _roleService.FindRoleByName("Customer");
+            var roles = new List<Role>();
+            roles.Add(role);
+            model.Roles = roles;
+            _userService.UpdateCustomer(model);
+            return RedirectToAction("Index");
+        }
 
+        public IActionResult UpdateAdmin()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult UpdateAdmin(UpdateAdminViewModel model)
+        {
+            var role = _roleService.FindRoleByName("Admin");
+            var roles = new List<Role>();
+            roles.Add(role);
+            model.Roles = roles;
+            _userService.UpdateAdmin(model);
+            return RedirectToAction("Index");
+        }
         public IActionResult RegisterAdmin()
         {
             return View();
@@ -69,12 +97,17 @@ namespace AimsCarRentals.Controllers
         public void Delete(int id)
         {
             _userService.Delete(id);
+            RedirectToAction("Index");
         }
+<<<<<<< HEAD
         [Authorize]
         public User Update(UpdateAdminViewModel model)
         {
             return _userService.UpdateAdmin(model);
         }
+=======
+
+>>>>>>> origin/master
 
         [HttpGet]
         public IActionResult Login()
@@ -85,7 +118,7 @@ namespace AimsCarRentals.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel vm)
         {
-            User user = _userService.LoginUser(vm.Email, vm.Password);
+            User user = _userService.Login(vm.Email, vm.Password);
 
             if (user == null) return View();
 
@@ -149,5 +182,19 @@ namespace AimsCarRentals.Controllers
                 return RedirectToAction("BookCar", "Car");
             }
         }
+<<<<<<< HEAD
+=======
+
+        public IActionResult Details(int id)
+        {
+            var user = _userService.FindUserById(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return View(user);
+        }
+
+>>>>>>> origin/master
     }
 }

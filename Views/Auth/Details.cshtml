@@ -1,5 +1,6 @@
 ﻿@model AimsCarRentals.Models.User
 
+<<<<<<< HEAD
 <ul>
     @Model.FirstName
     @Model.MiddleName
@@ -13,3 +14,28 @@
     @Model.CreatedAt
 </ul>
 <a asp-action="Index" class="btn btn-danger">Back</a>
+=======
+
+<ul>
+    <li>
+        <label><b>Id</b></label>
+        <h4>@Model.Id</h4>
+    </li>
+    <li>
+        <label><b>Password</b></label>
+        <h4>@Model.PasswordHash</h4>
+    </li>
+    <li>
+        <label><b>HashSalt</b></label>
+        <h4>@Model.HashSalt</h4>
+    </li>
+    <li>
+        <label><b>Email</b></label>
+        <h4>@Model.Email</h4>
+    </li>
+    <li>
+        <label><b>User was Created At</b></label>
+        <h4>@Model.CreatedAt</h4>
+    </li>
+</ul>
+>>>>>>> origin/master

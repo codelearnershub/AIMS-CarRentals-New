@@ -1,4 +1,5 @@
 ﻿@model AimsCarRentals.Models.Car
+<<<<<<< HEAD
 <div class="row">
 
     <div class="card-header">
@@ -17,3 +18,47 @@
         </ul>
     </div>
 </div>
+=======
+
+
+{
+    <div class="row">
+        <div class="card-header">
+            <img src="@WC.ImagePath@Model.CarPictureUrl" style="width:300px" />
+        </div>
+        <div class="card-body">
+            <ul>
+                <li>
+                    <label><b>Name</b>:</label>
+                    <h4>@Model.Name</h4>
+                </li>
+                <li>
+                    <label>Make:</label>
+                    <h4> @Model.Make</h4>
+                </li>
+                <li>
+                    <label><b>Price</b></label>
+                    <h4>@Model.Price</h4>
+                </li>
+                <li>
+                    <label><b>Plate No</b></label>
+                    <h4>@Model.PlateNo</h4>
+                </li>
+                <li>
+                    <label><b>Branch</b></label>
+                    <h4>@Model.Branch.Name</h4>
+                </li>
+                <li>
+                    <b>Category</b>
+                    <h4>@Model.Category.Name</h4>
+                </li>
+                <li>
+                    <b>Description and Features</b>
+                    <h4>@Model.Description</h4>
+                </li>
+            </ul>
+        </div>
+    </div>
+<a asp-controller="Home" asp-action="Index" class="btn btn-dark">Back</a>
+}
+>>>>>>> origin/master

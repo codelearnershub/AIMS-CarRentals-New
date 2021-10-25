@@ -1,10 +1,14 @@
 ﻿@model AimsCarRentals.Models.ViewModel.UpdateCarViewModel
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 <form method="post" enctype="multipart/form-data">
     <input asp-for="Id" hidden />
     <div class="border p-3">
         <div class="form-group row">
+<<<<<<< HEAD
             <h2 class="text-info pl-3">Add A Car</h2>
         </div>
 
@@ -95,3 +99,68 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+=======
+            <h2 class="text-info pl-3">Update A Car</h2>
+        </div>
+        <div class="input-group">
+            <div class="form-control">
+                <label><b>Name</b></label>
+                <input type="text" placeholder="Name" asp-for="Name" />
+                <span asp-validation-for="Name"></span>
+
+                <div class=" form-control">
+                    <label><b>Make</b></label>
+                    <input type="text" placeholder="Make" asp-for="Make" />
+                    <span asp-validation-for="Make"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <div class="form-control">
+                <label><b>Plate No</b></label>
+                <input type="text" placeholder="Plate No" asp-for="PlateNo" />
+                <span asp-validation-for="PlateNo"></span>
+
+                <div class=" form-control">
+                    <label><b>Price</b></label>
+                    <input type="text" placeholder="Price" asp-for="Price" />
+                    <span asp-validation-for="Price"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <div class="form-group">
+                <label asp-for="CategoryId" class="control-label"></label>
+                <select class="form-control" name="CategoryId" asp-items="@Model.CategoryList">
+                    <option disabled selected>--Select Category--</option>
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BranchId" class="control-label"></label>
+                <select class="form-control" name="LocationId" asp-items="@Model.BranchList">
+                    <option disabled selected>--Select Location--</option>
+                </select>
+                <span asp-validation-for="BranchId" class="text-danger"></span>
+                <div class="form-group">
+                    <div class="col-4">
+                        <input type="file" name="files" asp-for="CarPictureUrl" multiple />
+                        <span class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class=" form-control">
+                <label><b>Description</b></label>
+                <input type="text" placeholder="Description" asp-for="Description" />
+                <span asp-validation-for="Description"></span>
+            </div>
+            <br />
+            <div class="justify-content-between">
+                <input type="submit" value="Update" class="btn btn-danger" />
+            </div>
+        </div>
+    </div>
+</form>
+>>>>>>> origin/master

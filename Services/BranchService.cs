@@ -24,17 +24,18 @@ namespace AimsCarRentals.Services
                Address = model.Address,
                CreatedAt = DateTime.Now
             };
-            return branch;
+            return branchRepository.AddBranch(branch);
+
         }
         public Branch UpdateBranch(UpdateBranchViewModel model)
         {
             var branch = new Branch
             {
+                Id = model.Id,
                 Name = model.Name,
-                Address = model.Address,
-                CreatedAt = DateTime.Now,
+                Address = model.Address
             };
-            return branch;
+            return branchRepository.UpdateBranch(branch);
         }
         public Branch Delete(int id)
         {

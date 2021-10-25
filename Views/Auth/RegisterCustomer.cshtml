@@ -1,5 +1,9 @@
 ﻿@model AimsCarRentals.Models.ViewModel.RegisterCustomerViewModel
+@{
+    ViewData["Title"] = "RegisterCustomer";
+}
 
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 
@@ -177,6 +181,72 @@
 </html>
 
 
+=======
+<h3>Register</h3>
+<form method="post">
+    <div class="card-body">
+        <div class="input-group">
+            <div class="col-md-4">
+                <input type="text" asp-for="FirstName" name="FirstName" placeholder="First Name" class="form-control" /><br />
+                <span asp-validation-for="FirstName" class="text-danger"></span><br>
+            </div>
+            <div class="col-md-4">
+                <input type="text" asp-for="MiddleName" name="MiddleName" placeholder="Middle Name" class="form-control" /><br />
+                <span asp-validation-for="MiddleName" class="text-danger"></span><br>
+            </div>
+        </div>
+        <div class="input-group">
+            <div class="col-md-4">
+                <input type="text" asp-for="LastName" name="LastName" placeholder="Last Name" class="form-control" /><br />
+                <span asp-validation-for="LastName" class="text-danger"></span><br>
+            </div>
+
+            <div class="col-md-4">
+                <label asp-for="Gender">Gender:</label>
+                <br />
+                <input type="radio" asp-for="Gender" value="Male" /> Male <br />
+                <input type="radio" asp-for="Gender" value="Female" /> Female <br />
+            </div>
+        </div>
+        <div class="input-group">
+            <div class="col-md-4">
+                <input type="password" asp-for="Password" placeholder="Password" class="form-control" /><br />
+                <span asp-validation-for="Password" class="text-danger"></span><br>
+            </div>
+            <div class="col-md-4">
+                <input type="password" asp-for="ConfirmPassword" placeholder="Confirm Password" class="form-control" /><br />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span><br>
+            </div>
+        </div>
+        <div class="input-group">
+            <div class="col-md-4">
+                <input type="date" asp-for="DateOfBirth" name="DateOfBirth" placeholder="Date Of Birth" class="form-control" /><br />
+                <span asp-validation-for="DateOfBirth" class="text-danger"></span><br>
+            </div>
+            <div class="col-md-4">
+                <input type="tel" asp-for="PhoneNo" name="PhoneNo" placeholder="Phone No" class="form-control" /><br />
+                <span asp-validation-for="PhoneNo" class="text-danger"></span><br>
+            </div>
+        </div>
+        <div class="input-group">
+            <div class="col-md-4">
+                <input type="text" asp-for="Email" name="Email" placeholder="Email" class="form-control" /><br />
+                <span asp-validation-for="Email" class="text-danger"></span><br>
+            </div>
+            <div>
+                <input type="text" asp-for="Address" name="Address" placeholder="Address" class="form-control" /><br />
+                <span asp-validation-for="Address" class="text-danger"></span><br>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div>
+            <input type="submit" value="Register" class="btn btn-primary" /><h5>if you have an account before, register here</h5>
+            <a class="btn btn-primary" asp-area="" asp-controller="Auth" asp-action="Login">Login</a>
+        </div>
+    </div>
+</form>
+>>>>>>> origin/master
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
