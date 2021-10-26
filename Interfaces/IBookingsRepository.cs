@@ -12,6 +12,7 @@ namespace AimsCarRentals.Interfaces
         public Bookings UpdateBookings(Bookings bookings);
         public Bookings Find(int id);
         public Bookings Delete(int id);
+        public List<Bookings> BookingHistory(int userId);
         public List<Bookings> GetAll();
     }
 }

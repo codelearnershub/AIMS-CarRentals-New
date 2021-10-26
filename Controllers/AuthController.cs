@@ -25,7 +25,6 @@ namespace AimsCarRentals.Controllers
             _userRoleRepository = userRoleRepository;
             _roleService = roleService;
         }
-        /* [Authorize(Roles = "SuperAdmin,Admin")]*/
         public IActionResult Index()
         {
             var user = _userService.GetAllUser();
@@ -100,7 +99,15 @@ namespace AimsCarRentals.Controllers
             _userService.Delete(id);
             RedirectToAction("Index");
         }
+<<<<<<< HEAD
+        [Authorize]
+        public User Update(UpdateAdminViewModel model)
+        {
+            return _userService.UpdateAdmin(model);
+        }
+=======
 
+>>>>>>> origin/master
 
         [HttpGet]
         public IActionResult Login()
@@ -135,7 +142,7 @@ namespace AimsCarRentals.Controllers
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, props);
 
-                return RedirectToAction("Index", "SuperAdminDashboard");
+                return RedirectToAction("Index", "Branch");
             }
             else if (role.Any(r => r.Role.Id == 2))
             {
@@ -175,6 +182,8 @@ namespace AimsCarRentals.Controllers
                 return RedirectToAction("BookCar", "Car");
             }
         }
+<<<<<<< HEAD
+=======
 
         public IActionResult Details(int id)
         {
@@ -186,5 +195,6 @@ namespace AimsCarRentals.Controllers
             return View(user);
         }
 
+>>>>>>> origin/master
     }
 }

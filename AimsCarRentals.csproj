@@ -14,4 +14,9 @@
     <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.22" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\SuperAdminDashboard\" />
+    <Folder Include="Views\User\" />
+  </ItemGroup>
+
 </Project>

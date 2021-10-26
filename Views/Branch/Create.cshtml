@@ -3,6 +3,31 @@
     ViewData["Title"] = "Add Branch";
 }
 <div class="card header"><h3>Add Branch</h3></div>
+<<<<<<< HEAD
+<div class="container">
+    <div class="container">
+        <form action="Create" method="post">
+            <div class="card-body">
+                <label for="uname"><b>Name</b></label>
+                <input type="text" placeholder="Name" name="Name" required>
+                <span asp-validation-for="Name"></span>
+
+                <label for="psw"><b>Address</b></label>
+                <input type="password" placeholder="Address" name="Address" required>
+                <span asp-validation-for="Address"></span>
+            </div>
+            <button class="justify-content-between" type="submit">Create</button>
+        </form>
+    </div>
+
+</div>
+<div class="container">
+    <a asp-action="Index" class="btn btn-danger">Back To Index</a>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+=======
 
 <form method="post">
 
@@ -16,3 +41,4 @@
         <input type="submit" value="Create" class="btn btn-primary" />
     </div>
 </form>
+>>>>>>> origin/master

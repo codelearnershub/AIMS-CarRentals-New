@@ -1,0 +1,59 @@
+﻿@model IEnumerable<AimsCarRentals.Models.ViewModel.BookingsViewModel>
+
+    <style>
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
+    </style>
+    
+<a asp-controller="Home" asp-action="Index "class="btn btn-danger">Make A New Booking</a>
+        <h2>Your Booking History</h2>
+        
+        <div style="overflow-x:auto;">
+            <table>
+                <tr>
+                    <th></th>
+                    <th>First Name</th>
+                    <th>Middle Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>BookingsId</th>
+                    <th>CarId</th>
+                    <th>UserId</th>
+                    <th>BookingRef</th>
+                    <th>Action</th>
+                </tr>
+                @foreach (var bookings in Model)
+                {
+
+
+                    <tr>
+                        <td>@bookings.User.FirstName</td>
+                        <td>@bookings.User.MiddleName</td>
+                        <td>@bookings.User.LastName</td>
+                        <td>@bookings.User.Email</td>
+                        <td>@bookings.Id</td>
+                        <td>@bookings.CarId</td>
+                        <td>@bookings.UserId</td>
+                        <td>@bookings.Booking_ref</td>
+                        <td>
+                            <a asp-action="Delete" asp-route="@bookings.Id" class="btn btn-darkS">Delete</a>
+                            <a asp-action="Delete" asp-route="@bookings.Id" class="btn btn-darkS">Details</a>
+                        </td>
+                    </tr>
+                    
+                }
+            </table>
+        </div>

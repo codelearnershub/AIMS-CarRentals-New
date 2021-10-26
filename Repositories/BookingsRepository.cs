@@ -1,6 +1,7 @@
 ﻿using AimsCarRentals.Context;
 using AimsCarRentals.Interfaces;
 using AimsCarRentals.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,6 +45,10 @@ namespace AimsCarRentals.Repositories
         public List<Bookings> GetAll()
         {
             return aimsDbContext.Bookings.ToList();
+        }
+        public List<Bookings> BookingHistory(int userId)
+        {
+            return aimsDbContext.Bookings.Where(c => c.UserId == userId).Include(c => c.User).ToList();
         }
     }
 }

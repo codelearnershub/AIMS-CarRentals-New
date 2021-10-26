@@ -16,15 +16,18 @@ namespace AimsCarRentals.Services
         {
             this.bookingsRepository = bookingsRepository;
         }
-        public Bookings AddBookings(CreateBookingsViewModel model)
+        public Bookings AddBookings(CreateBookingsViewModel model,Car car, User user)
         {
             var bookings = new Bookings
             {
                 Booking_ref = model.Booking_ref,
                 UserId = model.UserId,
+                User = user,
+                Car = car,
                 CarId = model.CarId,
                 PickUpDate = model.PickUpDate,
                 ReturnDate = model.ReturnDate,
+
                 CreatedAt = DateTime.Now
             };
             return bookings;
@@ -62,7 +65,10 @@ namespace AimsCarRentals.Services
                 CreatedAt = DateTime.Now
             }).ToList();
             return branch;
-
+        }
+        public List<Bookings> BookingHistory(int userId)
+        {
+           return bookingsRepository.BookingHistory(userId);
         }
     }
 }

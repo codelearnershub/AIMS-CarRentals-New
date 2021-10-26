@@ -56,6 +56,8 @@ namespace AimsCarRentals.Controllers
         {
             categoryService.DeleteCategory(id);
             RedirectToAction("Index");
+<<<<<<< HEAD
+=======
         }
         public IActionResult Details(int id)
         {
@@ -65,6 +67,7 @@ namespace AimsCarRentals.Controllers
                 return NotFound();
             }
             return View(category);
+>>>>>>> origin/master
         }
     }
 }

@@ -26,6 +26,7 @@ namespace AimsCarRentals.Services
             _customerRepository = customerRepository;
             _adminRepository = adminRepository;
         }
+
         private string HashPassword(string password, string salt)
         {
             byte[] saltByte = Convert.FromBase64String(salt);
@@ -151,9 +152,9 @@ namespace AimsCarRentals.Services
             return null;
 
         }
-        public List<RegisterCustomerViewModel> GetAllUser()
+        public List<UserViewModel> GetAllUser()
         {
-            var user = _userRepository.GetAllUsers().Select(c => new RegisterCustomerViewModel
+            var user = _userRepository.GetAllUsers().Select(c => new UserViewModel
             {
                 
                 Email = c.Email,
@@ -166,6 +167,9 @@ namespace AimsCarRentals.Services
         {
             _userRepository.DeleteUser(id);
         }
+<<<<<<< HEAD
+        public User UpdateAdmin(UpdateAdminViewModel model)
+=======
         public void UpdateAdmin(UpdateAdminViewModel model)
         {
             byte[] salt = new byte[128 / 8];
@@ -215,6 +219,7 @@ namespace AimsCarRentals.Services
             }
         }
         public void UpdateCustomer(UpdateCustomerViewModel model)
+>>>>>>> origin/master
         {
             byte[] salt = new byte[128 / 8];
 
@@ -232,6 +237,20 @@ namespace AimsCarRentals.Services
             {
                 User user = new User
                 {
+<<<<<<< HEAD
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    MiddleName = model.MiddleName,
+                    Email = model.Email,
+                    Gender = model.Gender,
+                    PasswordHash = hashedPassword,
+                    HashSalt = saltString,
+                    PhoneNo = model.PhoneNo,
+                    DateOfBirth = model.DateOfBirth,
+                    Address = model.Address,
+
+                };
+=======
                     Email = model.Email,
                     PasswordHash = hashedPassword,
                     HashSalt = saltString,
@@ -248,11 +267,18 @@ namespace AimsCarRentals.Services
                     Address = model.Address,
                 };
 
+>>>>>>> origin/master
                 var userRole = new UserRole
                 {
                     UserId = user.Id,
                     RoleId = role.Id,
                 };
+<<<<<<< HEAD
+                user.UserRoles.Add(userRole);
+                _userRepository.UpdateUser(user);
+            }
+                throw new Exception("No Role found");
+=======
                 _customerRepository.UpdateCustomer(customer);
                 user.UserRoles.Add(userRole);
                 _userRepository.UpdateUser(user);
@@ -261,9 +287,18 @@ namespace AimsCarRentals.Services
             {
                 throw new Exception("No Role found");
             }
+>>>>>>> origin/master
         }
 
     }
 
  
 }
+
+/*public void RegisterCustomer(RegisterCustomerViewModel model);
+public User FindUserById(int id);
+public List<RegisterCustomerViewModel> GetAllUser();
+public void Delete(int id);
+public User LoginUser(string email, string password);
+public User Update(UpdateAdminViewModel model);
+public void RegisterAdmin(RegisterAdminViewModel model);*/
