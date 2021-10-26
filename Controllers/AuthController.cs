@@ -47,20 +47,8 @@ namespace AimsCarRentals.Controllers
             _userService.RegisterCustomer(model);
             return RedirectToAction("Login");
         }
-        public IActionResult UpdateCustomer()
-        {
-            return View ();
-        }
+       
         [HttpPost]
-        public IActionResult UpdateCustomer(UpdateCustomerViewModel model)
-        {
-            var role = _roleService.FindRoleByName("Customer");
-            var roles = new List<Role>();
-            roles.Add(role);
-            model.Roles = roles;
-            _userService.UpdateCustomer(model);
-            return RedirectToAction("Index");
-        }
 
         public IActionResult UpdateAdmin()
         {
@@ -89,7 +77,7 @@ namespace AimsCarRentals.Controllers
             roles.Add(role);
             model.Roles = roles;
             _userService.RegisterAdmin(model);
-            return RedirectToAction("Login");
+            return RedirectToAction("Index");
         }
 
 
@@ -99,15 +87,19 @@ namespace AimsCarRentals.Controllers
             _userService.Delete(id);
             RedirectToAction("Index");
         }
-<<<<<<< HEAD
-        [Authorize]
-        public User Update(UpdateAdminViewModel model)
+        public IActionResult UpdateCustomer()
         {
-            return _userService.UpdateAdmin(model);
+            return View();
         }
-=======
-
->>>>>>> origin/master
+        public IActionResult UpdateCustomer(UpdateCustomerViewModel model)
+        {
+            var role = _roleService.FindRoleByName("Admin");
+            var roles = new List<Role>();
+            roles.Add(role);
+            model.Roles = roles;
+            _userService.UpdateCustomer(model);
+            return RedirectToAction("Login");
+        }
 
         [HttpGet]
         public IActionResult Login()
@@ -182,19 +174,5 @@ namespace AimsCarRentals.Controllers
                 return RedirectToAction("BookCar", "Car");
             }
         }
-<<<<<<< HEAD
-=======
-
-        public IActionResult Details(int id)
-        {
-            var user = _userService.FindUserById(id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-            return View(user);
-        }
-
->>>>>>> origin/master
     }
 }

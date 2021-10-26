@@ -64,26 +64,28 @@ html {
 <body>
 
     <h2>Our Branches</h2>
-    <p>Choose Your Convenient</p>
+    <p>Choose At Your Convenient</p>
     <br>
 
-    <div class="row">
-        @foreach (var branch in Model)
-        {
 
+    @foreach (var branch in Model)
+    {
 
-        <div class="column">
-            <div class="card">@*
+<div class="row">
+    <div class="column">
+        <div class="card">
+            @*
                 <img src="../w3images/team1.jpg" alt="Jane" style="width:100%">*@
-                <div class="container">
-                    <h2>Name: @branch.Name</h2>
-                    <p>@branch.Address</p>
-                    <p><a asp-controller="Car" asp-action="SelectCar" asp-route-Id="@branch.Id" class="button">Contact</a></p>
-                </div>
+            <div class="container">
+                <h2>Name: @branch.Name</h2>
+                <p><h5>@branch.Address</h5></p>
+                <p><a asp-controller="Car" asp-action="SelectCar" asp-route-Id="@branch.Id" class="button">Select Car</a></p>
             </div>
         </div>
-        }
     </div>
+</div>
+        }
+    
 
 </body>
 

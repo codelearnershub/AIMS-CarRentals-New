@@ -108,5 +108,6 @@ namespace AimsCarRentals.Models.ViewModel
         public IEnumerable<SelectListItem> BranchList { get; set; }
         public IEnumerable<SelectListItem> CategoryList { get; set; }
         public bool IsAvailable { get; set; }
+        public string SerialNo { get; internal set; }
     }
 }

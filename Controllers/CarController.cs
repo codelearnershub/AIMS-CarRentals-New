@@ -19,31 +19,20 @@ namespace AimsCarRentals.Controllers
     {
         public readonly ICarService carService;
         private readonly IWebHostEnvironment _webHostEnvironment;
-<<<<<<< HEAD
         private readonly IBranchService _branchService;
         private readonly ICategoryService _categoryService;
         private readonly IBookingsService bookingsService;
         private readonly IUserService userService;
       
         public CarController(IUserService userService ,ICarService carService,IBookingsService bookingsService,IBranchService branchService, IWebHostEnvironment webHostEnvironment, ICategoryService categoryService)
-=======
-        private readonly ICategoryService categoryService;
-        private readonly IBranchService _branchService;
-        public CarController(ICarService carService, IUserService userService, IWebHostEnvironment webHostEnvironment, ICategoryService categoryService, IBranchService branchService)
->>>>>>> origin/master
         {
 
             this.carService = carService;
             _webHostEnvironment = webHostEnvironment;
-<<<<<<< HEAD
             _branchService = branchService;
             this.bookingsService = bookingsService;
             _categoryService = categoryService;
             this.userService = userService;
-=======
-            this.categoryService = categoryService;
-            _branchService = branchService;
->>>>>>> origin/master
         }
         public IActionResult Index()
         {
@@ -56,11 +45,7 @@ namespace AimsCarRentals.Controllers
         {
           CreateCarViewModel carVM = new CreateCarViewModel
             {
-<<<<<<< HEAD
                 CategoryList = _categoryService.GetAllCategories().Select(c => new SelectListItem
-=======
-                CategoryList = categoryService.GetAllCategories().Select(c => new SelectListItem
->>>>>>> origin/master
                 {
                     Text = c.Name,
                     Value = c.Id.ToString(),
@@ -72,12 +57,8 @@ namespace AimsCarRentals.Controllers
                 })
             };
 
-<<<<<<< HEAD
 
             return View(carVM);
-=======
-            return View(/*carVM*/);
->>>>>>> origin/master
         }
 
         [HttpPost]
@@ -97,72 +78,71 @@ namespace AimsCarRentals.Controllers
                     files[0].CopyTo(fileStream);
                 }
                 createCarViewModel.CarPictureUrl = fileName + extension;
-                carService.AddCar(createCarViewModel);
+                carService.AddCar(createCarViewModel,createCarViewModel.BranchId, createCarViewModel.CategoryId);
             }
             return RedirectToAction("Index");
         }
         public IActionResult Update()
         {
-<<<<<<< HEAD
             UpdateCarViewModel carVM = new UpdateCarViewModel
-              {
-                  CategoryList = _categoryService.GetAllCategories().Select(c => new SelectListItem
-=======
-              CreateCarViewModel carVM = new CreateCarViewModel
-              {
-                  CategoryList = categoryService.GetAllCategories().Select(c => new SelectListItem
->>>>>>> origin/master
-                  {
-                      Text = c.Name,
-                      Value = c.Id.ToString(),
-                  }),
-                  BranchList = _branchService.GetAll().Select(c => new SelectListItem
-                  {
-                      Text = c.Name,
-                      Value = c.Id.ToString(),
-                  })
-              };
-<<<<<<< HEAD
-
-  
-=======
->>>>>>> origin/master
+            {
+                CategoryList = _categoryService.GetAllCategories().Select(c => new SelectListItem
+                {
+                    Text = c.Name,
+                    Value = c.Id.ToString(),
+                }),
+                BranchList = _branchService.GetAll().Select(c => new SelectListItem
+                {
+                    Text = c.Name,
+                    Value = c.Id.ToString(),
+                })
+            };
             return View(carVM);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Update(CreateCarViewModel createCarViewModel)
-        {
-            var files = HttpContext.Request.Form.Files;
-            string webRootPath = _webHostEnvironment.WebRootPath;
-            if (createCarViewModel.Id == 0)
+            public IActionResult Update(UpdateCarViewModel model)
             {
-                string upload = webRootPath + WC.ImagePath;
-                string fileName = Guid.NewGuid().ToString();
-                string extension = Path.GetExtension(files[0].FileName);
-                string filePath = fileName + extension;
-                using (var fileStream = new FileStream(Path.Combine(upload, filePath), FileMode.Create))
+                var files = HttpContext.Request.Form.Files;
+                string webRootPath = _webHostEnvironment.WebRootPath;
+                if (model.Id == 0)
                 {
-                    files[0].CopyTo(fileStream);
+                    string upload = webRootPath + WC.ImagePath;
+                    string fileName = Guid.NewGuid().ToString();
+                    string extension = Path.GetExtension(files[0].FileName);
+                    string filePath = fileName + extension;
+                    using (var fileStream = new FileStream(Path.Combine(upload, filePath), FileMode.Create))
+                    {
+                        files[0].CopyTo(fileStream);
+                    }
+                    model.CarPictureUrl = fileName + extension;
+                    carService.UpdateCar(model, model.BranchId, model.CategoryId);
                 }
-                createCarViewModel.CarPictureUrl = fileName + extension;
-                carService.AddCar(createCarViewModel);
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
-        }
+       
 
         public void Find(int id)
         {
            carService.Find(id);
         }
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
             carService.Delete(id);
-            RedirectToAction("Index");
+            return RedirectToAction("Index");
         }
-<<<<<<< HEAD
-          [HttpGet]
+        public IActionResult Details(int id)
+        {
+            var car = carService.Find(id);
+            if (car != null)
+            {
+                return View(car);
+            }
+
+            return NotFound();
+        }
+        [HttpGet]
         [Authorize]
         public IActionResult BookCar()
         {
@@ -170,25 +150,30 @@ namespace AimsCarRentals.Controllers
         }
         [HttpPost]
         [Authorize]
-        public IActionResult BookCar(int id, CreateBookingsViewModel model, CreatePaymentViewModel createPaymentViewModel, double price)
+        public IActionResult BookCar(int id, CreateBookingsViewModel model)
         {
 
             var car = carService.Find(id);
             int userId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
             var user = userService.FindUserById(userId);
-
             bookingsService.AddBookings(model,car,user);
             return RedirectToAction("BookingRef");
-=======
-        public IActionResult Details(int id)
+        }
+        [HttpGet]
+        public IActionResult SelectCar()
         {
-            var car = carService.Find(id);
-            if (car == null)
-            {
-                return NotFound();
-            }
+            var car = carService.GetAll();
             return View(car);
->>>>>>> origin/master
+        }
+        public IActionResult GatAllCarsPerCategory(int categoryId)
+        {
+            var car = carService.GetAllCarsPerEachBranch(categoryId);
+            return View(car);
+        }
+        public IActionResult GetAllCarsPerEachBranch(int branchId)
+        {
+            var car = carService.GetAllCarsPerEachBranch(branchId);
+            return View(car);
         }
     }
 }

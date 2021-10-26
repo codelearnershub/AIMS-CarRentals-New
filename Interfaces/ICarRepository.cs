@@ -13,5 +13,7 @@ namespace AimsCarRentals.Interfaces
         public Car Find(int id);
         public Car Delete(int id);
         public List<Car> GetAll();
+        public List<Car> GetCarsPerEachCategory(int categoryId);
+        public List<Car> GetAllCarsPerEachBranch(int branchId);
     }
 }

@@ -55,9 +55,6 @@ namespace AimsCarRentals.Controllers
         public void Delete(int id)
         {
             roleService.DeleteRole(id);
-<<<<<<< HEAD
-            RedirectToAction("Index");
-=======
             RedirectToAction("Index"); 
         }
         public IActionResult Details(int id)
@@ -68,7 +65,6 @@ namespace AimsCarRentals.Controllers
                 return NotFound();
             }
             return View(role);
->>>>>>> origin/master
         }
     }
 }

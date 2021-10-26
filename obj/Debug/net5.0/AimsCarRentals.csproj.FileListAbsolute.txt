@@ -127,3 +127,12 @@ C:\Users\JAFAR LAWAL\source\repos\AimsCarRentals\obj\Debug\net5.0\Razor\Views\Ca
 C:\Users\JAFAR LAWAL\source\repos\AimsCarRentals\obj\Debug\net5.0\Razor\Views\Category\Details.cshtml.g.cs
 C:\Users\JAFAR LAWAL\source\repos\AimsCarRentals\obj\Debug\net5.0\Razor\Views\Category\Index.cshtml.g.cs
 C:\Users\JAFAR LAWAL\source\repos\AimsCarRentals\obj\Debug\net5.0\Razor\Views\Category\Update.cshtml.g.cs
+C:\Users\JAFAR LAWAL\source\repos\AimsCarRentals\obj\Debug\net5.0\Razor\Views\AdminDashBoard\Index.cshtml.g.cs
+C:\Users\JAFAR LAWAL\source\repos\AimsCarRentals\obj\Debug\net5.0\Razor\Views\Auth\UpdateAdmin.cshtml.g.cs
+C:\Users\JAFAR LAWAL\source\repos\AimsCarRentals\obj\Debug\net5.0\Razor\Views\Auth\UpdateCustomer.cshtml.g.cs
+C:\Users\JAFAR LAWAL\source\repos\AimsCarRentals\obj\Debug\net5.0\Razor\Views\Bookings\Update.cshtml.g.cs
+C:\Users\JAFAR LAWAL\source\repos\AimsCarRentals\obj\Debug\net5.0\Razor\Views\Shared\_AdminDashBoard.cshtml.g.cs
+C:\Users\JAFAR LAWAL\source\repos\AimsCarRentals\obj\Debug\net5.0\Razor\Views\SuperAdminDashboard\Index.cshtml.g.cs
+C:\Users\JAFAR LAWAL\source\repos\AimsCarRentals\obj\Debug\net5.0\Razor\Views\Car\GetAllCarsPerEachCategory.cshtml.g.cs
+C:\Users\JAFAR LAWAL\source\repos\AimsCarRentals\obj\Debug\net5.0\Razor\Views\Car\GetAllCarPerEachBranch.cshtml.g.cs
+C:\Users\JAFAR LAWAL\source\repos\AimsCarRentals\obj\Debug\net5.0\Razor\Views\Category\SelectCategory.cshtml.g.cs

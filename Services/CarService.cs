@@ -13,40 +13,60 @@ namespace AimsCarRentals.Services
     public class CarService:ICarService
     {
         public readonly ICarRepository carRepository;
-        public CarService(ICarRepository carRepository)
+        public readonly IBranchService _branchService;
+        public readonly ICategoryService _categoryService;
+        public CarService(ICarRepository carRepository,IBranchService branchService,ICategoryService categoryService)
         {
+            _branchService = branchService;
             this.carRepository = carRepository;
+            _categoryService = categoryService;
         }
-        public Car AddCar(CreateCarViewModel model)
+        public Car AddCar(CreateCarViewModel model,int branchId, int categoryId)
         {
             var car = new Car
             {
                 Name = model.Name,
+                Make = model.Make,
                 PlateNo = model.PlateNo,
                 BranchId = model.BranchId,
                 CategoryId = model.CategoryId,
-                SerialNo = Guid.NewGuid().ToString().Substring(1, 3),
+                SerialNo = Guid.NewGuid().ToString().Substring(1,3).ToUpper(),
                 Price = model.Price,
                 CarPictureUrl = model.CarPictureUrl,
+                Branch = _branchService.Find(branchId),
+                Category = _categoryService.FindCategory(categoryId),
                 IsAvailable = true,
             };
-            return car;
+            return carRepository.AddCar(car);
         }
-        public Car UpdateCar(UpdateCarViewModel model)
+        public Car UpdateCar(UpdateCarViewModel model, int branchId,int categoryId)
         {
             var car = new Car
             {
                 Name = model.Name,
+                Make = model.Make,
                 PlateNo = model.PlateNo,
                 BranchId = model.BranchId,
                 CategoryId = model.CategoryId,
                 Price = model.Price,
+                SerialNo = model.SerialNo,
                 CarPictureUrl = model.CarPictureUrl,
-                IsAvailable = true,
-                CreatedAt = DateTime.Now,
+                Branch = _branchService.Find(branchId),
+                Category = _categoryService.FindCategory(categoryId),
             };
-            return car;
+            return carRepository.UpdateCar(car);
         }
+      
+            public Car UpdateIsAvailable(Car car)
+            {
+                Car newCar = new Car
+                {
+                    IsAvailable = car.IsAvailable,
+                    SerialNo = car.SerialNo,
+                };
+                return carRepository.UpdateCar(newCar);
+            }
+        
         public Car Delete(int id)
         {
           return  carRepository.Delete(id);
@@ -70,7 +90,15 @@ namespace AimsCarRentals.Services
                 CreatedAt = c.CreatedAt
             }).ToList();
             return car;
-          
+        }
+        public List<Car> GetCarsPerEachCategory(int categoryId)
+        {
+            return carRepository.GetCarsPerEachCategory(categoryId);
+        }
+
+        public List<Car> GetAllCarsPerEachBranch(int branchId)
+        {
+            return carRepository.GetAllCarsPerEachBranch(branchId);
         }
     }
 }

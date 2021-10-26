@@ -30,9 +30,9 @@ namespace AimsCarRentals.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(CreateCategoryViewModel createCategoryViewModel)
+        public IActionResult Create(CreateCategoryViewModel model)
         {
-            categoryService.AddCategory(createCategoryViewModel);
+            categoryService.AddCategory(model);
             return RedirectToAction("Index");
         }
         public IActionResult Update()
@@ -56,8 +56,6 @@ namespace AimsCarRentals.Controllers
         {
             categoryService.DeleteCategory(id);
             RedirectToAction("Index");
-<<<<<<< HEAD
-=======
         }
         public IActionResult Details(int id)
         {
@@ -67,7 +65,11 @@ namespace AimsCarRentals.Controllers
                 return NotFound();
             }
             return View(category);
->>>>>>> origin/master
+        }
+        public IActionResult SelectCategory()
+        {
+            var category = categoryService.GetAllCategories();
+            return View(category);
         }
     }
 }
