@@ -3,23 +3,21 @@
     ViewData["Title"] = "Add Branch";
 }
 <div class="card header"><h3>Add Branch</h3></div>
-<<<<<<< HEAD
 <div class="container">
     <div class="container">
-        <form action="Create" method="post">
-            <div class="card-body">
-                <label for="uname"><b>Name</b></label>
-                <input type="text" placeholder="Name" name="Name" required>
-                <span asp-validation-for="Name"></span>
+        <form method="post" class="input-group">
 
-                <label for="psw"><b>Address</b></label>
-                <input type="password" placeholder="Address" name="Address" required>
-                <span asp-validation-for="Address"></span>
+            <div>
+                <input type="text" name="Name" placeholder=" Name" class="form-control" />
             </div>
-            <button class="justify-content-between" type="submit">Create</button>
+            <div>
+                <input type="text" name="Address" placeholder=" Address" class="form-control" />
+            </div>
+            <div>
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
         </form>
     </div>
-
 </div>
 <div class="container">
     <a asp-action="Index" class="btn btn-danger">Back To Index</a>
@@ -27,18 +25,3 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-=======
-
-<form method="post">
-
-    <div>
-        <input type="text" name="Name" placeholder=" Name" class="form-control" />
-    </div>
-    <div>
-        <input type="text" name="Address" placeholder=" Address" class="form-control" />
-    </div>
-    <div>
-        <input type="submit" value="Create" class="btn btn-primary" />
-    </div>
-</form>
->>>>>>> origin/master

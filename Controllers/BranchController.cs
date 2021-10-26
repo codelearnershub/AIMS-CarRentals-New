@@ -1,4 +1,5 @@
-﻿using AimsCarRentals.Models.ViewModel;
+﻿using AimsCarRentals.Interfaces;
+using AimsCarRentals.Models.ViewModel;
 using AimsCarRentals.ServiceInterfaces;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -6,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace AimsCarRentals.Controllers
@@ -13,13 +15,17 @@ namespace AimsCarRentals.Controllers
     public class BranchController : Controller
     {
         public readonly IBranchService branchService;
-      
-        public BranchController(IBranchService branchService)
+        public readonly IUserService userService;
+        public BranchController(IBranchService branchService,IUserService userService)
         {
             this.branchService = branchService;
+            this.userService = userService;
         }
         public IActionResult Index()
         {
+            int userId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
+            var loggedInUser = userService.FindUserById(userId);
+            ViewBag.UserName = $" Welcome SuperAdmin {loggedInUser.FirstName} {loggedInUser.MiddleName} {loggedInUser.LastName}";
             var branch = branchService.GetAll();
             return View(branch);
 
@@ -65,6 +71,11 @@ namespace AimsCarRentals.Controllers
             {
                 return NotFound();
             }
+            return View(branch);
+        }
+        public IActionResult SelectBranch()
+        {
+            var branch = branchService.GetAll();
             return View(branch);
         }
     }

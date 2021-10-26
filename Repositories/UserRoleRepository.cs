@@ -9,11 +9,7 @@ using System.Threading.Tasks;
 
 namespace AimsCarRentals.Repositories
 {
-<<<<<<< HEAD
     public class UserRoleRepository:IUserRoleRepository
-=======
-    public class UserRoleRepository :IUserRoleRepository
->>>>>>> origin/master
     {
 
         public readonly AimsDbContext _dbContext;

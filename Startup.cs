@@ -28,38 +28,27 @@ namespace AimsCarRentals
         {
             services.AddControllersWithViews();
             services.AddDbContext<AimsDbContext>(option => option.UseMySQL(Configuration.GetConnectionString("AimsDbContext")));
+
             services.AddScoped<ICarRepository, CarRepository>();
             services.AddScoped<ICarService, CarService>();
-<<<<<<< HEAD
 
-=======
-            services.AddScoped<ICustomerRepository, CustomerRepository>();
-            services.AddScoped<IAdminRepository, AdminRepository>();
->>>>>>> origin/master
             services.AddScoped<IBookingsRepository, BookingsRepository>();
             services.AddScoped<IBookingsService, BookingsService>();
+
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<ICategoryService, CategoryService>();
+
             services.AddScoped<IUserRoleRepository, UserRoleRepository>();
-<<<<<<< HEAD
+
                         services.AddScoped<IBranchRepository, BranchRepository>();
                         services.AddScoped<IBranchService, BranchService>();
+
                         services.AddScoped<IUserRepository, UserRepository>();
                         services.AddScoped<IUserService, UserService>();
+
                         services.AddScoped<IRoleRepository, RoleRepository>();
                         services.AddScoped<IRoleService, RoleService>();
-                       // services.AddScoped<IPaymentRepository, PaymentRepository>();
-                       // services.AddScoped<IPaymentService, PaymentService>();*/
-=======
-            services.AddScoped<IBranchRepository, BranchRepository>();
-            services.AddScoped<IBranchService, BranchService>();
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IRoleRepository, RoleRepository>();
-            services.AddScoped<IRoleService, RoleService>();
-            //services.AddScoped<IPaymentRepository, PaymentRepository>();
-            //  services.AddScoped<IPaymentService, PaymentService>();
->>>>>>> origin/master
+
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(config =>
             {
                 config.LoginPath = "/Auth/Login";

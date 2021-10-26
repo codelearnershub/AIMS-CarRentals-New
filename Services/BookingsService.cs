@@ -12,9 +12,13 @@ namespace AimsCarRentals.Services
     public class BookingsService:IBookingsService
     {
         public readonly IBookingsRepository bookingsRepository;
-        public BookingsService(IBookingsRepository bookingsRepository)
+        public readonly ICarService carService;
+        public readonly ICarRepository carRepository;
+        public BookingsService(IBookingsRepository bookingsRepository,ICarService carService, ICarRepository carRepository)
         {
             this.bookingsRepository = bookingsRepository;
+            this.carService = carService;
+            this.carRepository = carRepository;
         }
         public Bookings AddBookings(CreateBookingsViewModel model,Car car, User user)
         {
@@ -27,10 +31,14 @@ namespace AimsCarRentals.Services
                 CarId = model.CarId,
                 PickUpDate = model.PickUpDate,
                 ReturnDate = model.ReturnDate,
-
                 CreatedAt = DateTime.Now
             };
-            return bookings;
+            var carAvailable = carService.Find(car.Id);
+            carAvailable.IsAvailable = false;
+
+            carRepository.UpdateCar(carAvailable);
+
+            return bookingsRepository.AddBookings(bookings);
         }
         public Bookings UpdateBookings(UpdateBookingsViewModel model)
         {

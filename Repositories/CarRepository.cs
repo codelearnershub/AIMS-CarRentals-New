@@ -1,6 +1,7 @@
 ﻿using AimsCarRentals.Context;
 using AimsCarRentals.Interfaces;
 using AimsCarRentals.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,8 +44,16 @@ namespace AimsCarRentals.Repositories
         }
         public List<Car> GetAll()
         {
-           return aimsDbContext.Cars.ToList();
+           return aimsDbContext.Cars.Include(u =>u.Category).Include(b => b.Branch).ToList();
+        }
+        public List<Car> GetCarsPerEachCategory(int categoryId)
+        {
+            return aimsDbContext.Cars.Where(c => c.CategoryId == categoryId).Include(u => u.Category).Include(b => b.Branch).ToList();
         }
 
+        public List<Car> GetAllCarsPerEachBranch(int branchId)
+        {
+            return aimsDbContext.Cars.Where(c => c.BranchId == branchId).Include(u => u.Category).Include(b => b.Branch).ToList();
+        }
     }
 }
