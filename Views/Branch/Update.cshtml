@@ -14,17 +14,18 @@
         <label for="psw"><b>Address</b></label>
         <input type="password" placeholder="Address" name="Address" required>
         <span asp-validation-for="Address"></span>
-<form method="post">
-    <div class="input-group">
-       <input placeholder="Name" asp-for="Name" name="Name" />
-      <input placeholder="Name" asp-for="Name" name="Address" />
+        <form method="post">
+            <div class="input-group">
+                <input placeholder="Name" asp-for="Name" name="Name" />
+                <input placeholder="Name" asp-for="Name" name="Address" />
+            </div>
+            <button class="justify-content-between" type="submit">Update</button>
+            <div>
+                <input type="submit" value="Update" class="btn btn-primary" />
+            </div>
+        </form>
     </div>
-    <button class="justify-content-between" type="submit">Update</button>
-    <div>
-        <input type="submit" value="Update" class="btn btn-primary" />
-    </div>
-
+</div>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-</form>

@@ -82,23 +82,15 @@
 <body>
     <a asp-controller="Branch" asp-action="Create" class="btn-dark" style="width:100%">Create A New Branch </a>
     <div class="sidenav">
-        <a asp-controller="Booking" asp-action="Index">Booking</a>
+        <a asp-controller="Bookings" asp-action="Index">Booking</a>
         <a asp-controller="Car" asp-action="Index">Car</a>
         <a asp-controller="Category" asp-action="Index">Categories</a>
         <a asp-controller="Branch" asp-action="Index">Branches</a>
-        <a asp-controller="Role" asp-action="Index">Roles</a>
-        <a asp-controller="User" asp-action="Index">Users</a>
-        <button class="dropdown-btn">
-            Dropdown
-            <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-container">
+        <a asp-controller="Auth" asp-action="Index">Users</a>
             <a asp-controller="Auth" asp-action="RegisterCustomer">Register Customer</a>
             <a asp-controller="Auth" asp-action="RegisterAdmin">Register Admin</a>
         </div>
         <a asp-controller="Auth" asp-action="Logout">Logout</a>
-    </div>
-
    
 
          
@@ -142,7 +134,7 @@
 
 
     <h2>Branch Table</h2>
-    <a asp-action="Create" class="btn btn-danger">Create Branch</a>
+    <a asp-action="Create" class="btn btn-secondary">Create Branch</a>
     <table>
         <tr>
             <th>Id</th>
@@ -157,8 +149,8 @@
     <td>@branch.Name</td>
     <td>@branch.Address</td>
     <td>
-        <a asp-action="Details" class="btn btn-danger" asp-route-Id="@branch.Id">Details</a>
-        <a asp-action="Update" class="btn btn-danger" asp-route-Id="@branch.Id">Update</a>
+        <a asp-action="Details" class="btn btn-success" asp-route-Id="@branch.Id">Details</a>
+        <a asp-action="Update" class="btn btn-black" asp-route-Id="@branch.Id">Update</a>
         <a asp-action="Delete" class="btn btn-danger" asp-route-Id="@branch.Id">Delete</a>
     </td>
 </tr>}

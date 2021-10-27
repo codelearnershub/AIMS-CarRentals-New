@@ -10,7 +10,6 @@ namespace AimsCarRentals.ServiceInterfaces
     public interface IBookingsService
     {
         public Bookings AddBookings(CreateBookingsViewModel model, Car car, User user);
-        public Bookings UpdateBookings(UpdateBookingsViewModel model);
         public Bookings Delete(int id);
         public Bookings Find(int id);
         public List<BookingsViewModel> GetAll();

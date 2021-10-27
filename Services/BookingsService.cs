@@ -11,72 +11,64 @@ namespace AimsCarRentals.Services
 {
     public class BookingsService:IBookingsService
     {
-        public readonly IBookingsRepository bookingsRepository;
-        public readonly ICarService carService;
-        public readonly ICarRepository carRepository;
-        public BookingsService(IBookingsRepository bookingsRepository,ICarService carService, ICarRepository carRepository)
+
+        private readonly IBookingsRepository _bookingsRepository;
+        private readonly ICarService _carService;
+        private readonly ICarRepository _carRepository;
+
+        public BookingsService(IBookingsRepository bookingsRepository, ICarService carService, ICarRepository carRepository)
         {
-            this.bookingsRepository = bookingsRepository;
-            this.carService = carService;
-            this.carRepository = carRepository;
+            _bookingsRepository = bookingsRepository;
+            _carService = carService;
+            _carRepository = carRepository;
         }
-        public Bookings AddBookings(CreateBookingsViewModel model,Car car, User user)
+        public Bookings AddBookings(CreateBookingsViewModel model, Car car, User user)
         {
+
             var bookings = new Bookings
             {
-                Booking_ref = model.Booking_ref,
+                Booking_ref = Guid.NewGuid().ToString().Substring(0, 7),
                 UserId = model.UserId,
                 User = user,
-                Car = car,
                 CarId = model.CarId,
+                Car = car,
                 PickUpDate = model.PickUpDate,
                 ReturnDate = model.ReturnDate,
-                CreatedAt = DateTime.Now
+                CreatedAt = DateTime.Now,
             };
-            var carAvailable = carService.Find(car.Id);
+            var carAvailable = _carService.Find(car.Id);
             carAvailable.IsAvailable = false;
 
-            carRepository.UpdateCar(carAvailable);
+            _carRepository.UpdateCar(carAvailable);
 
-            return bookingsRepository.AddBookings(bookings);
+            return _bookingsRepository.AddBookings(bookings);
         }
-        public Bookings UpdateBookings(UpdateBookingsViewModel model)
-        {
-            var bookings = new Bookings
-            {
-                Booking_ref = model.Booking_ref,
-                UserId = model.UserId,
-                CarId = model.CarId,
-                PickUpDate = model.PickUpDate,
-                ReturnDate = model.ReturnDate,
-                CreatedAt = DateTime.Now
-            };
-            return bookings;
-        }
-        public Bookings Delete(int id)
-        {
-            return bookingsRepository.Delete(id);
-        }
+        
         public Bookings Find(int id)
         {
-            return bookingsRepository.Find(id);
+            return _bookingsRepository.Find(id);
+        }
+        public List<Bookings> BookingHistory(int userId)
+        {
+            return _bookingsRepository.BookingHistory(userId);
+        }
+
+        public Bookings Delete(int id)
+        {
+            return _bookingsRepository.Delete(id);
         }
         public List<BookingsViewModel> GetAll()
         {
-            var branch = bookingsRepository.GetAll().Select(c => new BookingsViewModel
+            var bookings = _bookingsRepository.GetAll().Select(c => new BookingsViewModel
             {
-                Booking_ref = c.Booking_ref,
+                Booking_ref = Guid.NewGuid().ToString().Substring(0, 7),
                 UserId = c.UserId,
                 CarId = c.CarId,
                 PickUpDate = c.PickUpDate,
                 ReturnDate = c.ReturnDate,
-                CreatedAt = DateTime.Now
+                CreatedAt = c.CreatedAt,
             }).ToList();
-            return branch;
-        }
-        public List<Bookings> BookingHistory(int userId)
-        {
-           return bookingsRepository.BookingHistory(userId);
+            return bookings;
         }
     }
 }
