@@ -48,12 +48,13 @@ namespace AimsCarRentals.Services
                 PlateNo = model.PlateNo,
                 BranchId = model.BranchId,
                 CategoryId = model.CategoryId,
+                SerialNo = Guid.NewGuid().ToString().Substring(1, 3).ToUpper(),
                 Price = model.Price,
-                SerialNo = model.SerialNo,
                 CarPictureUrl = model.CarPictureUrl,
                 Branch = _branchService.Find(branchId),
                 Category = _categoryService.FindCategory(categoryId),
             };
+           
             return carRepository.UpdateCar(car);
         }
       
@@ -66,6 +67,7 @@ namespace AimsCarRentals.Services
                 };
                 return carRepository.UpdateCar(newCar);
             }
+      
         
         public Car Delete(int id)
         {
@@ -78,16 +80,17 @@ namespace AimsCarRentals.Services
         public List<CarViewModel> GetAll()
         {
             var car = carRepository.GetAll().Select(c => new CarViewModel
-            {
-                Id = c.Id,
+            { 
                 Name = c.Name,
+                Make = c.Make,
                 PlateNo = c.PlateNo,
                 BranchId = c.BranchId,
                 CategoryId = c.CategoryId,
+                SerialNo = c.SerialNo,
                 Price = c.Price,
                 CarPictureUrl = c.CarPictureUrl,
-                IsAvailable = c.IsAvailable,
-                CreatedAt = c.CreatedAt
+                Branch = _branchService.Find(c.BranchId),
+                Category = _categoryService.FindCategory(c.CategoryId),
             }).ToList();
             return car;
         }

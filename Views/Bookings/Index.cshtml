@@ -22,9 +22,11 @@
     }
 </style>
 
-<a asp-controller="Auth" asp-action="Index" class="btn btn-danger">Register Customer</a>
-    <h2>Bookings Table</h2>
+<a asp-controller="Branch" asp-action="Index" class="btn btn-danger">Back To DashBoard</a>
+<h2>Bookings Table</h2>
     <table>
+
+
         <tr>
             <th>Id</th>
             <th>Car Id</th>
@@ -34,19 +36,18 @@
             <th>Return Date</th>
             <th>Actions</th>
         </tr>
-        @foreach (var booking in Model)
+        @foreach (var bookings in Model)
         {
             <tr>
                 <td>@(id++)</td>
-                <td>@booking.CarId</td>
-                <td>@booking.UserId</td>
-                <td>@booking.Booking_ref</td>
-                <td>@booking.PickUpDate</td>
-                <td>@booking.ReturnDate</td>
+                <td>@bookings.CarId</td>
+                <td>@bookings.UserId</td>
+                <td>@bookings.Booking_ref</td>
+                <td>@bookings.PickUpDate</td>
+                <td>@bookings.ReturnDate</td>
                 <td>
-                    <a  asp-action="Details" class="btn btn-danger" asp-route-Id="@booking.Id">Details</a>
-                    <a  asp-action="Edit" class="btn btn-danger"asp-route-Id="@booking.Id">Edit</a>
-                    <a  asp-action="Delete" class="btn btn-danger" asp-route-Id="@booking.Id">Delete</a>
+                    <a asp-action="Details" class="btn btn-success" asp-route-Id="@bookings.Id">Details</a>
+                    <a asp-action="Delete" class="btn btn-danger" asp-route-Id="@bookings.Id">Delete</a>
                 </td>
             </tr>
         }

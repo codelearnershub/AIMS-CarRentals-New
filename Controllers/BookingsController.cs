@@ -28,37 +28,24 @@ namespace AimsCarRentals.Controllers
             var bookings = bookingsService.GetAll();
             return View(bookings);
         }
-       
-        public IActionResult Update()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Update(UpdateBookingsViewModel updateBookingsViewModel)
-        {
-            bookingsService.UpdateBookings(updateBookingsViewModel);
-            return RedirectToAction("Index");
-        }
-
         public void Find(int id)
         {
             bookingsService.Find(id);
         }
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
             bookingsService.Delete(id);
-            RedirectToAction("Index");
+            return RedirectToAction("Index");
         }
+        [HttpGet]
         public IActionResult Details(int id)
         {
             var bookings = bookingsService.Find(id);
-            if (bookings == null)
+            if (bookings != null)
             {
-                return NotFound();
+                return View(bookings);
             }
-            return View(bookings);
+            return NotFound();
         }
         public IActionResult BookingHistory()
         {
