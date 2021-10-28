@@ -61,7 +61,8 @@ namespace AimsCarRentals.Services
         {
             var bookings = _bookingsRepository.GetAll().Select(c => new BookingsViewModel
             {
-                Booking_ref = Guid.NewGuid().ToString().Substring(0, 7),
+                Id = c.Id,
+                Booking_ref = Guid.NewGuid().ToString().Substring(0, 7).ToUpper(),
                 UserId = c.UserId,
                 CarId = c.CarId,
                 PickUpDate = c.PickUpDate,

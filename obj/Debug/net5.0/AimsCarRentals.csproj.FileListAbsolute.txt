@@ -137,3 +137,4 @@ C:\Users\JAFAR LAWAL\source\repos\AimsCarRentals\obj\Debug\net5.0\Razor\Views\Ca
 C:\Users\JAFAR LAWAL\source\repos\AimsCarRentals\obj\Debug\net5.0\Razor\Views\Car\GetAllCarPerEachBranch.cshtml.g.cs
 C:\Users\JAFAR LAWAL\source\repos\AimsCarRentals\obj\Debug\net5.0\Razor\Views\Category\SelectCategory.cshtml.g.cs
 C:\Users\JAFAR LAWAL\source\repos\AimsCarRentals\obj\Debug\net5.0\Razor\Views\Car\BookCar.cshtml.g.cs
+C:\Users\JAFAR LAWAL\source\repos\AimsCarRentals\obj\Debug\net5.0\Razor\Views\Bookings\Invoice.cshtml.g.cs

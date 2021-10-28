@@ -157,7 +157,7 @@ namespace AimsCarRentals.Controllers
             int userId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
             var user = userService.FindUserById(userId);
             bookingsService.AddBookings(model,car,user);
-            return RedirectToAction("BookingRef");
+            return RedirectToAction("Invoice","Bookings");
         }
         [HttpGet]
         public IActionResult SelectCar()
@@ -174,6 +174,20 @@ namespace AimsCarRentals.Controllers
         {
             var car = carService.GetAllCarsPerEachBranch(branchId);
             return View(car);
+        }
+        public void Invoice(BookingsViewModel model)
+        {
+            Car car = carService.Find(model.CarId);
+            int userId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
+            User user = userService.FindUserById(userId);
+            Bookings bookings = bookingsService.Find(model.Id);
+            ViewBag.userId = $"{user.Id}";
+            ViewBag.userFirstName = $"{user.FirstName}";
+            ViewBag.userLastName = $"{user.LastName}";
+            ViewBag.userEmail = $"{user.Email}";
+           // ViewBag.CarName = $"{car.Name}";
+           // ViewBag.CarMake = $"{car.Make}";
+           // ViewBag.BookingRef = $"{bookings.Booking_ref}";
         }
     }
 }

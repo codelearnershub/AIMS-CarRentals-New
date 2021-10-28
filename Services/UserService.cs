@@ -150,11 +150,19 @@ namespace AimsCarRentals.Services
         public List<UserViewModel> GetAllUser()
         {
             var user = _userRepository.GetAllUsers().Select(c => new UserViewModel
-            {
-
+            { 
+                Id = c.Id,
+                FirstName = c.FirstName,
+                MiddleName = c.MiddleName,
+                LastName = c.LastName,
+                Gender = c.Gender,
+                DateOfBirth = c.DateOfBirth,
+                PhoneNo = c.PhoneNo,
                 Email = c.Email,
+                Address = c.Address,
                 PasswordHash = c.PasswordHash,
-                HashSalt = c.HashSalt
+                HashSalt = c.HashSalt,
+                CreatedAt = c.CreatedAt
             }).ToList();
             return user;
         }

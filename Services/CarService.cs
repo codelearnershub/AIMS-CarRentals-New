@@ -81,6 +81,7 @@ namespace AimsCarRentals.Services
         {
             var car = carRepository.GetAll().Select(c => new CarViewModel
             { 
+                Id = c.Id,
                 Name = c.Name,
                 Make = c.Make,
                 PlateNo = c.PlateNo,
@@ -88,6 +89,7 @@ namespace AimsCarRentals.Services
                 CategoryId = c.CategoryId,
                 SerialNo = c.SerialNo,
                 Price = c.Price,
+                IsAvailable = c.IsAvailable,
                 CarPictureUrl = c.CarPictureUrl,
                 Branch = _branchService.Find(c.BranchId),
                 Category = _categoryService.FindCategory(c.CategoryId),
@@ -102,6 +104,10 @@ namespace AimsCarRentals.Services
         public List<Car> GetAllCarsPerEachBranch(int branchId)
         {
             return carRepository.GetAllCarsPerEachBranch(branchId);
+        }
+        public void Invoice()
+        {
+
         }
     }
 }
