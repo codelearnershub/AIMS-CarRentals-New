@@ -104,21 +104,21 @@ namespace AimsCarRentals.Controllers
         [ValidateAntiForgeryToken]
             public IActionResult Update(UpdateCarViewModel model)
             {
-                var files = HttpContext.Request.Form.Files;
-                string webRootPath = _webHostEnvironment.WebRootPath;
-                if (model.Id == 0)
-                {
-                    string upload = webRootPath + WC.ImagePath;
-                    string fileName = Guid.NewGuid().ToString();
-                    string extension = Path.GetExtension(files[0].FileName);
-                    string filePath = fileName + extension;
-                    using (var fileStream = new FileStream(Path.Combine(upload, filePath), FileMode.Create))
+                    var files = HttpContext.Request.Form.Files;
+                    string webRootPath = _webHostEnvironment.WebRootPath;
+                    if (model.Id == 0)
                     {
-                        files[0].CopyTo(fileStream);
+                        string upload = webRootPath + WC.ImagePath;
+                        string fileName = Guid.NewGuid().ToString();
+                        string extension = Path.GetExtension(files[0].FileName);
+                        string filePath = fileName + extension;
+                        using (var fileStream = new FileStream(Path.Combine(upload, filePath), FileMode.Create))
+                        {
+                            files[0].CopyTo(fileStream);
+                        }
+                        model.CarPictureUrl = fileName + extension;
                     }
-                    model.CarPictureUrl = fileName + extension;
-                    carService.UpdateCar(model, model.BranchId, model.CategoryId);
-                }
+            carService.UpdateCar(model,model.BranchId, model.CategoryId);
                 return RedirectToAction("Index");
             }
        

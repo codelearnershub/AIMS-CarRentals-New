@@ -41,20 +41,22 @@ namespace AimsCarRentals.Services
         }
         public Car UpdateCar(UpdateCarViewModel model, int branchId,int categoryId)
         {
-            var car = new Car
+            var car = carRepository.Find(model.Id);
+            if(car == null)
             {
-                Name = model.Name,
-                Make = model.Make,
-                PlateNo = model.PlateNo,
-                BranchId = model.BranchId,
-                CategoryId = model.CategoryId,
-                SerialNo = Guid.NewGuid().ToString().Substring(1, 3).ToUpper(),
-                Price = model.Price,
-                IsAvailable = true,
-                CarPictureUrl = model.CarPictureUrl,
-                Branch = _branchService.Find(branchId),
-                Category = _categoryService.FindCategory(categoryId),
-            };
+                return null;
+            }
+               car.Name = model.Name;
+                car.Make = model.Make;
+                car.PlateNo = model.PlateNo;
+                car.BranchId = model.BranchId;
+                car.CategoryId = model.CategoryId;
+                car.SerialNo = Guid.NewGuid().ToString().Substring(1, 3).ToUpper();
+                car.Price = model.Price;
+                car.CarPictureUrl = model.CarPictureUrl;
+                car.Branch = _branchService.Find(branchId);
+                car.Category = _categoryService.FindCategory(categoryId);
+                car.IsAvailable = model.IsAvailable;
            
             return carRepository.UpdateCar(car);
         }

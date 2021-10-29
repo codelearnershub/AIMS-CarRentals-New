@@ -12,10 +12,12 @@ namespace AimsCarRentals.Repositories
     {
         public readonly AimsDbContext _dbContext;
         public readonly IRoleRepository roleRepository;
-        public UserRepository(AimsDbContext dbContext, IRoleRepository roleRepository)
+        public readonly IUserRoleRepository userRoleRepository;
+        public UserRepository(AimsDbContext dbContext, IRoleRepository roleRepository, IUserRoleRepository userRoleRepository)
         {
             _dbContext = dbContext;
             this.roleRepository = roleRepository;
+            this.userRoleRepository = userRoleRepository;
         }
         public User AddUser(User user)
         {
@@ -60,15 +62,14 @@ namespace AimsCarRentals.Repositories
             return _dbContext.Users.ToList();
         }
 
-        public List<User> GetAllCustomers(int id)
+      /*  public List<User> GetAllCustomers(int userId)
         {
-            var customer = roleRepository.
-            if( customer.A)
-            {
+            var customer = userRoleRepository.FindUserRoles(userId);
+          
+                return _dbContext.Users.Where(c => c.UserRoles.Ro)
+            
 
-            }
-            return _dbContext.Users.Where(c =>c.UserRoles)
-        }
+        }*/
 
     }
 }

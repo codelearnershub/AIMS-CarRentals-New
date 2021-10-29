@@ -1,5 +1,4 @@
 ﻿@model AimsCarRentals.Models.ViewModel.UpdateBranchViewModel
-<div class="card header"><h3>Add Branch</h3></div>
 @{
     ViewData["Title"] = "Update Branch";
 }
@@ -12,18 +11,8 @@
         <span asp-validation-for="Name"></span>
 
         <label for="psw"><b>Address</b></label>
-        <input type="password" placeholder="Address" name="Address" required>
+        <input type="text" placeholder="Address" name="Address" required>
         <span asp-validation-for="Address"></span>
-        <form method="post">
-            <div class="input-group">
-                <input placeholder="Name" asp-for="Name" name="Name" />
-                <input placeholder="Name" asp-for="Name" name="Address" />
-            </div>
-            <button class="justify-content-between" type="submit">Update</button>
-            <div>
-                <input type="submit" value="Update" class="btn btn-primary" />
-            </div>
-        </form>
     </div>
 </div>
 @section Scripts {
