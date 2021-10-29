@@ -255,7 +255,7 @@ namespace AimsCarRentals.Services
             }
             else
             {
-                throw new Exception("No Role found");
+                
             }
 
         }

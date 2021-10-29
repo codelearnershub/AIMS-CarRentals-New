@@ -142,6 +142,16 @@ namespace AimsCarRentals.Controllers
 
             return NotFound();
         }
+        public IActionResult DetailsForCustomer(int id)
+        {
+            var car = carService.Find(id);
+            if (car != null)
+            {
+                return View(car);
+            }
+
+            return NotFound();
+        }
         [HttpGet]
         [Authorize]
         public IActionResult BookCar()
@@ -149,15 +159,14 @@ namespace AimsCarRentals.Controllers
             return View();
         }
         [HttpPost]
-        [Authorize]
         public IActionResult BookCar(int id, CreateBookingsViewModel model)
         {
 
             var car = carService.Find(id);
             int userId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
             var user = userService.FindUserById(userId);
-            bookingsService.AddBookings(model,car,user);
-            return RedirectToAction("Invoice","Bookings");
+            var book = bookingsService.AddBookings(model,car,user);
+            return RedirectToAction("Invoice",  new { id  = id, bookingId = book.Id});
         }
         [HttpGet]
         public IActionResult SelectCar()
@@ -175,19 +184,23 @@ namespace AimsCarRentals.Controllers
             var car = carService.GetAllCarsPerEachBranch(branchId);
             return View(car);
         }
-        public void Invoice(BookingsViewModel model)
+        public IActionResult Invoice(int id, int bookingId)
         {
-            Car car = carService.Find(model.CarId);
             int userId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
-            User user = userService.FindUserById(userId);
-            Bookings bookings = bookingsService.Find(model.Id);
-            ViewBag.userId = $"{user.Id}";
-            ViewBag.userFirstName = $"{user.FirstName}";
-            ViewBag.userLastName = $"{user.LastName}";
-            ViewBag.userEmail = $"{user.Email}";
-           // ViewBag.CarName = $"{car.Name}";
-           // ViewBag.CarMake = $"{car.Make}";
-           // ViewBag.BookingRef = $"{bookings.Booking_ref}";
+            var user = userService.FindUserById(userId);
+            var car = carService.Find(id);
+            var booking = bookingsService.Find(bookingId);
+            double oneDay = 24;
+            InvoiceViewModel vm = new InvoiceViewModel
+            {
+                UserName = $"{user.LastName} {user.FirstName}",
+                CarName = $"{car.Name} {car.Make}",
+                BookingRef = booking.Booking_ref.ToUpper(),
+                AmountToBePaid = (booking.ReturnDate-booking.PickUpDate).Hours*oneDay * car.Price,
+                PickUpDate = booking.PickUpDate,
+                ReturnDate = booking.ReturnDate
+            };
+            return View(vm);
         }
     }
 }

@@ -1,0 +1,77 @@
+﻿@model AimsCarRentals.Models.ViewModel.InvoiceViewModel
+
+<style>
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+
+    th, td {
+        text-align: center;
+        padding: 16px;
+    }
+
+        th:first-child, td:first-child {
+            text-align: left;
+        }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2
+    }
+
+    .fa-check {
+        color: green;
+    }
+
+    .fa-remove {
+        color: red;
+    }
+
+    .sub-heading{
+        font-size:20px;
+        font-weight:bolder;
+        margin-right:20%;
+        font-family:'Times New Roman';
+    }
+   
+</style>
+
+<body>
+    <div class="container">
+        <br /><br />
+        <h2 class="text-center" style="font-family:'Times New Roman'; font-weight:bold" > Booking Summary</h2>
+        <br /><br />
+              <div class="container">
+
+                  <div>
+                      <span class="sub-heading">User Name:</span>
+                      <span class=" font-weight-bold align-right">@Model.UserName</span>
+                  </div>
+                  <br /><br /><br />
+                  <div>
+                      <span class="sub-heading">Car Description:</span>
+                      <span class=" font-weight-bold align-right">@Model.CarName</span>
+                  </div>
+                  <br /><br /><br />
+                  <div>
+                      <span class="sub-heading">Booking Reference:</span>
+                      <span class=" font-weight-bold align-right">@Model.BookingRef</span>
+                  </div>
+                  <br /><br /><br />
+                  <div>
+                      <span class="sub-heading">Amount to be paid:</span>
+                      <span class=" font-weight-bold align-right">@Model.AmountToBePaid</span>
+                  </div>
+                  <br /><br /><br />
+              </div>
+              <div class="justify-content-between">
+                  <a onclick="payWithPaystack()" class="btn btn-danger">Continue To Payment</a>
+                  <script src="https://js.paystack.co/v1/inline.js"></script>
+                  <script src="payment.js"></script>
+              </div>
+
+       
+    </div>
+</body>

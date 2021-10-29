@@ -3,14 +3,16 @@ using System;
 using AimsCarRentals.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AimsCarRentals.Migrations
 {
     [DbContext(typeof(AimsDbContext))]
-    partial class AimsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211029102108_Init3")]
+    partial class Init3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -260,19 +262,19 @@ namespace AimsCarRentals.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2021, 10, 28, 23, 44, 18, 775, DateTimeKind.Local).AddTicks(3495),
+                            CreatedAt = new DateTime(2021, 10, 28, 23, 21, 7, 195, DateTimeKind.Local).AddTicks(6712),
                             Name = "SuperAdmin"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2021, 10, 28, 23, 44, 18, 775, DateTimeKind.Local).AddTicks(4970),
+                            CreatedAt = new DateTime(2021, 10, 28, 23, 21, 7, 195, DateTimeKind.Local).AddTicks(7676),
                             Name = "Admin"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2021, 10, 28, 23, 44, 18, 775, DateTimeKind.Local).AddTicks(4988),
+                            CreatedAt = new DateTime(2021, 10, 28, 23, 21, 7, 195, DateTimeKind.Local).AddTicks(7688),
                             Name = "Customer"
                         });
                 });
@@ -337,7 +339,7 @@ namespace AimsCarRentals.Migrations
                             Id = 1,
                             Address = "asd",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(2021, 10, 28, 23, 44, 18, 769, DateTimeKind.Local).AddTicks(1662),
+                            DateOfBirth = new DateTime(2021, 10, 28, 23, 21, 7, 191, DateTimeKind.Local).AddTicks(6687),
                             Email = "jafar@gmail.com",
                             FirstName = "jafar",
                             Gender = "Male",
@@ -376,7 +378,7 @@ namespace AimsCarRentals.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2021, 10, 28, 23, 44, 18, 775, DateTimeKind.Local).AddTicks(9598),
+                            CreatedAt = new DateTime(2021, 10, 28, 23, 21, 7, 196, DateTimeKind.Local).AddTicks(470),
                             RoleId = 1,
                             UserId = 1
                         });

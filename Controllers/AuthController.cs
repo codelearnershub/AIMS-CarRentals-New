@@ -82,14 +82,23 @@ namespace AimsCarRentals.Controllers
 
 
         [Authorize]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
             _userService.Delete(id);
-            RedirectToAction("Index");
+            return RedirectToAction("Index");
         }
         public IActionResult UpdateCustomer()
         {
             return View();
+        }
+        public IActionResult Details(int id)
+        {
+            var user = _userService.FindUserById(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return View(user);
         }
         public IActionResult UpdateCustomer(UpdateCustomerViewModel model)
         {
@@ -101,6 +110,7 @@ namespace AimsCarRentals.Controllers
             return RedirectToAction("Login");
         }
 
+       
         [HttpGet]
         public IActionResult Login()
         {
@@ -112,8 +122,11 @@ namespace AimsCarRentals.Controllers
         {
             User user = _userService.Login(vm.Email, vm.Password);
 
-            if (user == null) return View();
-
+            if (user == null)
+            {
+                ViewBag.Message = "User not found";
+                return View();
+            }
 
             var role = _userRoleRepository.FindUserRoles(user.Id);
 
@@ -174,5 +187,8 @@ namespace AimsCarRentals.Controllers
                 return RedirectToAction("BookCar", "Car");
             }
         }
+
+
+
     }
 }

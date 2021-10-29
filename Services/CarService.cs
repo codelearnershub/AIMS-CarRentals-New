@@ -50,6 +50,7 @@ namespace AimsCarRentals.Services
                 CategoryId = model.CategoryId,
                 SerialNo = Guid.NewGuid().ToString().Substring(1, 3).ToUpper(),
                 Price = model.Price,
+                IsAvailable = true,
                 CarPictureUrl = model.CarPictureUrl,
                 Branch = _branchService.Find(branchId),
                 Category = _categoryService.FindCategory(categoryId),
