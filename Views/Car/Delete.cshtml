@@ -1,0 +1,21 @@
+﻿@model AimsCarRentals.Models.ViewModel.CarViewModel
+<style>
+    .container {
+        padding: 0 16px;
+    }
+
+        .container::after, .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+</style>
+<div class="container">
+    <div>
+        Are you sure you want to delete Car @Model.Name @Model.Make  
+        <div class="input-group">
+            <a asp-action="Index" class="btn btn-dark">Cancel</a><br />
+            <a asp-action="Delete" class="btn btn-danger">Delete</a><br />
+        </div>
+    </div>
+</div>

@@ -47,9 +47,8 @@ namespace AimsCarRentals.Controllers
             _userService.RegisterCustomer(model);
             return RedirectToAction("Login");
         }
-       
-        [HttpPost]
 
+        [HttpPost]
         public IActionResult UpdateAdmin()
         {
             return View();
@@ -184,10 +183,20 @@ namespace AimsCarRentals.Controllers
                 var props = new AuthenticationProperties();
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, props);
-                return RedirectToAction("BookCar", "Car");
+                return RedirectToAction("BookingHistory", "Bookings");
             }
         }
-
+      
+        public IActionResult GetAllCustomers()
+        {
+           var customer = _userService.GetAllCustomers();
+            return View(customer);
+        }
+        public IActionResult GetAllAdmins()
+        {
+            var admin = _userService.GetAllAdmins();
+            return View(admin);
+        }
 
 
     }

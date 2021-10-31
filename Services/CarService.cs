@@ -39,14 +39,12 @@ namespace AimsCarRentals.Services
             };
             return carRepository.AddCar(car);
         }
-        public Car UpdateCar(UpdateCarViewModel model, int branchId,int categoryId)
+        public Car UpdateCar(UpdateCarViewModel model, int branchId,int categoryId,int id)
         {
-            var car = carRepository.Find(model.Id);
-            if(car == null)
-            {
-                return null;
-            }
-               car.Name = model.Name;
+             var car = carRepository.Find(id);
+             if (car != null)
+             {
+                car.Name = model.Name;
                 car.Make = model.Make;
                 car.PlateNo = model.PlateNo;
                 car.BranchId = model.BranchId;
@@ -57,8 +55,9 @@ namespace AimsCarRentals.Services
                 car.Branch = _branchService.Find(branchId);
                 car.Category = _categoryService.FindCategory(categoryId);
                 car.IsAvailable = model.IsAvailable;
-           
-            return carRepository.UpdateCar(car);
+                return carRepository.UpdateCar(car);
+            }
+            return null;
         }
       
             public Car UpdateIsAvailable(Car car)
@@ -108,9 +107,6 @@ namespace AimsCarRentals.Services
         {
             return carRepository.GetAllCarsPerEachBranch(branchId);
         }
-        public void Invoice()
-        {
-
-        }
+        
     }
 }

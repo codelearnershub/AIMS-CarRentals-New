@@ -15,5 +15,7 @@ namespace AimsCarRentals.Interfaces
         public User FindUserByEmail(string email);
         public User UpdateUser(User user);
         public List<User> GetAllUsers();
+        public List<User> GetAllCustomers();
+        public List<User> GetAllAdmins();
     }
 }

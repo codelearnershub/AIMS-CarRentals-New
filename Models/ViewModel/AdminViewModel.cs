@@ -8,6 +8,8 @@ namespace AimsCarRentals.Models.ViewModel
 {
     public class AdminViewModel
     {
+        public int Id { get; set; }
+        public DateTime CreatedAt { get; set; }
         public string Email { get; set; }
         [Required]
         public string PasswordHash { get; set; }

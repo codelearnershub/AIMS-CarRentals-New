@@ -54,8 +54,8 @@ namespace AimsCarRentals.Services
                 User user = new User
                 {
                     FirstName = model.FirstName,
-                    LastName = model.LastName,
                     MiddleName = model.MiddleName,
+                    LastName = model.LastName,
                     Email = model.Email,
                     Gender = model.Gender,
                     PasswordHash = hashedPassword,
@@ -63,7 +63,7 @@ namespace AimsCarRentals.Services
                     PhoneNo = model.PhoneNo,
                     DateOfBirth = model.DateOfBirth,
                     Address = model.Address,
-
+                    UserType = "Customer"
                 };
                 var userRole = new UserRole
                 {
@@ -106,6 +106,7 @@ namespace AimsCarRentals.Services
                     PhoneNo = model.PhoneNo,
                     DateOfBirth = model.DateOfBirth,
                     Address = model.Address,
+                    UserType = "Staff"
 
                 };
                 var userRole = new UserRole
@@ -147,25 +148,6 @@ namespace AimsCarRentals.Services
             return null;
 
         }
-        public List<UserViewModel> GetAllUser()
-        {
-            var user = _userRepository.GetAllUsers().Select(c => new UserViewModel
-            { 
-                Id = c.Id,
-                FirstName = c.FirstName,
-                MiddleName = c.MiddleName,
-                LastName = c.LastName,
-                Gender = c.Gender,
-                DateOfBirth = c.DateOfBirth,
-                PhoneNo = c.PhoneNo,
-                Email = c.Email,
-                Address = c.Address,
-                PasswordHash = c.PasswordHash,
-                HashSalt = c.HashSalt,
-                CreatedAt = c.CreatedAt
-            }).ToList();
-            return user;
-        }
         public void Delete(int id)
         {
             _userRepository.DeleteUser(id);
@@ -198,6 +180,7 @@ namespace AimsCarRentals.Services
                     PhoneNo = model.PhoneNo,
                     DateOfBirth = model.DateOfBirth,
                     Address = model.Address,
+                    UserType = "Staff"
 
                 };
                 var userRole = new UserRole
@@ -243,7 +226,7 @@ namespace AimsCarRentals.Services
                     PhoneNo = model.PhoneNo,
                     DateOfBirth = model.DateOfBirth,
                     Address = model.Address,
-
+                    UserType = "Staff"
                 };
                 var userRole = new UserRole
                 {
@@ -257,8 +240,68 @@ namespace AimsCarRentals.Services
             {
                 
             }
+            
+        }
+        public List<CustomerViewModel> GetAllCustomers()
+        {
+            var customer= _userRepository.GetAllCustomers().Select(c => new CustomerViewModel
+            {
 
+                Id = c.Id,
+                FirstName = c.FirstName,
+                MiddleName = c.MiddleName,
+                LastName = c.LastName,
+                Gender = c.Gender,
+                DateOfBirth = c.DateOfBirth,
+                PhoneNo = c.PhoneNo,
+                Email = c.Email,
+                Address = c.Address,
+                PasswordHash = c.PasswordHash,
+                HashSalt = c.HashSalt,
+                CreatedAt = c.CreatedAt
+            }).ToList();
+            return customer;
         }
 
+        public List<AdminViewModel> GetAllAdmins()
+        {
+            var admin = _userRepository.GetAllAdmins().Select(c => new AdminViewModel
+            {
+
+                Id = c.Id,
+                FirstName = c.FirstName,
+                MiddleName = c.MiddleName,
+                LastName = c.LastName,
+                Gender = c.Gender,
+                DateOfBirth = c.DateOfBirth,
+                PhoneNo = c.PhoneNo,
+                Email = c.Email,
+                Address = c.Address,
+                PasswordHash = c.PasswordHash,
+                HashSalt = c.HashSalt,
+                CreatedAt = c.CreatedAt
+            }).ToList();
+            return admin;
+        }
+
+        public List<UserViewModel> GetAllUser()
+        {
+            var user = _userRepository.GetAllUsers().Select(c => new UserViewModel
+            {
+                Id = c.Id,
+                FirstName = c.FirstName,
+                MiddleName = c.MiddleName,
+                LastName = c.LastName,
+                Gender = c.Gender,
+                DateOfBirth = c.DateOfBirth,
+                PhoneNo = c.PhoneNo,
+                Email = c.Email,
+                Address = c.Address,
+                PasswordHash = c.PasswordHash,
+                HashSalt = c.HashSalt,
+                CreatedAt = c.CreatedAt
+            }).ToList();
+            return user;
+        }
     }
 }

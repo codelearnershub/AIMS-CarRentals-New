@@ -1,6 +1,7 @@
 ﻿using AimsCarRentals.Context;
 using AimsCarRentals.Interfaces;
 using AimsCarRentals.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,14 +63,17 @@ namespace AimsCarRentals.Repositories
             return _dbContext.Users.ToList();
         }
 
-      /*  public List<User> GetAllCustomers(int userId)
+       public List<User> GetAllCustomers()
         {
-            var customer = userRoleRepository.FindUserRoles(userId);
-          
-                return _dbContext.Users.Where(c => c.UserRoles.Ro)
-            
-
-        }*/
-
+            var role = _dbContext.Roles.Where(r => r.Name == "Customer");
+            return _dbContext.Users
+                .Where(p => p.UserType == "Customer").ToList();      
+        }
+        public List<User> GetAllAdmins()
+        {
+            var role = _dbContext.Roles.Where(r => r.Name == "Customer");
+            return _dbContext.Users
+                .Where(p => p.UserType == "Staff").ToList();
+        }
     }
 }

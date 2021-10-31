@@ -1,26 +1,23 @@
 ﻿@model AimsCarRentals.Models.ViewModel.UpdateCarViewModel
-@{ ViewData["Title"] = "Update Car"; }
+@{ 
+    ViewData["Title"] = "Update Car";
+  }
 <div class="container">
     <form method="post" enctype="multipart/form-data">
         <input asp-for="Id" hidden />
-        <div class="border p-3">
-            <div class="form-group row">
-                <h2 class="text-info pl-3">Update A Car</h2>
-            </div>
-        </div>
+        <h2>Update Car</h2>
         <div class="card-body">
-            <div class="input-group">
-                <div class="form-group row">
-                    <div class="col-md-8">
-                        <label asp-for="Name"></label>
-                    </div>
-                    <div class="col-md-8">
-                        <input asp-for="Name" class="form-control" />
-                        <span asp-validation-for="Name" class="text-danger"></span>
-                    </div>
+            <div class="form-group row">
+                <div class="col-md-1">
+                    <label asp-for="Name"></label>
                 </div>
+                <div class="col-md-4">
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
                 <div class="form-group row">
-                    <div class="col-md-8">
+                    <div class="col-md-2">
                         <label asp-for="Make"></label>
                     </div>
                     <div class="col-md-8">
@@ -28,75 +25,85 @@
                         <span asp-validation-for="Make" class="text-danger"></span>
                     </div>
                 </div>
-            </div>
 
-            <div class="input-group">
-                <div class="form-group row">
-                    <div class="col-md-8">
-                        <label asp-for="Price"></label>
-                    </div>
-                    <div class="col-md-8">
+                <div class="input-group">
+                    <b><label>Price</label></b>
+                    <div class="col-md-4">
                         <input asp-for="Price" class="form-control" />
                         <span asp-validation-for="Price" class="text-danger"></span>
                     </div>
-
-
-                    <div class="form-group row">
-                        <div class="col-md-8">
-                            <label asp-for="PlateNo"></label>
+                    <div>
+                        <div class="form-group row">
+                            <div class="col-md-4">
+                                <b>
+                                    <label asp-for="PlateNo"></label>
+                                </b>
+                            </div>
+                            <div class="col-md-4">
+                                <input asp-for="PlateNo" class="form-control" />
+                                <span asp-validation-for="PlateNo" class="text-danger"></span>
+                            </div>
                         </div>
-                        <div class="col-md-8">
-                            <input asp-for="PlateNo" class="form-control" />
-                            <span asp-validation-for="PlateNo" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <div class="input-group">
+                            <div class="form-group row">
+                                <div class="col-md-4">
+                                    <b>
+                                        <label asp-for="Description"></label>
+                                    </b>
+                                    <div class="col-md-8">
+                                        <input asp-for="Description" class="form-control" />
+                                        <span asp-validation-for="Description" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="col-md-4">
+                                        <b>
+                                            <label>Image</label>
+                                        </b>
+                                        <div class="col-md-4">
+                                            <input type="file" name="files" asp-for="CarPictureUrl" multiple />
+                                            <span class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <div class="form-group">
+                                        <label asp-for="CategoryId" class="control-label"></label>
+                                        <select class="form-control" name="CategoryId" asp-items="@Model.CategoryList">
+                                            <option disabled selected>--Select Category--</option>
+                                        </select>
+                                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                                    </div><br /> &nbsp;
+                                    <div class="form-group">
+                                        <label asp-for="BranchId" class="control-label"></label>
+                                        <select class="form-control" name="BranchId" asp-items="@Model.BranchList">
+                                            <option disabled selected>--Select Location--</option>
+                                        </select>
+                                        <span asp-validation-for="BranchId" class="text-danger"></span>
+                                    </div>
+                                    <br />
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="submit" value="Create" class="btn btn-primary" />
+                                </div>
+                                &nbsp;
+                                <div>
+                                    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="input-group">
-                <div class="form-group row">
-                    <div class="col-md-8">
-                        <label asp-for="Description"></label>
-                    </div>
-                    <div class="col-md-8">
-                        <input asp-for="Description" class="form-control" />
-                        <span asp-validation-for="Description" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-8">
-                        <input type="file" name="files" asp-for="CarPictureUrl" multiple />
-                        <span class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="input-group">
-                <div class="form-group">
-                    <label asp-for="CategoryId" class="control-label"></label>
-                    <select class="form-control" name="CategoryId" asp-items="@Model.CategoryList">
-                        <option disabled selected>--Select Category--</option>
-                    </select>
-                    <span asp-validation-for="CategoryId" class="text-danger"></span>
-                </div><br />
-                <div class="form-group">
-                    <label asp-for="BranchId" class="control-label"></label>
-                    <select class="form-control" name="BranchId" asp-items="@Model.BranchList">
-                        <option disabled selected>--Select Location--</option>
-                    </select>
-                    <span asp-validation-for="BranchId" class="text-danger"></span>
-                </div>
-                <br />
-            </div>
         </div>
-        <div class="form-group">
-            <input type="submit" value="Update" class="btn btn-primary" />
-        </div>
-        <div>
-            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-        </div>
-
     </form>
 </div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+

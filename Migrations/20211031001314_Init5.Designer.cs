@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AimsCarRentals.Migrations
 {
     [DbContext(typeof(AimsDbContext))]
-    [Migration("20211029102744_Init5")]
+    [Migration("20211031001314_Init5")]
     partial class Init5
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -262,19 +262,19 @@ namespace AimsCarRentals.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2021, 10, 28, 23, 27, 42, 762, DateTimeKind.Local).AddTicks(1800),
+                            CreatedAt = new DateTime(2021, 10, 30, 13, 13, 13, 20, DateTimeKind.Local).AddTicks(9207),
                             Name = "SuperAdmin"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2021, 10, 28, 23, 27, 42, 762, DateTimeKind.Local).AddTicks(2786),
+                            CreatedAt = new DateTime(2021, 10, 30, 13, 13, 13, 21, DateTimeKind.Local).AddTicks(296),
                             Name = "Admin"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2021, 10, 28, 23, 27, 42, 762, DateTimeKind.Local).AddTicks(2798),
+                            CreatedAt = new DateTime(2021, 10, 30, 13, 13, 13, 21, DateTimeKind.Local).AddTicks(308),
                             Name = "Customer"
                         });
                 });
@@ -326,6 +326,9 @@ namespace AimsCarRentals.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("UserType")
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
 
                     b.HasIndex("Email")
@@ -339,13 +342,13 @@ namespace AimsCarRentals.Migrations
                             Id = 1,
                             Address = "asd",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(2021, 10, 28, 23, 27, 42, 758, DateTimeKind.Local).AddTicks(87),
+                            DateOfBirth = new DateTime(2021, 10, 30, 13, 13, 13, 16, DateTimeKind.Local).AddTicks(2427),
                             Email = "jafar@gmail.com",
-                            FirstName = "jafar",
+                            FirstName = "Jafar",
                             Gender = "Male",
                             HashSalt = "ftuIrIDS+TJqDpa0wGVv1w==",
-                            LastName = "lawal",
-                            MiddleName = "okiki",
+                            LastName = "Lawal",
+                            MiddleName = "Okiki",
                             PasswordHash = "Pq0zPzvnkKkIoa5prU80VcV6+i9BF1RhDTnDyuF7FMs=",
                             PhoneNo = "09071681776"
                         });
@@ -378,7 +381,7 @@ namespace AimsCarRentals.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2021, 10, 28, 23, 27, 42, 762, DateTimeKind.Local).AddTicks(5615),
+                            CreatedAt = new DateTime(2021, 10, 30, 13, 13, 13, 21, DateTimeKind.Local).AddTicks(3102),
                             RoleId = 1,
                             UserId = 1
                         });

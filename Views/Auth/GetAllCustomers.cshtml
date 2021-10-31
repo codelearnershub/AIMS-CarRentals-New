@@ -1,0 +1,59 @@
+﻿@model IEnumerable<AimsCarRentals.Models.ViewModel.CustomerViewModel>
+@{ ViewData["Title"] = "Category";
+    int id = 1; }
+
+<style>
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 16px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2
+    }
+</style>
+
+
+<h2>Customer</h2>
+<br />
+<a asp-action="RegisterCustomer" class="btn btn-secondary">Register Customer</a>
+<br />
+<br />
+<br />
+@if (Model.Count() > 0)
+{
+<table>
+    <tr>
+        <th>Id</th>
+        <th>First Name</th>
+        <th>Middle Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var user in Model)
+    {
+<tr>
+    <td>@(id++)</td>
+    <td>@user.FirstName</td>
+    <td>@user.MiddleName</td>
+    <td>@user.LastName</td>
+    <td>@user.Email</td>
+    <td>
+        <a asp-action="Details" class="btn btn-success" asp-route-Id="@user.Id">Details</a>
+        <a asp-action="UpdateCustomer" class="btn btn-secondary" asp-route-Id="@user.Id">Edit</a>
+        <a asp-action="Delete" class="btn btn-danger" asp-route-Id="@user.Id">Delete</a>
+    </td>
+</tr>}
+</table> }
+
+else
+{
+<p style="float:inline-start"><h5><i>No Registered Customer Found</i></h5></p>}

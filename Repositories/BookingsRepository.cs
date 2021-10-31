@@ -50,6 +50,11 @@ namespace AimsCarRentals.Repositories
         {
             return aimsDbContext.Bookings.Where(c => c.UserId == userId).Include(c => c.User).ToList();
         }
+        public Bookings FindByBookingRef(string booking_ref)
+        {
+            return aimsDbContext.Bookings.Find(booking_ref);
+        }
+        
     }
 }
 

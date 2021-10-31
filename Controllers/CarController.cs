@@ -102,7 +102,7 @@ namespace AimsCarRentals.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-            public IActionResult Update(UpdateCarViewModel model)
+            public IActionResult Update(UpdateCarViewModel model,int id)
             {
                     var files = HttpContext.Request.Form.Files;
                     string webRootPath = _webHostEnvironment.WebRootPath;
@@ -118,7 +118,7 @@ namespace AimsCarRentals.Controllers
                         }
                         model.CarPictureUrl = fileName + extension;
                     }
-            carService.UpdateCar(model,model.BranchId, model.CategoryId);
+            carService.UpdateCar(model,model.BranchId, model.CategoryId,id);
                 return RedirectToAction("Index");
             }
        

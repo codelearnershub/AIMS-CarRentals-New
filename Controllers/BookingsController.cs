@@ -1,4 +1,5 @@
 ﻿using AimsCarRentals.Interfaces;
+using AimsCarRentals.Models;
 using AimsCarRentals.Models.ViewModel;
 using AimsCarRentals.ServiceInterfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -15,7 +16,7 @@ namespace AimsCarRentals.Controllers
         public readonly IBookingsService bookingsService;
         public readonly IUserService userService;
 
-        public BookingsController(IBookingsService bookingsService,IUserService userService)
+        public BookingsController(IBookingsService bookingsService, IUserService userService)
         {
             this.bookingsService = bookingsService;
             this.userService = userService;
@@ -53,7 +54,25 @@ namespace AimsCarRentals.Controllers
             var loggedInUser = userService.FindUserById(userId);
             bookingsService.BookingHistory(userId);
             ViewBag.UserName = $"{loggedInUser.FirstName} {loggedInUser.LastName}";
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
-    }
+        public IActionResult VerifyCar(string booking_Ref, Bookings bookings)
+        {
+            var bookingref = bookingsService.FindByBookingRef(booking_Ref);
+
+            if (bookingref == null)
+            {
+                ViewBag.Message = "Invalid Code";
+                return null;
+            }
+            else if (bookingref != null && bookingref.IsVerified == true)
+            {
+                ViewBag.Message = "This booking ref has been used";
+            }
+            bookingsService.VerifyCar(booking_Ref, bookings);
+            return RedirectToAction("Index", "Branch");
+
+
+        }
+    } 
 }

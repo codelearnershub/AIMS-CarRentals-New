@@ -19,8 +19,8 @@ namespace AimsCarRentals.Models.ViewModel
 		public DateTime PickUpDate { get; set; }
 		public DateTime ReturnDate { get; set; }
 		public DateTime CreatedAt { get; set; }
-        public User UserName { get; internal set; }
-        public Car CarName { get; internal set; }
+        public User UserName { get; set; }
+        public Car CarName { get; set; }
     }
 	public class CreateBookingsViewModel
 
