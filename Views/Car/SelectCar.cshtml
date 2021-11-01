@@ -7,35 +7,80 @@
                 <h2 class="mb-2">Featured Vehicles</h2>
             </div>
         </div>
-        @foreach (var car in Model)
-        {
-            <div class="column">
-                <div class="row">
-                    <div class="card">
-                        <div class="card-header">
-                            <img src="@WC.ImagePath@car.CarPictureUrl" style="width:300px" />
-                        </div>
-                        <div style="padding:10px;background-color:rosybrown" class="text">
+        <div class="container">
 
-                            <h4>@car.Name&nbsp;@car.Make</h4>
+            <style>
+                * {
+                    box-sizing: border-box;
+                }
 
-                            <div class="d-flex mb-3">
-                                <span class="cat">
-                                    <label>Price:</label>
-                                    @car.Price
-                                </span>
+                .column {
+                    float: left;
+                    width: 33.33%;
+                    padding: 5px;
+                }
+
+                /* Clearfix (clear floats) */
+                .row::after {
+                    content: "";
+                    clear: both;
+                    display: table;
+                }
+            </style>
+
+            <div class="card-header">
+                <div class="text-center">
+                    <h1 class="display-3" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;color:rosybrown">Available Cars</h1>
+                </div>
+            </div>
+           
+            @foreach (var car in Model)
+            {
+                <div class="column">
+                    <div class="row">
+                        <div class="card">
+                            <div class="card-header">
+                                <img src="@WC.ImagePath@car.CarPictureUrl" style="width:300px" />
                             </div>
-                        </div>
-                        <div class="card-header">
-                            <p class="d-flex mb-1 d-block">
-                                <a asp-controller="Car" asp-action="BookCar" asp-route-Id="@car.Id" class="btn btn-danger">Book</a> &nbsp;
-                                <a asp-controller="Car" asp-action="Details" asp-route-Id="@car.Id" class="btn btn-dark">Details</a>
-                            </p>
-                        </div>
+                            <div style="padding:10px;background-color:rosybrown" class="text">
 
+                                <h4>@car.Name&nbsp;@car.Make</h4>
+
+                                <div class="d-flex mb-3">
+                                    <label>Price:</label>
+                                    <p class="price ml-auto">N @car.Price<span>/hour</span></p>
+                                </div>
+                            </div>
+                            <div class="card-header">
+                                <p class="d-flex mb-1 d-block">
+                                    <a asp-controller="Car" asp-action="BookCar" asp-route-Id="@car.Id" class="btn btn-danger">Book</a> &nbsp;
+                                    <a asp-controller="Car" asp-action="Details" asp-route-Id="@car.Id" class="btn btn-dark">Details</a>
+                                </p>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
-            </div>}
-        }
-    </div>
+            }
+        </div>
+        </div>
 </section>
+@*
+    <div class="column">
+        <div class="row">
+            <div class="card">
+                <div class="card-header">
+                    <img src="@WC.ImagePath@car.CarPictureUrl" style="width:300px" />
+                </div>
+                <div style="padding:10px;background-color:rosybrown" class="text">
+
+                    <h4>@car.Name&nbsp;@car.Make</h4>
+
+                    <div class="d-flex mb-3">
+                        <span class="cat">
+                            <label>Price:</label>
+                            @car.Price
+                        </span>
+                    </div>
+                </div>
+*@

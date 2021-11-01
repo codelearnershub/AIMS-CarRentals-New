@@ -37,83 +37,90 @@
     }
 </style>
 
-<body>
-    <div class="container">
-        <br /><br />
-        <h2 class="text-center" style="font-family:'Times New Roman'; font-weight:bold"> Booking Summary</h2>
-        <br /><br />
-        <div class="container">
+<h2>Comparison Table</h2>
 
-            <div>
-                <span class="sub-heading">User Name:</span>
-                <span class=" font-weight-bold align-right">@Model.UserName</span>
-            </div>
-            <br /><br /><br />
-            <div>
-                <span class="sub-heading">Car Description:</span>
-                <span class=" font-weight-bold align-right">@Model.CarName</span>
-            </div>
-            <br /><br /><br />
-            <div>
-                <span class="sub-heading">Booking Reference:</span>
-                <span class=" font-weight-bold align-right">@Model.BookingRef</span>
-            </div>
-            <br /><br /><br />
-            <div>
-                <span class="sub-heading">Amount to be paid:</span>
-                <span class=" font-weight-bold align-right">@Model.AmountToBePaid</span>
-            </div>
-            <br /><br /><br />
-        </div>
-        
-        <div id="paypal-button">
-        <button class="btn btn-danger"></button></div>
-        <a src="https://www.paypalobjects.com/api/checkout.js" id="paypal-button" class="btn btn-danger">Pay</a>
-        
-        <script>
-            paypal.Button.render({
-                // Configure environment
-                env: 'sandbox',
-                client: {
-                    sandbox: 'demo_sandbox_client_id',
-                    production: 'demo_production_client_id'
-                },
-                // Customize button (optional)
-                locale: 'en_US',
-                style: {
-                    size: 'small',
-                    color: 'gold',
-                    shape: 'pill',
-                },
+<table>
 
-                // Enable Pay Now checkout flow (optional)
-                commit: true,
-
-                // Set up a payment
-                payment: function (data, actions) {
-                    return actions.payment.create({
-                        transactions: [{
-                            amount: {
-                                total: '0.01*100',
-                                currency: 'NGN'
-                            }
-                        }]
-                    });
-                },
-                // Execute the payment
-                onAuthorize: function (data, actions) {
-                    return actions.payment.execute().then(function () {
-                        // Show a confirmation message to the buyer
-                        window.alert('Thank you for your purchase!');
-                    });
-                }
-            }, '#paypal-button');
-
-        </script>
+    <tr>
+        <td>First Name</td>
+        <td><i>@Model.UserName</i></td>
+    </tr>
+    <tr>
+        <td>Car Name</td>
+        <td><i>@Model.CarName</i></td>
+    </tr>
+    <tr>
+        <td>Amount Paid</td>
+        <td><i>@Model.AmountToBePaid</i></td>
+    </tr>
+    <tr>
+        <td>Booking Ref</td>
+        <td><i>@Model.BookingRef</i></td>
+    </tr>
+    <tr>
+        <td>Pick Up Date</td>
+        <td><i class="fa fa-check">@Model.PickUpDate</i></td>
+    </tr>
+    <tr>
+        <td>Return Date</td>
+        <td><i class="fa fa-check">@Model.ReturnDate</i></td>
+    </tr>
+    <tr>
+        <td>Date</td>
+        <td><i class="fa fa-check">@DateTime.Now</i></td>
+    </tr>
+</table>
 
 
-    </div>
-</body>
+
+<div id="paypal-button">
+    <button class="btn btn-danger"></button>
+</div>
+<a src="https://www.paypalobjects.com/api/checkout.js" id="paypal-button" class="btn btn-danger">Pay</a>
+
+<script>
+    paypal.Button.render({
+        // Configure environment
+        env: 'sandbox',
+        client: {
+            sandbox: 'demo_sandbox_client_id',
+            production: 'demo_production_client_id'
+        },
+        // Customize button (optional)
+        locale: 'en_US',
+        style: {
+            size: 'small',
+            color: 'gold',
+            shape: 'pill',
+        },
+
+        // Enable Pay Now checkout flow (optional)
+        commit: true,
+
+        // Set up a payment
+        payment: function (data, actions) {
+            return actions.payment.create({
+                transactions: [{
+                    amount: {
+                        total: '0.01*100',
+                        currency: 'NGN'
+                    }
+                }]
+            });
+        },
+        // Execute the payment
+        onAuthorize: function (data, actions) {
+            return actions.payment.execute().then(function () {
+                // Show a confirmation message to the buyer
+                window.alert('Thank you for your purchase!');
+            });
+        }
+    }, '#paypal-button');
+
+</script>
+
+
+   
 @*<div class="justify-content-between">
         <a onclick="payWithPaystack()" class="btn btn-danger">Continue To Payment</a>
         <script src="https://js.paystack.co/v1/inline.js"></script>

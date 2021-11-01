@@ -63,30 +63,42 @@ html {
 </head>
 <body>
 
-    <h2>Our Branches</h2>
-    <p>Choose At Your Convenient</p>
-    <br>
+    <div class="container">
+        <h2>Our Branches</h2>
+        <p>Choose At Your Convenient</p>
+        <br>
 
+        
+        @foreach (var car in Model)
+        {
+            <div class="column">
+                <div class="row">
+                    <div class="card" style="width:15%">
+                        <div class="card-header">
+                            <label>Name</label>
+                            <h4>@car.Name</h4>
+                        </div>
+                        <div style="padding:10px;background-color:rosybrown" class="text">
+                            <div class="d-flex mb-3">
+                                <label>Address</label>
+                                <p class="price ml-auto"><span> @car.Address</span></p>
+                            </div>
+                        </div>
+                        <div class="card-header">
+                            <p>
+                                <a asp-controller="Branch" asp-action="SelectCar" asp-route-Id="@car.Id" class="btn btn-danger">Select Car</a> &nbsp;
 
-    @foreach (var branch in Model)
-    {
+                            </p>
+                        </div>
 
-<div class="row">
-    <div class="column">
-        <div class="card">
-            @*
-                <img src="../w3images/team1.jpg" alt="Jane" style="width:100%">*@
-            <div class="container">
-                <h2>Name: @branch.Name</h2>
-                <p><h5>@branch.Address</h5></p>
-                <p><a asp-controller="Car" asp-action="SelectCar" asp-route-Id="@branch.Id" class="button">Select Car</a></p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</div>
+        
         }
     
-
+    </div>
+    
 </body>
 
 <!-- Mirrored from www.w3schools.com/howto/tryit.asp?filename=tryhow_css_team by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 30 Jul 2018 02:09:41 GMT -->

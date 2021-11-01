@@ -4,46 +4,46 @@
 <div class="container">
     <form method="post" enctype="multipart/form-data">
         <input asp-for="Id" hidden />
-            <h2>Add A Car</h2>
+        <h2>Add A Car</h2>
         <div class="card-body">
-                <div class="form-group row">
-                    <div class="col-md-1">
-                        <label asp-for="Name"></label>
-                    </div>
-                    <div class="col-md-4">
-                        <input asp-for="Name" class="form-control" />
-                        <span asp-validation-for="Name" class="text-danger"></span>
-                    </div>
-                    
-                    <div class="form-group row">
-                        <div class="col-md-2">
-                            <label asp-for="Make"></label>
-                        </div>
-                        <div class="col-md-8">
-                            <input asp-for="Make" class="form-control" />
-                            <span asp-validation-for="Make" class="text-danger"></span>
-                        </div>
-                    </div>
+            <div class="form-group row">
+                <div class="col-md-1">
+                    <label asp-for="Name"></label>
+                </div>
+                <div class="col-md-4">
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
 
-                    <div class="input-group">
-                        <b><label>Price</label></b>
-                        <div class="col-md-4">
-                            <input asp-for="Price" class="form-control" />
-                            <span asp-validation-for="Price" class="text-danger"></span>
+                <div class="form-group row">
+                    <div class="col-md-2">
+                        <label asp-for="Make"></label>
+                    </div>
+                    <div class="col-md-8">
+                        <input asp-for="Make" class="form-control" />
+                        <span asp-validation-for="Make" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <b><label>Price</label></b>
+                    <div class="col-md-4">
+                        <input asp-for="Price" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <div class="form-group row">
+                            <div class="col-md-4">
+                                <b>
+                                    <label asp-for="PlateNo"></label>
+                                </b>
+                            </div>
+                            <div class="col-md-4">
+                                <input asp-for="PlateNo" class="form-control" />
+                                <span asp-validation-for="PlateNo" class="text-danger"></span>
+                            </div>
                         </div>
-                        <div>
-                                <div class="form-group row">
-                                    <div class="col-md-4">
-                                        <b>
-                                            <label asp-for="PlateNo"></label>
-                                        </b>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <input asp-for="PlateNo" class="form-control" />
-                                        <span asp-validation-for="PlateNo" class="text-danger"></span>
-                                    </div>
-                                </div>
-                        </div>
+                    </div>
                     <div>
                         <div class="input-group">
                             <div class="form-group row">
@@ -67,39 +67,120 @@
                                         </div>
                                     </div>
                                 </div>
-                        <div class="input-group">
-                            <div class="form-group">
-                                <label asp-for="CategoryId" class="control-label"></label>
-                                <select class="form-control" name="CategoryId" asp-items="@Model.CategoryList">
-                                    <option disabled selected>--Select Category--</option>
-                                </select>
-                                <span asp-validation-for="CategoryId" class="text-danger"></span>
-                            </div><br /> &nbsp;
-                            <div class="form-group">
-                                <label asp-for="BranchId" class="control-label"></label>
-                                <select class="form-control" name="BranchId" asp-items="@Model.BranchList">
-                                    <option disabled selected>--Select Location--</option>
-                                </select>
-                                <span asp-validation-for="BranchId" class="text-danger"></span>
+                                <div class="input-group">
+                                    <div class="form-group">
+                                        <label asp-for="CategoryId" class="control-label"></label>
+                                        <select class="form-control" name="CategoryId" asp-items="@Model.CategoryList">
+                                            <option disabled selected>--Select Category--</option>
+                                        </select>
+                                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                                    </div><br /> &nbsp;
+                                    <div class="form-group">
+                                        <label asp-for="BranchId" class="control-label"></label>
+                                        <select class="form-control" name="BranchId" asp-items="@Model.BranchList">
+                                            <option disabled selected>--Select Location--</option>
+                                        </select>
+                                        <span asp-validation-for="BranchId" class="text-danger"></span>
+                                    </div>
+                                    <br />
+                                </div>
+                                <div class="alert success">
+                                    <span class="closebtn">&times;</span>
+                                    <strong>Success!</strong> Indicates a successful or positive action.
+                                <div class="form-group">
+                                    <input type="submit" value="Create" class="btn btn-primary" />
+                                </div>
+                                    </div>
+                                &nbsp;
+                                <div>
+                                    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                                </div>
                             </div>
-                            <br />
-                        </div>
-
-                        <div class="form-group">
-                            <input type="submit" value="Create" class="btn btn-primary" />
-                        </div>
-                        &nbsp;
-                        <div>
-                            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-                        </div>
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
-        </div>
-    </div>
     </form>
 </div>
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .alert {
+            padding: 20px;
+            background-color: #f44336;
+            color: white;
+            opacity: 1;
+            transition: opacity 0.6s;
+            margin-bottom: 15px;
+        }
+
+            .alert.success {
+                background-color: #4CAF50;
+            }
+
+            .alert.info {
+                background-color: #2196F3;
+            }
+
+            .alert.warning {
+                background-color: #ff9800;
+            }
+
+        .closebtn {
+            margin-left: 15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+            .closebtn:hover {
+                color: black;
+            }
+    </style>
+</head>
+@*<body>
+
+    <h2>Alert Messages</h2>
+    <p>Click on the "x" symbol to close the alert message.</p>
+    <div class="alert">
+        <span class="closebtn">&times;</span>
+        <strong>Danger!</strong> Indicates a dangerous or potentially negative action.
+    </div>
+
+    
+    <div class="alert info">
+        <span class="closebtn">&times;</span>
+        <strong>Info!</strong> Indicates a neutral informative change or action.
+    </div>
+
+    <div class="alert warning">
+        <span class="closebtn">&times;</span>
+        <strong>Warning!</strong> Indicates a warning that might need attention.
+    </div>*@
+
+    <script>
+var close = document.getElementsByClassName("closebtn");
+var i;
+
+for (i = 0; i < close.length; i++) {
+    close[i].onclick = function(){
+        var div = this.parentElement;
+        div.style.opacity = "0";
+        setTimeout(function(){ div.style.display = "none"; }, 600);
+    }
+}
+    </script>
+
+
+<!-- Mirrored from www.w3schools.com/howto/tryit.asp?filename=tryhow_js_alerts by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 30 Jul 2018 02:09:43 GMT -->
+
+
 
 
 @section Scripts {
