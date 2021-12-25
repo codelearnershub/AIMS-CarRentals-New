@@ -152,95 +152,47 @@ namespace AimsCarRentals.Services
         {
             _userRepository.DeleteUser(id);
         }
-        public void UpdateAdmin(UpdateAdminViewModel model)
+        public User UpdateAdmin(int id,UpdateAdminViewModel model)
         {
-            byte[] salt = new byte[128 / 8];
-
-            using (var rng = RandomNumberGenerator.Create())
+            var admin = _userRepository.FindUserById(id);
+            if (admin != null)
             {
-                rng.GetBytes(salt);
-            }
-
-            string saltString = Convert.ToBase64String(salt);
-
-            string hashedPassword = HashPassword(model.Password, saltString);
-
-            var role = _roleRepository.FindRoleByName("Admin");
-            if (role != null)
-            {
-                User user = new User
-                {
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    MiddleName = model.MiddleName,
-                    Email = model.Email,
-                    Gender = model.Gender,
-                    PasswordHash = hashedPassword,
-                    HashSalt = saltString,
-                    PhoneNo = model.PhoneNo,
-                    DateOfBirth = model.DateOfBirth,
-                    Address = model.Address,
-                    UserType = "Staff"
-
-                };
-                var userRole = new UserRole
-                {
-                    UserId = user.Id,
-                    RoleId = role.Id,
-                };
-                user.UserRoles.Add(userRole);
-                _userRepository.UpdateUser(user);
-            }
-            else
-            {
-                throw new Exception("No Role found");
-            }
-
-
-        }
-        public void UpdateCustomer(UpdateCustomerViewModel model)
-        {
-            byte[] salt = new byte[128 / 8];
-
-            using (var rng = RandomNumberGenerator.Create())
-            {
-                rng.GetBytes(salt);
-            }
-
-            string saltString = Convert.ToBase64String(salt);
-
-            string hashedPassword = HashPassword(model.Password, saltString);
-
-            var role = _roleRepository.FindRoleByName("Admin");
-            if (role != null)
-            {
-                User user = new User
-                {
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    MiddleName = model.MiddleName,
-                    Email = model.Email,
-                    Gender = model.Gender,
-                    PasswordHash = hashedPassword,
-                    HashSalt = saltString,
-                    PhoneNo = model.PhoneNo,
-                    DateOfBirth = model.DateOfBirth,
-                    Address = model.Address,
-                    UserType = "Staff"
-                };
-                var userRole = new UserRole
-                {
-                    UserId = user.Id,
-                    RoleId = role.Id,
-                };
-                user.UserRoles.Add(userRole);
-                _userRepository.UpdateUser(user);
-            }
-            else
-            {
+                admin.FirstName = model.FirstName;
+                admin.MiddleName = model.MiddleName;
+                admin.LastName = model.LastName;
+                admin.Gender = model.Gender;
+                admin.Email = model.Email;
+                admin.DateOfBirth = model.DateOfBirth;
+                admin.PhoneNo = model.PhoneNo;
+                admin.PasswordHash = model.PasswordHash;
+                admin.HashSalt = model.HashSalt;
+                admin.CreatedAt = model.CreatedAt;
                 
+               return _userRepository.UpdateUser(admin);
             }
-            
+            return null;
+        }
+        public User UpdateCustomer(UpdateCustomerViewModel model, int id)
+        {
+
+            var customer = _userRepository.FindUserById(id);
+            if (customer != null)
+            {
+                customer.FirstName = model.FirstName;
+                customer.MiddleName = model.MiddleName;
+                customer.LastName = model.LastName;
+                customer.Gender = model.Gender;
+                customer.PhoneNo = model.PhoneNo;
+                customer.Email = model.Email;
+                customer.Address = model.Address;
+                customer.PasswordHash = model.PasswordHash;
+                customer.HashSalt = model.HashSalt;
+                customer.DateOfBirth = model.DateOfBirth;
+                customer.CreatedAt = model.CreatedAt;
+
+                return _userRepository.UpdateUser(customer);
+            }
+            return null;
         }
         public List<CustomerViewModel> GetAllCustomers()
         {

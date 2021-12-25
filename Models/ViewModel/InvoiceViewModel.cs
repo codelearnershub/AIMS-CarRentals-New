@@ -7,7 +7,8 @@ namespace AimsCarRentals.Models.ViewModel
 {
     public class InvoiceViewModel
     {
-        public string UserName { get; set;}
+        public string UserEmail { get; set;}
+        public string UserName { get; set; }
         public double AmountToBePaid { get; set; }
         public string CarName { get; set; }
         public string BookingRef { get; set; }

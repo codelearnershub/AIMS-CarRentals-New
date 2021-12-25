@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AimsCarRentals.Models.ViewModel.BookingsViewModel>
+﻿@model IEnumerable<AimsCarRentals.Models.Bookings>
 
     <style>
         table {
@@ -17,14 +17,19 @@
             background-color: #f2f2f2
         }
     </style>
-    
-<a asp-controller="Home" asp-action="Index "class="btn btn-danger">Make A New Booking</a>
+    <div class="container">
+
         <h2>Your Booking History</h2>
-        
-        <div style="overflow-x:auto;">
+        <br />
+        <br />
+        <br />
+        <a asp-controller="Car" asp-action="SelectCar" class="btn btn-danger">Make A New Booking</a>
+        <br />
+        <br />
+        <div>
             <table>
                 <tr>
-                    <th></th>
+                   
                     <th>First Name</th>
                     <th>Middle Name</th>
                     <th>Last Name</th>
@@ -32,13 +37,10 @@
                     <th>BookingsId</th>
                     <th>CarId</th>
                     <th>UserId</th>
-                    <th>BookingRef</th>
-                    <th>Action</th>
+                    <th>Booking Ref</th>
                 </tr>
                 @foreach (var bookings in Model)
                 {
-
-
                     <tr>
                         <td>@bookings.User.FirstName</td>
                         <td>@bookings.User.MiddleName</td>
@@ -48,12 +50,10 @@
                         <td>@bookings.CarId</td>
                         <td>@bookings.UserId</td>
                         <td>@bookings.Booking_ref</td>
-                        <td>
-                            <a asp-action="Delete" asp-route="@bookings.Id" class="btn btn-darkS">Delete</a>
-                            <a asp-action="Delete" asp-route="@bookings.Id" class="btn btn-darkS">Details</a>
-                        </td>
+
                     </tr>
-                    
+
                 }
             </table>
         </div>
+    </div>

@@ -88,8 +88,8 @@
         <a asp-controller="Auth" asp-action="Index">Users</a>
         <a asp-controller="Auth" asp-action="GetAllCustomers">Customers</a>
         <a asp-controller="Auth" asp-action="GetAllAdmins">Admins</a>
-    </div>
         <a asp-controller="Auth" asp-action="Logout">Logout</a>
+    </div>
    
 
          
@@ -136,10 +136,12 @@
     <a asp-action="Create" class="btn btn-secondary">Create Branch</a>
     <br />
     <br />
+  @if (ViewBag.Message == "Can not Create Branch")
+    {
+        <p style="color:dodgerblue;background-color:greenyellow"><h5>Can not create branch</h5></p>
+    }
     @if (Model.Count() > 0)
     {
-
-
 <table>
     <tr>
         <th>Id</th>
@@ -155,16 +157,15 @@
     <td>@branch.Address</td>
     <td>
         <a asp-action="Details" class="btn btn-success" asp-route-Id="@branch.Id">Details</a>
-        <a asp-action="Update" class="btn btn-black" asp-route-Id="@branch.Id">Update</a>
+        <a asp-action="Update" class="btn btn-secondary" asp-route-Id="@branch.Id">Update</a>
         <a asp-action="Delete" class="btn btn-danger" asp-route-Id="@branch.Id">Delete</a>
     </td>
-</tr>}
-</table> 
-    }
+</tr>
+}
+</table> }
             else
             {
-<p style="float:inline-start"><h5><i>No branch found</i></h5></p>
-    }
+<p style="float:inline-start"><h5><i>No branch found</i></h5></p>}
 </div>
    
 

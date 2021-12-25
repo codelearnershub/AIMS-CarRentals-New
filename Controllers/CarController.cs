@@ -1,4 +1,4 @@
-﻿using AimsCarRentals.Interfaces;
+﻿ using AimsCarRentals.Interfaces;
 using AimsCarRentals.Models;
 using AimsCarRentals.Models.ViewModel;
 using AimsCarRentals.ServiceInterfaces;
@@ -34,12 +34,16 @@ namespace AimsCarRentals.Controllers
             _categoryService = categoryService;
             this.userService = userService;
         }
+        [Authorize(Roles = "Admin, SuperAdmin")]
         public IActionResult Index()
         {
+            int userId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
+            var user = userService.FindUserById(userId);
             var car = carService.GetAll();
             return View(car);
 
         }
+        [Authorize(Roles = "Admin, SuperAdmin")]
         [HttpGet]
         public IActionResult Create()
         {
@@ -82,6 +86,7 @@ namespace AimsCarRentals.Controllers
             }
             return RedirectToAction("Index");
         }
+        [Authorize(Roles = "Admin, SuperAdmin")]
         public IActionResult Update()
         {
             UpdateCarViewModel carVM = new UpdateCarViewModel
@@ -118,20 +123,23 @@ namespace AimsCarRentals.Controllers
                         }
                         model.CarPictureUrl = fileName + extension;
                     }
-            carService.UpdateCar(model,model.BranchId, model.CategoryId,id);
-                return RedirectToAction("Index");
+                    carService.UpdateCar(model,model.BranchId, model.CategoryId,id);
+                    ViewBag.Message = "Updated Successfully";
+                    return RedirectToAction("Index");
             }
        
-
+        
         public void Find(int id)
         {
            carService.Find(id);
         }
+        [Authorize(Roles = "Admin, SuperAdmin")]
         public IActionResult Delete(int id)
         {
             carService.Delete(id);
             return RedirectToAction("Index");
         }
+        [Authorize(Roles = "Admin, SuperAdmin")]
         public IActionResult Details(int id)
         {
             var car = carService.Find(id);
@@ -166,6 +174,7 @@ namespace AimsCarRentals.Controllers
             int userId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
             var user = userService.FindUserById(userId);
             var book = bookingsService.AddBookings(model,car,user);
+            ViewBag.Message = "Created Successfully";
             return RedirectToAction("Invoice",  new { id  = id, bookingId = book.Id});
         }
         [HttpGet]
@@ -176,12 +185,12 @@ namespace AimsCarRentals.Controllers
         }
         public IActionResult GatAllCarsPerCategory(int categoryId)
         {
-            var car = carService.GetAllCarsPerEachBranch(categoryId);
+            var car = carService.GetCarsPerEachCategory(categoryId);
             return View(car);
         }
-        public IActionResult GetAllCarsPerEachBranch(int branchId)
+        public IActionResult GetAllCarsPerEachBranch(int id)
         {
-            var car = carService.GetAllCarsPerEachBranch(branchId);
+            var car = carService.GetAllCarsPerEachBranch(id);
             return View(car);
         }
         public IActionResult Invoice(int id, int bookingId)
@@ -190,17 +199,30 @@ namespace AimsCarRentals.Controllers
             var user = userService.FindUserById(userId);
             var car = carService.Find(id);
             var booking = bookingsService.Find(bookingId);
-            double oneDay = 24;
             InvoiceViewModel vm = new InvoiceViewModel
             {
-                UserName = $"{user.LastName} {user.FirstName}",
+                UserEmail = user.Email,
+                UserName = $"{user.FirstName} {user.MiddleName} {user.LastName}",
                 CarName = $"{car.Name} {car.Make}",
                 BookingRef = booking.Booking_ref.ToUpper(),
-                AmountToBePaid = (booking.ReturnDate-booking.PickUpDate).Hours*oneDay * car.Price,
+                AmountToBePaid = (booking.ReturnDate-booking.PickUpDate).Hours*car.Price,
                 PickUpDate = booking.PickUpDate,
                 ReturnDate = booking.ReturnDate
             };
             return View(vm);
+        }
+        [Authorize(Roles = "Admin, SuperAdmin")]
+        public IActionResult GetAllBookedCars()
+        {
+            var car = carService.GetAllBookedCars();
+            return View(car);
+        }
+        [Authorize(Roles = "Admin, SuperAdmin")]
+        public IActionResult GetAllUnBookedCars()
+        {
+            var car = carService.GetAllUnBookedCars();
+
+            return View(car);
         }
     }
 }

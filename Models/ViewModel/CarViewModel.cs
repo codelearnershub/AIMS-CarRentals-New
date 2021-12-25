@@ -86,7 +86,7 @@ namespace AimsCarRentals.Models.ViewModel
 
         [Required(ErrorMessage = "Fill out this field")]
         [Display(Name = "Plate No")]
-        public string PlateNo { get; set; }
+        public string PlateNo { get; set; } 
         [Required(ErrorMessage = "Fill out this field")]
         [Display(Name = "Description")]
         public string Description { get; set; }

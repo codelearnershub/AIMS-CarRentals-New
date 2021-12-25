@@ -1,4 +1,54 @@
 ﻿@model IEnumerable<AimsCarRentals.Models.ViewModel.CarViewModel>
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .topnav {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+            .topnav a {
+                float: left;
+                color: #f2f2f2;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 17px;
+            }
+
+                .topnav a:hover {
+                    background-color: #ddd;
+                    color: black;
+                }
+
+                .topnav a.active {
+                    background-color: #4CAF50;
+                    color: white;
+                }
+
+        .topnav-right {
+            float: right;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="topnav">
+        <a class="active" asp-controller="Home" asp-action="Index">Home</a>
+        <a asp-controller="Branch" asp-action="SelectBranch">Branches</a>
+        <a asp-controller="Car" asp-action="SelectCar">Car</a>
+        <div class="topnav-right">
+            <a href="#about">About</a>
+            <a asp-controller="Auth" asp-action="Login">Login/Register</a>
+        </div>
+    </div>
+</body>
 <section class="ftco-section ftco-no-pt bg-light">
     <div class="container">
         <div class="row justify-content-center">
@@ -33,7 +83,7 @@
                     <h1 class="display-3" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;color:rosybrown">Available Cars</h1>
                 </div>
             </div>
-           
+
             @foreach (var car in Model)
             {
                 <div class="column">
@@ -42,13 +92,13 @@
                             <div class="card-header">
                                 <img src="@WC.ImagePath@car.CarPictureUrl" style="width:300px" />
                             </div>
-                            <div style="padding:10px;background-color:rosybrown" class="text">
+                            <div style="padding:10px;background-color:black" class="text">
 
-                                <h4>@car.Name&nbsp;@car.Make</h4>
+                                <h4 style="color:blue">@car.Name&nbsp;@car.Make</h4>
 
-                                <div class="d-flex mb-3">
-                                    <label>Price:</label>
-                                    <p class="price ml-auto">N @car.Price<span>/hour</span></p>
+                                <div @*class="d-flex mb-3"*@>
+                                    <label style="color:darkcyan"><b>Price:</b></label>
+                                    @*class="price ml-auto"*@<span style="color:orangered"><b>NGN</b></span><span style="color:darkslategrey">@car.Price</span><span style="color:cornflowerblue">/hour</span>
                                 </div>
                             </div>
                             <div class="card-header">
@@ -63,24 +113,5 @@
                 </div>
             }
         </div>
-        </div>
+    </div>
 </section>
-@*
-    <div class="column">
-        <div class="row">
-            <div class="card">
-                <div class="card-header">
-                    <img src="@WC.ImagePath@car.CarPictureUrl" style="width:300px" />
-                </div>
-                <div style="padding:10px;background-color:rosybrown" class="text">
-
-                    <h4>@car.Name&nbsp;@car.Make</h4>
-
-                    <div class="d-flex mb-3">
-                        <span class="cat">
-                            <label>Price:</label>
-                            @car.Price
-                        </span>
-                    </div>
-                </div>
-*@

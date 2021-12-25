@@ -5,7 +5,14 @@
 </div>
 <div class="container">
     <form method="post">
-
+       @* @if (ViewBag.Message = "Update Successfull")
+        {
+            <p style="color:dodgerblue;background-color:greenyellow"><h5>Login Successful</h5></p>
+        }
+        else
+        {
+            <p style="color:white;background-color:red"><h5>Invalid Login</h5></p>
+        }*@
         <div class="card">
             <div class="justify-content-center">
                 <div class="justify-content-between">

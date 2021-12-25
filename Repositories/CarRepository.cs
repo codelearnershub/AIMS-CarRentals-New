@@ -30,8 +30,9 @@ namespace AimsCarRentals.Repositories
         }
         public Car Find(int id)
         {
-            return aimsDbContext.Cars.Include(u => u.Category).Include(b => b.Branch).FirstOrDefault(c => c.Id == id);
+            return aimsDbContext.Cars.Include(c => c.Category).Include(c => c.Branch).FirstOrDefault(c => c.Id == id);
         }
+
         public Car Delete(int id)
         {
             var car = Find(id);
@@ -54,6 +55,14 @@ namespace AimsCarRentals.Repositories
         public List<Car> GetAllCarsPerEachBranch(int branchId)
         {
             return aimsDbContext.Cars.Where(c => c.BranchId == branchId).ToList();
+        }
+        public List<Car> GetAllBookedCars()
+        {
+            return aimsDbContext.Cars.Where(c => c.IsAvailable == false).ToList();
+        }
+        public List<Car> GetAllUnBookedCars()
+        {
+            return aimsDbContext.Cars.Where(c => c.IsAvailable == true).ToList();
         }
     }
 }

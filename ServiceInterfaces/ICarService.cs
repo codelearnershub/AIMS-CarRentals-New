@@ -17,5 +17,7 @@ namespace AimsCarRentals.ServiceInterfaces
         public List<Car> GetCarsPerEachCategory(int categoryId);
         public List<Car> GetAllCarsPerEachBranch(int branchId);
         public Car UpdateIsAvailable(Car car);
+        public List<CarViewModel> GetAllUnBookedCars();
+        public List<CarViewModel> GetAllBookedCars();
     }
 }

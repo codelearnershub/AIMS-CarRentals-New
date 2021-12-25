@@ -2,6 +2,14 @@
 <div class="card header"><h3>Add Category</h3></div>
 
 <div class="container">
+   @* @if (ViewBag.Message = "Created Successfully")
+    {
+        <p style="color:dodgerblue;background-color:greenyellow"><h5>Created Successfully</h5></p>
+    }
+    else
+    {
+        <p style="color:white;background-color:red"><h5>Not Created</h5></p>
+    }*@
     <div class="card-body">
         <label for="uname"><b>Name</b></label>
         <input type="text" placeholder="Name" name="Name" required>

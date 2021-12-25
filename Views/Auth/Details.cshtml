@@ -1,27 +1,209 @@
 ﻿@model AimsCarRentals.Models.User
 
-<div class="container">
-    <ul>
-        <li>
-            <label><b>Id</b></label>
-            <h4>@Model.Id</h4>
-        </li>
-        <li>
-            <label><b>Password</b></label>
-            <h4>@Model.PasswordHash</h4>
-        </li>
-        <li>
-            <label><b>HashSalt</b></label>
-            <h4>@Model.HashSalt</h4>
-        </li>
-        <li>
-            <label><b>Email</b></label>
-            <h4>@Model.Email</h4>
-        </li>
-        <li>
-            <label><b>User was Created At</b></label>
-            <h4>@Model.CreatedAt</h4>
-        </li>
-    </ul>
-    <a asp-action="Index" class="btn btn-danger">Back</a>
-</div>
+
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+        }
+
+        /* Fixed sidenav, full height */
+        .sidenav {
+            height: 100%;
+            width: 200px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: red;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+            /* Style the sidenav links and the dropdown button */
+            .sidenav a, .dropdown-btn {
+                padding: 6px 8px 6px 16px;
+                text-decoration: none;
+                font-size: 20px;
+                color: black;
+                display: block;
+                border: none;
+                background: none;
+                width: 100%;
+                text-align: left;
+                cursor: pointer;
+                outline: none;
+            }
+
+                /* On mouse-over */
+                .sidenav a:hover, .dropdown-btn:hover {
+                    color: #f1f1f1;
+                }
+
+        /* Main content */
+        .main {
+            margin-left: 200px; /* Same as the width of the sidenav */
+            font-size: 20px; /* Increased text to enable scrolling */
+            padding: 0px 10px;
+        }
+
+        /* Add an active class to the active dropdown button */
+        .active {
+            background-color: green;
+            color: white;
+        }
+
+        /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+        .dropdown-container {
+            display: none;
+            background-color: white;
+            padding-left: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
+        /* Optional: Style the caret down icon */
+        .fa-caret-down {
+            float: right;
+            padding-right: 8px;
+        }
+
+
+        .sidenav {
+            padding-top: 15px;
+        }
+
+            .sidenav a {
+                font-size: 18px;
+            }
+    </style>
+
+    <body>
+        <div class="sidenav">
+            <a asp-controller="Bookings" asp-action="Index">Booking</a>
+            <a asp-controller="Car" asp-action="Index">Car</a>
+            <a asp-controller="Category" asp-action="Index">Categories</a>
+            <a asp-controller="Branch" asp-action="Index">Branches</a>
+            <a asp-controller="Auth" asp-action="Index">Users</a>
+            <a asp-controller="Auth" asp-action="GetAllCustomers">Customers</a>
+            <a asp-controller="Auth" asp-action="GetAllAdmins">Admins</a>
+            <a asp-controller="Auth" asp-action="Logout">Logout</a>
+        </div>
+
+
+            <script>
+    /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+                var dropdown = document.getElementsByClassName("dropdown-btn");
+                var i;
+
+                for (i = 0; i < dropdown.length; i++) {
+                    dropdown[i].addEventListener("click", function () {
+                        this.classList.toggle("active");
+                        var dropdownContent = this.nextElementSibling;
+                        if (dropdownContent.style.display === "block") {
+                            dropdownContent.style.display = "none";
+                        } else {
+                            dropdownContent.style.display = "block";
+                        }
+                    });
+                }</script>
+
+    </body>
+    <div class="main">
+        <style>
+            table {
+                border-collapse: collapse;
+                border-spacing: 0;
+                width: 100%;
+                border: 1px solid #ddd;
+            }
+
+            th, td {
+                text-align: center;
+                padding: 16px;
+            }
+
+                th:first-child, td:first-child {
+                    text-align: left;
+                }
+
+            tr:nth-child(even) {
+                background-color: #f2f2f2
+            }
+
+            .fa-check {
+                color: green;
+            }
+
+            .fa-remove {
+                color: red;
+            }
+
+            .sub-heading {
+                font-size: 20px;
+                font-weight: bolder;
+                margin-right: 20%;
+                font-family: 'Times New Roman';
+            }
+        </style>
+        <div class="container">
+            <h2>Car Details</h2>
+
+            <table>
+
+                <tr>
+                    <td>Id</td>
+                    <td id="name">@Model.Id</td>
+                </tr>
+                <tr>
+                    <td>First Name</td>
+                    <td><i>@Model.FirstName</i></td>
+                </tr>
+                <tr>
+                    <td>Middle Name</td>
+                    <td id="price">@Model.MiddleName</td>
+                </tr>
+                <tr>
+                    <td>Last Name</td>
+                    <td><i>@Model.LastName</i></td>
+                </tr>
+
+                <tr>
+                    <td>Email</td>
+                    <td><i class="fa fa-check">@Model.Email</i></td>
+                </tr>
+                <tr>
+                    <td>Gender</td>
+                    <td><i class="fa fa-check">@Model.Gender</i></td>
+                </tr>
+                <tr>
+                    <td>Date Of Birth</td>
+                    <td><i class="fa fa-check">@Model.DateOfBirth</i></td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td><i class="fa fa-check">@Model.Address</i></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><i class="fa fa-check">@Model.PasswordHash</i></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><i class="fa fa-check">@Model.UserType</i></td>
+                </tr>
+                <tr>
+                    <td>HashSalt</td>
+                    <td><i class="fa fa-check">@Model.HashSalt</i></td>
+                </tr>
+                <tr>
+                    <td>Date Added</td>
+                    <td><i class="fa fa-check">@Model.CreatedAt</i></td>
+                </tr>
+            </table>
+        </div>
+        </div>
+    
+        <a asp-action="Index" class="btn btn-danger">Back</a>
+
+    

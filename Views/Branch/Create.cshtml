@@ -1,27 +1,147 @@
 ﻿@model AimsCarRentals.Models.ViewModel.CreateBranchViewModel
-@{
-    ViewData["Title"] = "Add Branch";
-}
-<div class="card header"><h3>Add Branch</h3></div>
-<div class="container">
-    <div class="container">
-        <form method="post" class="input-group">
+@{ ViewData["Title"] = "Add Branch"; }
+<style>
+    body {
+        font-family: "Lato", sans-serif;
+    }
 
-            <div>
-                <input type="text" name="Name" placeholder=" Name" class="form-control" />
-            </div>
-            <div>
-                <input type="text" name="Address" placeholder=" Address" class="form-control" />
-            </div>
-            <div>
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+    /* Fixed sidenav, full height */
+    .sidenav {
+        height: 100%;
+        width: 200px;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: red;
+        overflow-x: hidden;
+        padding-top: 20px;
+    }
+
+        /* Style the sidenav links and the dropdown button */
+        .sidenav a, .dropdown-btn {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 20px;
+            color: black;
+            display: block;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            outline: none;
+        }
+
+            /* On mouse-over */
+            .sidenav a:hover, .dropdown-btn:hover {
+                color: #f1f1f1;
+            }
+
+    /* Main content */
+    .main {
+        margin-left: 200px; /* Same as the width of the sidenav */
+        font-size: 20px; /* Increased text to enable scrolling */
+        padding: 0px 10px;
+    }
+
+    /* Add an active class to the active dropdown button */
+    .active {
+        background-color: green;
+        color: white;
+    }
+
+    /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+    .dropdown-container {
+        display: none;
+        background-color: white;
+        padding-left: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2
+    }
+    /* Optional: Style the caret down icon */
+    .fa-caret-down {
+        float: right;
+        padding-right: 8px;
+    }
+
+
+    .sidenav {
+        padding-top: 15px;
+    }
+
+        .sidenav a {
+            font-size: 18px;
+        }
+</style>
+
+<body>
+    <div class="sidenav">
+        <a asp-controller="Bookings" asp-action="Index">Booking</a>
+        <a asp-controller="Car" asp-action="Index">Car</a>
+        <a asp-controller="Category" asp-action="Index">Categories</a>
+        <a asp-controller="Branch" asp-action="Index">Branches</a>
+        <a asp-controller="Auth" asp-action="Index">Users</a>
+        <a asp-controller="Auth" asp-action="GetAllCustomers">Customers</a>
+        <a asp-controller="Auth" asp-action="GetAllAdmins">Admins</a>
+        <a asp-controller="Auth" asp-action="Logout">Logout</a>
     </div>
-</div>
-<div class="container">
-    <a asp-action="Index" class="btn btn-danger">Back To Index</a>
-</div>
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    <a asp-controller="Auth" asp-action="Logout">Logout</a>
+
+
+
+    <script>/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+        var dropdown = document.getElementsByClassName("dropdown-btn");
+        var i;
+
+        for (i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var dropdownContent = this.nextElementSibling;
+                if (dropdownContent.style.display === "block") {
+                    dropdownContent.style.display = "none";
+                } else {
+                    dropdownContent.style.display = "block";
+                }
+            });
+        }</script>
+
+</body>
+<div class="main">
+    <div class="card header"><h3>Add Branch</h3></div>
+    <div class="container">
+        <div class="container">
+            <form method="post" class="input-group">
+                @*   @if (ViewBag.Message = "Created Successfully")
+        {
+            <p style="color:dodgerblue;background-color:greenyellow"><h5>Created Successfully</h5></p>
+        }
+        else
+        {
+            <p style="color:white;background-color:red"><h5>Branch Not Created</h5></p>
+        }*@
+                <label>Name:</label>
+                <div>
+                    <input type="text" name="Name" placeholder=" Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>&nbsp;
+                </div>
+                <label>Address:</label>
+                <div>
+                    <input type="text" name="Address" placeholder=" Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                <div>
+                    <input type="submit" value="Create" class="btn btn-dark" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="container">
+        <a asp-action="Index" class="btn btn-danger">Back To Index</a>
+    </div>
+    </div>
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

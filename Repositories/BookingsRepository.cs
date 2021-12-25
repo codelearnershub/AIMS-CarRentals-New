@@ -30,7 +30,7 @@ namespace AimsCarRentals.Repositories
         }
         public Bookings Find(int id)
         {
-            return aimsDbContext.Bookings.Find(id);
+            return aimsDbContext.Bookings.Include(c => c.User).Include(c => c.Car).FirstOrDefault(c =>c.Id == id);
         }
         public Bookings Delete(int id)
         {

@@ -3,33 +3,145 @@
     int id = 1; }
 
 <style>
-    table {
-        border-collapse: collapse;
-        border-spacing: 0;
-        width: 100%;
-        border: 1px solid #ddd;
+    body {
+        font-family: "Lato", sans-serif;
     }
 
-    th, td {
-        text-align: left;
-        padding: 16px;
+    /* Fixed sidenav, full height */
+    .sidenav {
+        height: 100%;
+        width: 200px;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: red;
+        overflow-x: hidden;
+        padding-top: 20px;
+    }
+
+        /* Style the sidenav links and the dropdown button */
+        .sidenav a, .dropdown-btn {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 20px;
+            color: black;
+            display: block;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            outline: none;
+        }
+
+            /* On mouse-over */
+            .sidenav a:hover, .dropdown-btn:hover {
+                color: #f1f1f1;
+            }
+
+    /* Main content */
+    .main {
+        margin-left: 200px; /* Same as the width of the sidenav */
+        font-size: 20px; /* Increased text to enable scrolling */
+        padding: 0px 10px;
+    }
+
+    /* Add an active class to the active dropdown button */
+    .active {
+        background-color: green;
+        color: white;
+    }
+
+    /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+    .dropdown-container {
+        display: none;
+        background-color: white;
+        padding-left: 8px;
     }
 
     tr:nth-child(even) {
         background-color: #f2f2f2
     }
+    /* Optional: Style the caret down icon */
+    .fa-caret-down {
+        float: right;
+        padding-right: 8px;
+    }
+
+
+    .sidenav {
+        padding-top: 15px;
+    }
+
+        .sidenav a {
+            font-size: 18px;
+        }
 </style>
 
+<body>
+    <div class="sidenav">
+        <a asp-controller="Bookings" asp-action="Index">Booking</a>
+        <a asp-controller="Car" asp-action="Index">Car</a>
+        <a asp-controller="Category" asp-action="Index">Categories</a>
+        <a asp-controller="Branch" asp-action="Index">Branches</a>
+        <a asp-controller="Auth" asp-action="Index">Users</a>
+        <a asp-controller="Auth" asp-action="GetAllCustomers">Customers</a>
+        <a asp-controller="Auth" asp-action="GetAllAdmins">Admins</a>
+        <a asp-controller="Auth" asp-action="Logout">Logout</a>
+    </div>
+</body>
+    <script>/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+                var dropdown = document.getElementsByClassName("dropdown-btn");
+                var i;
 
-<h2>Customer</h2>
-<br />
-<a asp-action="RegisterCustomer" class="btn btn-secondary">Register Customer</a>
-<br />
-<br />
-<br />
-@if (Model.Count() > 0)
-{
+                for (i = 0; i < dropdown.length; i++) {
+                    dropdown[i].addEventListener("click", function () {
+                        this.classList.toggle("active");
+                        var dropdownContent = this.nextElementSibling;
+                        if (dropdownContent.style.display === "block") {
+                            dropdownContent.style.display = "none";
+                        } else {
+                            dropdownContent.style.display = "block";
+                        }
+                    });
+                }</script>
+
+<div class="main">
+    <style>
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 16px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
+    </style>
+    <div class="container">
+
+        <h2>Admins</h2>
+        <br />
+        <br />
+        <a asp-action="RegisterAdmin" class="btn btn-secondary">Register Customer</a>
+        <br />
+        <br />
+        <br />
+
+        @if (Model.Count() > 0)
+        {
 <table>
+
+
+
+
     <tr>
         <th>Id</th>
         <th>First Name</th>
@@ -52,8 +164,11 @@
         <a asp-action="Delete" class="btn btn-danger" asp-route-Id="@user.Id">Delete</a>
     </td>
 </tr>}
+
 </table> }
 
 else
 {
-<p style="float:inline-start"><h5><i>No Registered Customer Found</i></h5></p>}
+<p style="float:inline-start"><h5><i>No registered Customer found</i></h5></p>}
+    </div>
+</div>

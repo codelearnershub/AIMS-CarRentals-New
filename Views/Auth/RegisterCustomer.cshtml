@@ -58,7 +58,14 @@
                                     <span class="d-none d-lg-block">NijMar</span>
                                 </a>
                             </div><!-- End Logo -->
-
+                           @* @if (ViewBag.Message = "Update Successfull")
+                            {
+                                <p style="color:dodgerblue;background-color:greenyellow"><h5>Login Successful</h5></p>
+                            }
+                            else
+                            {
+                                <p style="color:white;background-color:red"><h5>Invalid Login</h5></p>
+                            }*@
                             <div class="card mb-3">
 
                                 <div class="card-body">
@@ -68,7 +75,7 @@
                                         <p class="text-center small">Enter your personal details to create account</p>
                                     </div>
 
-                                    <form class="row g-3 needs-validation" method="post"  action="RegisterCustomer">
+                                    <form class="row g-3 needs-validation" method="post" action="RegisterCustomer">
                                         <div class="col-12">
                                             <label for="yourName" class="form-label">First Name</label>
                                             <input type="text" asp-for="FirstName" name="FirstName" placeholder="First Name" class="form-control" /><br />
@@ -86,7 +93,7 @@
                                         </div>
                                         <div class="col-12">
                                             <label for="yourName" class="form-label">Gender</label>
-                                            <select asp-for="Gender" type="text" name="Gender" class="form-control"  required>
+                                            <select asp-for="Gender" type="text" name="Gender" class="form-control" required>
                                                 <option>Male</option>
                                                 <option>FeMale</option>
                                             </select>
@@ -95,7 +102,7 @@
                                         </div>
                                         <div class="col-12">
                                             <label for="yourEmail" class="form-label">Your Email</label>
-                                            <input asp-for="Email" type="email" name="email" class="form-control"  required>
+                                            <input asp-for="Email" type="email" name="email" class="form-control" required>
                                             <div class="invalid-feedback">Please enter a valid Email adddress!</div>
                                             <span asp-validation-for="Email"></span>
                                         </div>
@@ -104,27 +111,27 @@
                                             <label for="yourUsername" class="form-label">Phone No</label>
                                             <div class="input-group has-validation">
                                                 <span class="input-group-text" id="inputGroupPrepend"></span>
-                                                <input asp-for="PhoneNo" type="text" name="PhoneNo" class="form-control"  required>
+                                                <input asp-for="PhoneNo" type="text" name="PhoneNo" class="form-control" required>
                                                 <div class="invalid-feedback">Please enter your Phone No</div>
                                                 <span asp-validation-for="PhoneNo"></span>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <label for="yourName" class="form-label">Address</label>
-                                            <input asp-for="Address" type="text" name="Address" class="form-control"  required>
+                                            <input asp-for="Address" type="text" name="Address" class="form-control" required>
                                             <div class="invalid-feedback">Please, enter your name!</div>
                                             <span asp-validation-for="Address"></span>
                                         </div>
 
                                         <div class="col-12">
                                             <label for="yourPassword" class="form-label">Password</label>
-                                            <input asp-for="Password" type="password" name="password" class="form-control"  required>
+                                            <input asp-for="Password" type="password" name="password" class="form-control" required>
                                             <div class="invalid-feedback">Please enter your password!</div>
                                             <span asp-validation-for="Password"></span>
                                         </div>
                                         <div class="col-12">
                                             <label for="yourPassword" class="form-label">Confirm Password</label>
-                                            <input asp-for="ConfirmPassword" type="password" name="Confirmpassword" class="form-control"  required>
+                                            <input asp-for="ConfirmPassword" type="password" name="Confirmpassword" class="form-control" required>
                                             <div class="invalid-feedback">Please enter your password!</div>
                                             <span asp-validation-for="ConfirmPassword"></span>
                                         </div>

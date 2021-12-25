@@ -26,7 +26,7 @@ namespace AimsCarRentals.Models
         [Required]
         public double Price { get; set; }
         [Required]
-        public double Description { get; set; }
+        public string Description { get; set; }
         [DisplayName("Item Picture URL")]
         [StringLength(1024)]
         public string CarPictureUrl { get; set; }
