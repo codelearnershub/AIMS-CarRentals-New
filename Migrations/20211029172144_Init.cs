@@ -110,6 +110,60 @@ namespace AimsCarRentals.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Admins",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    CreatedAt = table.Column<DateTime>(nullable: false),
+                    FirstName = table.Column<string>(nullable: true),
+                    MiddleName = table.Column<string>(nullable: false),
+                    LastName = table.Column<string>(nullable: false),
+                    DateOfBirth = table.Column<DateTime>(nullable: false),
+                    PhoneNo = table.Column<string>(nullable: false),
+                    Address = table.Column<string>(nullable: false),
+                    Gender = table.Column<string>(nullable: false),
+                    UserId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Admins", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Admins_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Customers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    CreatedAt = table.Column<DateTime>(nullable: false),
+                    FirstName = table.Column<string>(nullable: false),
+                    MiddleName = table.Column<string>(nullable: false),
+                    LastName = table.Column<string>(nullable: false),
+                    DateOfBirth = table.Column<DateTime>(nullable: false),
+                    PhoneNo = table.Column<string>(nullable: false),
+                    Address = table.Column<string>(nullable: false),
+                    Gender = table.Column<string>(nullable: false),
+                    UserId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Customers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Customers_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserRoles",
                 columns: table => new
                 {
@@ -172,20 +226,25 @@ namespace AimsCarRentals.Migrations
                 columns: new[] { "Id", "CreatedAt", "Name" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2021, 10, 18, 5, 49, 19, 462, DateTimeKind.Local).AddTicks(5697), "SuperAdmin" },
-                    { 2, new DateTime(2021, 10, 18, 5, 49, 19, 462, DateTimeKind.Local).AddTicks(7942), "Admin" },
-                    { 3, new DateTime(2021, 10, 18, 5, 49, 19, 462, DateTimeKind.Local).AddTicks(7968), "Customer" }
+                    { 1, new DateTime(2021, 10, 29, 6, 21, 42, 838, DateTimeKind.Local).AddTicks(9037), "SuperAdmin" },
+                    { 2, new DateTime(2021, 10, 29, 6, 21, 42, 838, DateTimeKind.Local).AddTicks(9999), "Admin" },
+                    { 3, new DateTime(2021, 10, 29, 6, 21, 42, 839, DateTimeKind.Local).AddTicks(12), "Customer" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Address", "CreatedAt", "DateOfBirth", "Email", "FirstName", "Gender", "HashSalt", "LastName", "MiddleName", "PasswordHash", "PhoneNo" },
-                values: new object[] { 1, "Asero,Abk", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 10, 18, 5, 49, 19, 454, DateTimeKind.Local).AddTicks(8212), "okikiolalawal@gmail.com", "Jafar", "Male", "d+RzYMAQvvCJ+aNedX1uDg==", "Lawal", "Okikiola", "SehzKv9PAiawVd3TeV1QkkgBlCz67YoY7WMm4FB836c=", "09071681776" });
+                values: new object[] { 1, "asd", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 10, 29, 6, 21, 42, 834, DateTimeKind.Local).AddTicks(9346), "jafar@gmail.com", "Jafar", "Male", "ftuIrIDS+TJqDpa0wGVv1w==", "Lawal", "Okiki", "Pq0zPzvnkKkIoa5prU80VcV6+i9BF1RhDTnDyuF7FMs=", "09071681776" });
 
             migrationBuilder.InsertData(
                 table: "UserRoles",
                 columns: new[] { "Id", "CreatedAt", "RoleId", "UserId" },
-                values: new object[] { 1, new DateTime(2021, 10, 18, 5, 49, 19, 463, DateTimeKind.Local).AddTicks(5133), 1, 1 });
+                values: new object[] { 1, new DateTime(2021, 10, 29, 6, 21, 42, 839, DateTimeKind.Local).AddTicks(2877), 1, 1 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Admins_UserId",
+                table: "Admins",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Bookings_CarId",
@@ -206,6 +265,11 @@ namespace AimsCarRentals.Migrations
                 name: "IX_Cars_CategoryId",
                 table: "Cars",
                 column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Customers_UserId",
+                table: "Customers",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Roles_Id",
@@ -233,7 +297,13 @@ namespace AimsCarRentals.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Admins");
+
+            migrationBuilder.DropTable(
                 name: "Bookings");
+
+            migrationBuilder.DropTable(
+                name: "Customers");
 
             migrationBuilder.DropTable(
                 name: "UserRoles");

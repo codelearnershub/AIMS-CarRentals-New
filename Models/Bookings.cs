@@ -15,8 +15,8 @@ namespace AimsCarRentals.Models
         public Car Car { get; set; }
         public int CarId { get; set; }
         public DateTime PickUpDate { get; set; }
-        public DateTime ReturnDate { get; set; }
-       // public string Status { get; set; }
-       public bool ISPaid { get; set; }
+        public DateTime ReturnDate { get; set; }/*
+        public string Status { get; set; }*/
+        public bool IsVerified { get; set; }
     }
 }

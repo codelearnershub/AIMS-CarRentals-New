@@ -10,12 +10,14 @@ namespace AimsCarRentals.ServiceInterfaces
     public interface ICarService
     {
         public Car AddCar(CreateCarViewModel model,int branchId,int categoryId);
-        public Car UpdateCar(UpdateCarViewModel model,int branchId,int categoryId);
+        public Car UpdateCar(UpdateCarViewModel model,int branchId,int categoryId,int id);
         public Car Find(int id);
         public Car Delete(int id);
         public List<CarViewModel> GetAll();
         public List<Car> GetCarsPerEachCategory(int categoryId);
         public List<Car> GetAllCarsPerEachBranch(int branchId);
         public Car UpdateIsAvailable(Car car);
+        public List<CarViewModel> GetAllUnBookedCars();
+        public List<CarViewModel> GetAllBookedCars();
     }
 }

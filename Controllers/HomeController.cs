@@ -23,7 +23,6 @@ namespace AimsCarRentals.Controllers
 
         public IActionResult Index()
         {
-
             var car = carService.GetAll();
             return View(car);
         }

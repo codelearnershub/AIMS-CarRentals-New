@@ -1,6 +1,7 @@
 ﻿using AimsCarRentals.Context;
 using AimsCarRentals.Interfaces;
 using AimsCarRentals.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,13 @@ namespace AimsCarRentals.Repositories
     public class UserRepository : IUserRepository
     {
         public readonly AimsDbContext _dbContext;
-        public UserRepository(AimsDbContext dbContext)
+        public readonly IRoleRepository roleRepository;
+        public readonly IUserRoleRepository userRoleRepository;
+        public UserRepository(AimsDbContext dbContext, IRoleRepository roleRepository, IUserRoleRepository userRoleRepository)
         {
             _dbContext = dbContext;
+            this.roleRepository = roleRepository;
+            this.userRoleRepository = userRoleRepository;
         }
         public User AddUser(User user)
         {
@@ -58,7 +63,17 @@ namespace AimsCarRentals.Repositories
             return _dbContext.Users.ToList();
         }
 
-
-
+       public List<User> GetAllCustomers()
+        {
+            var role = _dbContext.Roles.Where(r => r.Name == "Customer");
+            return _dbContext.Users
+                .Where(p => p.UserType == "Customer").ToList();      
+        }
+        public List<User> GetAllAdmins()
+        {
+            var role = _dbContext.Roles.Where(r => r.Name == "Customer");
+            return _dbContext.Users
+                .Where(p => p.UserType == "Staff").ToList();
+        }
     }
 }

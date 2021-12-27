@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AimsCarRentals.Migrations
 {
     [DbContext(typeof(AimsDbContext))]
-    [Migration("20211018164921_Init")]
+    [Migration("20211029172144_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -18,6 +18,51 @@ namespace AimsCarRentals.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.12")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
+
+            modelBuilder.Entity("AimsCarRentals.Models.Admin", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("MiddleName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("PhoneNo")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Admins");
+                });
 
             modelBuilder.Entity("AimsCarRentals.Models.Bookings", b =>
                 {
@@ -148,6 +193,52 @@ namespace AimsCarRentals.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("AimsCarRentals.Models.Customer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("MiddleName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("PhoneNo")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Customers");
+                });
+
             modelBuilder.Entity("AimsCarRentals.Models.Role", b =>
                 {
                     b.Property<int>("Id")
@@ -171,19 +262,19 @@ namespace AimsCarRentals.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2021, 10, 18, 5, 49, 19, 462, DateTimeKind.Local).AddTicks(5697),
+                            CreatedAt = new DateTime(2021, 10, 29, 6, 21, 42, 838, DateTimeKind.Local).AddTicks(9037),
                             Name = "SuperAdmin"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2021, 10, 18, 5, 49, 19, 462, DateTimeKind.Local).AddTicks(7942),
+                            CreatedAt = new DateTime(2021, 10, 29, 6, 21, 42, 838, DateTimeKind.Local).AddTicks(9999),
                             Name = "Admin"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2021, 10, 18, 5, 49, 19, 462, DateTimeKind.Local).AddTicks(7968),
+                            CreatedAt = new DateTime(2021, 10, 29, 6, 21, 42, 839, DateTimeKind.Local).AddTicks(12),
                             Name = "Customer"
                         });
                 });
@@ -246,16 +337,16 @@ namespace AimsCarRentals.Migrations
                         new
                         {
                             Id = 1,
-                            Address = "Asero,Abk",
+                            Address = "asd",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(2021, 10, 18, 5, 49, 19, 454, DateTimeKind.Local).AddTicks(8212),
-                            Email = "okikiolalawal@gmail.com",
+                            DateOfBirth = new DateTime(2021, 10, 29, 6, 21, 42, 834, DateTimeKind.Local).AddTicks(9346),
+                            Email = "jafar@gmail.com",
                             FirstName = "Jafar",
                             Gender = "Male",
-                            HashSalt = "d+RzYMAQvvCJ+aNedX1uDg==",
+                            HashSalt = "ftuIrIDS+TJqDpa0wGVv1w==",
                             LastName = "Lawal",
-                            MiddleName = "Okikiola",
-                            PasswordHash = "SehzKv9PAiawVd3TeV1QkkgBlCz67YoY7WMm4FB836c=",
+                            MiddleName = "Okiki",
+                            PasswordHash = "Pq0zPzvnkKkIoa5prU80VcV6+i9BF1RhDTnDyuF7FMs=",
                             PhoneNo = "09071681776"
                         });
                 });
@@ -287,10 +378,19 @@ namespace AimsCarRentals.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2021, 10, 18, 5, 49, 19, 463, DateTimeKind.Local).AddTicks(5133),
+                            CreatedAt = new DateTime(2021, 10, 29, 6, 21, 42, 839, DateTimeKind.Local).AddTicks(2877),
                             RoleId = 1,
                             UserId = 1
                         });
+                });
+
+            modelBuilder.Entity("AimsCarRentals.Models.Admin", b =>
+                {
+                    b.HasOne("AimsCarRentals.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("AimsCarRentals.Models.Bookings", b =>
@@ -319,6 +419,15 @@ namespace AimsCarRentals.Migrations
                     b.HasOne("AimsCarRentals.Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AimsCarRentals.Models.Customer", b =>
+                {
+                    b.HasOne("AimsCarRentals.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

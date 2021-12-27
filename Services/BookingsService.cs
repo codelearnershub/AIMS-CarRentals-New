@@ -35,15 +35,22 @@ namespace AimsCarRentals.Services
                 PickUpDate = model.PickUpDate,
                 ReturnDate = model.ReturnDate,
                 CreatedAt = DateTime.Now,
+                IsVerified = false,
             };
             var carAvailable = _carService.Find(car.Id);
             carAvailable.IsAvailable = false;
-
             _carRepository.UpdateCar(carAvailable);
 
             return _bookingsRepository.AddBookings(bookings);
         }
-        
+        public Bookings UpdateIsVerified(Bookings bookings)
+        {
+            Bookings newbookings = new Bookings
+            {
+                IsVerified = bookings.IsVerified,
+            };
+            return _bookingsRepository.UpdateBookings(newbookings);
+        }
         public Bookings Find(int id)
         {
             return _bookingsRepository.Find(id);
@@ -61,7 +68,8 @@ namespace AimsCarRentals.Services
         {
             var bookings = _bookingsRepository.GetAll().Select(c => new BookingsViewModel
             {
-                Booking_ref = Guid.NewGuid().ToString().Substring(0, 7),
+                Id = c.Id,
+                Booking_ref = Guid.NewGuid().ToString().Substring(0, 7).ToUpper(),
                 UserId = c.UserId,
                 CarId = c.CarId,
                 PickUpDate = c.PickUpDate,
@@ -69,6 +77,18 @@ namespace AimsCarRentals.Services
                 CreatedAt = c.CreatedAt,
             }).ToList();
             return bookings;
+        }
+        public Bookings VerifyCar(string booking_Ref, Bookings bookings)
+        {
+            var verified = _bookingsRepository.FindByBookingRef(booking_Ref);
+            verified.IsVerified = true;
+            _bookingsRepository.UpdateBookings(verified);
+            return _bookingsRepository.AddBookings(bookings);
+
+        }
+        public Bookings FindByBookingRef(string booking_Ref)
+        {
+          return  _bookingsRepository.FindByBookingRef(booking_Ref);
         }
     }
 }

@@ -54,8 +54,8 @@ namespace AimsCarRentals.Services
                 User user = new User
                 {
                     FirstName = model.FirstName,
-                    LastName = model.LastName,
                     MiddleName = model.MiddleName,
+                    LastName = model.LastName,
                     Email = model.Email,
                     Gender = model.Gender,
                     PasswordHash = hashedPassword,
@@ -63,7 +63,7 @@ namespace AimsCarRentals.Services
                     PhoneNo = model.PhoneNo,
                     DateOfBirth = model.DateOfBirth,
                     Address = model.Address,
-
+                    UserType = "Customer"
                 };
                 var userRole = new UserRole
                 {
@@ -106,6 +106,7 @@ namespace AimsCarRentals.Services
                     PhoneNo = model.PhoneNo,
                     DateOfBirth = model.DateOfBirth,
                     Address = model.Address,
+                    UserType = "Staff"
 
                 };
                 var userRole = new UserRole
@@ -147,110 +148,112 @@ namespace AimsCarRentals.Services
             return null;
 
         }
-        public List<UserViewModel> GetAllUser()
-        {
-            var user = _userRepository.GetAllUsers().Select(c => new UserViewModel
-            {
-
-                Email = c.Email,
-                PasswordHash = c.PasswordHash,
-                HashSalt = c.HashSalt
-            }).ToList();
-            return user;
-        }
         public void Delete(int id)
         {
             _userRepository.DeleteUser(id);
         }
-        public void UpdateAdmin(UpdateAdminViewModel model)
+        public User UpdateAdmin(int id,UpdateAdminViewModel model)
         {
-            byte[] salt = new byte[128 / 8];
-
-            using (var rng = RandomNumberGenerator.Create())
+            var admin = _userRepository.FindUserById(id);
+            if (admin != null)
             {
-                rng.GetBytes(salt);
+                admin.FirstName = model.FirstName;
+                admin.MiddleName = model.MiddleName;
+                admin.LastName = model.LastName;
+                admin.Gender = model.Gender;
+                admin.Email = model.Email;
+                admin.DateOfBirth = model.DateOfBirth;
+                admin.PhoneNo = model.PhoneNo;
+                admin.PasswordHash = model.PasswordHash;
+                admin.HashSalt = model.HashSalt;
+                admin.CreatedAt = model.CreatedAt;
+                
+               return _userRepository.UpdateUser(admin);
             }
-
-            string saltString = Convert.ToBase64String(salt);
-
-            string hashedPassword = HashPassword(model.Password, saltString);
-
-            var role = _roleRepository.FindRoleByName("Admin");
-            if (role != null)
-            {
-                User user = new User
-                {
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    MiddleName = model.MiddleName,
-                    Email = model.Email,
-                    Gender = model.Gender,
-                    PasswordHash = hashedPassword,
-                    HashSalt = saltString,
-                    PhoneNo = model.PhoneNo,
-                    DateOfBirth = model.DateOfBirth,
-                    Address = model.Address,
-
-                };
-                var userRole = new UserRole
-                {
-                    UserId = user.Id,
-                    RoleId = role.Id,
-                };
-                user.UserRoles.Add(userRole);
-                _userRepository.UpdateUser(user);
-            }
-            else
-            {
-                throw new Exception("No Role found");
-            }
-
-
+            return null;
         }
-        public void UpdateCustomer(UpdateCustomerViewModel model)
+        public User UpdateCustomer(UpdateCustomerViewModel model, int id)
         {
-            byte[] salt = new byte[128 / 8];
 
-            using (var rng = RandomNumberGenerator.Create())
+            var customer = _userRepository.FindUserById(id);
+            if (customer != null)
             {
-                rng.GetBytes(salt);
+                customer.FirstName = model.FirstName;
+                customer.MiddleName = model.MiddleName;
+                customer.LastName = model.LastName;
+                customer.Gender = model.Gender;
+                customer.PhoneNo = model.PhoneNo;
+                customer.Email = model.Email;
+                customer.Address = model.Address;
+                customer.PasswordHash = model.PasswordHash;
+                customer.HashSalt = model.HashSalt;
+                customer.DateOfBirth = model.DateOfBirth;
+                customer.CreatedAt = model.CreatedAt;
+
+                return _userRepository.UpdateUser(customer);
             }
-
-            string saltString = Convert.ToBase64String(salt);
-
-            string hashedPassword = HashPassword(model.Password, saltString);
-
-            var role = _roleRepository.FindRoleByName("Admin");
-            if (role != null)
+            return null;
+        }
+        public List<CustomerViewModel> GetAllCustomers()
+        {
+            var customer= _userRepository.GetAllCustomers().Select(c => new CustomerViewModel
             {
-                User user = new User
-                {
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    MiddleName = model.MiddleName,
-                    Email = model.Email,
-                    Gender = model.Gender,
-                    PasswordHash = hashedPassword,
-                    HashSalt = saltString,
-                    PhoneNo = model.PhoneNo,
-                    DateOfBirth = model.DateOfBirth,
-                    Address = model.Address,
 
-                };
-                var userRole = new UserRole
-                {
-                    UserId = user.Id,
-                    RoleId = role.Id,
-                };
-                user.UserRoles.Add(userRole);
-                _userRepository.UpdateUser(user);
-            }
-            else
-            {
-                throw new Exception("No Role found");
-            }
-
+                Id = c.Id,
+                FirstName = c.FirstName,
+                MiddleName = c.MiddleName,
+                LastName = c.LastName,
+                Gender = c.Gender,
+                DateOfBirth = c.DateOfBirth,
+                PhoneNo = c.PhoneNo,
+                Email = c.Email,
+                Address = c.Address,
+                PasswordHash = c.PasswordHash,
+                HashSalt = c.HashSalt,
+                CreatedAt = c.CreatedAt
+            }).ToList();
+            return customer;
         }
 
+        public List<AdminViewModel> GetAllAdmins()
+        {
+            var admin = _userRepository.GetAllAdmins().Select(c => new AdminViewModel
+            {
+
+                Id = c.Id,
+                FirstName = c.FirstName,
+                MiddleName = c.MiddleName,
+                LastName = c.LastName,
+                Gender = c.Gender,
+                DateOfBirth = c.DateOfBirth,
+                PhoneNo = c.PhoneNo,
+                Email = c.Email,
+                Address = c.Address,
+                PasswordHash = c.PasswordHash,
+                HashSalt = c.HashSalt,
+                CreatedAt = c.CreatedAt
+            }).ToList();
+            return admin;
+        }
+
+        public List<UserViewModel> GetAllUser()
+        {
+            var user = _userRepository.GetAllUsers().Select(c => new UserViewModel
+            {
+                Id = c.Id,
+                FirstName = c.FirstName,
+                MiddleName = c.MiddleName,
+                LastName = c.LastName,
+                Gender = c.Gender,
+                DateOfBirth = c.DateOfBirth,
+                PhoneNo = c.PhoneNo,
+                Email = c.Email,
+                Address = c.Address,
+                PasswordHash = c.PasswordHash,
+                HashSalt = c.HashSalt,
+                CreatedAt = c.CreatedAt
+            }).ToList();
+            return user;
+        }
     }
 }

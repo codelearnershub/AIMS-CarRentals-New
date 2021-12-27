@@ -29,5 +29,6 @@ namespace AimsCarRentals.Models
         public string Address { get; set; }
         [Required]
         public string Gender { get; set; }
+        public string UserType { get; set; }
     }
 }

@@ -77,7 +77,7 @@ namespace AimsCarRentals.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime");
 
-                    b.Property<bool>("ISPaid")
+                    b.Property<bool>("IsVerified")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<DateTime>("PickUpDate")
@@ -139,8 +139,9 @@ namespace AimsCarRentals.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime");
 
-                    b.Property<double>("Description")
-                        .HasColumnType("double");
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("tinyint(1)");
@@ -260,19 +261,19 @@ namespace AimsCarRentals.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2021, 10, 20, 5, 53, 29, 340, DateTimeKind.Local).AddTicks(426),
+                            CreatedAt = new DateTime(2021, 11, 3, 1, 28, 37, 127, DateTimeKind.Local).AddTicks(8313),
                             Name = "SuperAdmin"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2021, 10, 20, 5, 53, 29, 340, DateTimeKind.Local).AddTicks(1859),
+                            CreatedAt = new DateTime(2021, 11, 3, 1, 28, 37, 127, DateTimeKind.Local).AddTicks(9481),
                             Name = "Admin"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2021, 10, 20, 5, 53, 29, 340, DateTimeKind.Local).AddTicks(1874),
+                            CreatedAt = new DateTime(2021, 11, 3, 1, 28, 37, 127, DateTimeKind.Local).AddTicks(9494),
                             Name = "Customer"
                         });
                 });
@@ -324,6 +325,9 @@ namespace AimsCarRentals.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("UserType")
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
 
                     b.HasIndex("Email")
@@ -335,16 +339,16 @@ namespace AimsCarRentals.Migrations
                         new
                         {
                             Id = 1,
-                            Address = "Asero,Abk",
+                            Address = "asd",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(2021, 10, 20, 5, 53, 29, 334, DateTimeKind.Local).AddTicks(7824),
-                            Email = "okikiolalawal@gmail.com",
+                            DateOfBirth = new DateTime(2021, 11, 3, 1, 28, 37, 122, DateTimeKind.Local).AddTicks(7513),
+                            Email = "jafar@gmail.com",
                             FirstName = "Jafar",
                             Gender = "Male",
-                            HashSalt = "d+RzYMAQvvCJ+aNedX1uDg==",
+                            HashSalt = "ftuIrIDS+TJqDpa0wGVv1w==",
                             LastName = "Lawal",
-                            MiddleName = "Okikiola",
-                            PasswordHash = "SehzKv9PAiawVd3TeV1QkkgBlCz67YoY7WMm4FB836c=",
+                            MiddleName = "Okiki",
+                            PasswordHash = "Pq0zPzvnkKkIoa5prU80VcV6+i9BF1RhDTnDyuF7FMs=",
                             PhoneNo = "09071681776"
                         });
                 });
@@ -376,7 +380,7 @@ namespace AimsCarRentals.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2021, 10, 20, 5, 53, 29, 340, DateTimeKind.Local).AddTicks(4968),
+                            CreatedAt = new DateTime(2021, 11, 3, 1, 28, 37, 128, DateTimeKind.Local).AddTicks(2588),
                             RoleId = 1,
                             UserId = 1
                         });

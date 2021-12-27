@@ -15,7 +15,9 @@ namespace AimsCarRentals.Interfaces
         public User Login(string email, string password);
         public List<UserViewModel> GetAllUser();
         public void Delete(int id);
-        public void UpdateAdmin(UpdateAdminViewModel model);
-        public void UpdateCustomer(UpdateCustomerViewModel model);
+        public User UpdateAdmin(int id, UpdateAdminViewModel model);
+        public User UpdateCustomer(UpdateCustomerViewModel model,int id);
+        public List<CustomerViewModel> GetAllCustomers();
+        public List<AdminViewModel> GetAllAdmins();
     }
 }

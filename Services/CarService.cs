@@ -36,26 +36,30 @@ namespace AimsCarRentals.Services
                 Branch = _branchService.Find(branchId),
                 Category = _categoryService.FindCategory(categoryId),
                 IsAvailable = true,
+                Description = model.Description
             };
             return carRepository.AddCar(car);
         }
-        public Car UpdateCar(UpdateCarViewModel model, int branchId,int categoryId)
+        public Car UpdateCar(UpdateCarViewModel model, int branchId,int categoryId,int id)
         {
-            var car = new Car
-            {
-                Name = model.Name,
-                Make = model.Make,
-                PlateNo = model.PlateNo,
-                BranchId = model.BranchId,
-                CategoryId = model.CategoryId,
-                SerialNo = Guid.NewGuid().ToString().Substring(1, 3).ToUpper(),
-                Price = model.Price,
-                CarPictureUrl = model.CarPictureUrl,
-                Branch = _branchService.Find(branchId),
-                Category = _categoryService.FindCategory(categoryId),
-            };
-           
-            return carRepository.UpdateCar(car);
+             var car = carRepository.Find(id);
+             if (car != null)
+             {
+                car.Name = model.Name;
+                car.Make = model.Make;
+                car.PlateNo = model.PlateNo;
+                car.BranchId = model.BranchId;
+                car.CategoryId = model.CategoryId;
+                car.SerialNo = Guid.NewGuid().ToString().Substring(1, 3).ToUpper();
+                car.Price = model.Price;
+                car.CarPictureUrl = model.CarPictureUrl;
+                car.Branch = _branchService.Find(branchId);
+                car.Category = _categoryService.FindCategory(categoryId);
+                car.IsAvailable = model.IsAvailable;
+                car.Description = model.Description;
+                return carRepository.UpdateCar(car);
+            }
+            return null;
         }
       
             public Car UpdateIsAvailable(Car car)
@@ -81,6 +85,7 @@ namespace AimsCarRentals.Services
         {
             var car = carRepository.GetAll().Select(c => new CarViewModel
             { 
+                Id = c.Id,
                 Name = c.Name,
                 Make = c.Make,
                 PlateNo = c.PlateNo,
@@ -88,6 +93,7 @@ namespace AimsCarRentals.Services
                 CategoryId = c.CategoryId,
                 SerialNo = c.SerialNo,
                 Price = c.Price,
+                IsAvailable = c.IsAvailable,
                 CarPictureUrl = c.CarPictureUrl,
                 Branch = _branchService.Find(c.BranchId),
                 Category = _categoryService.FindCategory(c.CategoryId),
@@ -98,10 +104,45 @@ namespace AimsCarRentals.Services
         {
             return carRepository.GetCarsPerEachCategory(categoryId);
         }
-
         public List<Car> GetAllCarsPerEachBranch(int branchId)
         {
             return carRepository.GetAllCarsPerEachBranch(branchId);
+        }
+        public List<CarViewModel> GetAllBookedCars()
+        {
+            return carRepository.GetAllBookedCars().Select(c => new CarViewModel
+            {
+                Id = c.Id,
+                Name = c.Name,
+                Make = c.Make,
+                PlateNo = c.PlateNo,
+                BranchId = c.BranchId,
+                CategoryId = c.CategoryId,
+                SerialNo = c.SerialNo,
+                Price = c.Price,
+                IsAvailable = c.IsAvailable,
+                CarPictureUrl = c.CarPictureUrl,
+                Branch = _branchService.Find(c.BranchId),
+                Category = _categoryService.FindCategory(c.CategoryId),
+            }).ToList(); ;
+        }
+        public List<CarViewModel> GetAllUnBookedCars()
+        {
+            return carRepository.GetAllUnBookedCars().Select(c => new CarViewModel
+            {
+                Id = c.Id,
+                Name = c.Name,
+                Make = c.Make,
+                PlateNo = c.PlateNo,
+                BranchId = c.BranchId,
+                CategoryId = c.CategoryId,
+                SerialNo = c.SerialNo,
+                Price = c.Price,
+                IsAvailable = c.IsAvailable,
+                CarPictureUrl = c.CarPictureUrl,
+                Branch = _branchService.Find(c.BranchId),
+                Category = _categoryService.FindCategory(c.CategoryId),
+            }).ToList(); ;
         }
     }
 }

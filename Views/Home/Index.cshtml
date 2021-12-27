@@ -43,15 +43,14 @@
     <header id="header" class="fixed-top header-inner-pages">
         <div class="container d-flex align-items-center justify-content-between">
 
-            <h1 class="logo"><a href="index.html">NijMar</a></h1>
+            <h1 class="logo"><a href="index.html" style="background-color:blue">NijMar</a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
                     <li><a class="nav-link scrollto" asp-controller="Branch" asp-action="SelectBranch">Branch</a></li>
                     <li><a class="nav-link scrollto" asp-controller="Car" asp-action="SelectCar">Cars</a></li>
-                    <li><a class="nav-link  scrollto" href="#portfolio">Portfolio</a></li>
-                    <li><a class="nav-link scrollto" href="#team">Team</a></li>
+                   
                     <li class="dropdown">
                         <a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
@@ -75,7 +74,7 @@
             <div class="carousel-inner" role="listbox">
 
                 <!-- Slide 1 -->
-                <div class="carousel-item active" style="background-image: url(/images/imgbin-car-rental-renting-bus-fleet-vehicle-car-pwgXSbFHQF4PGweZgYufu20H4.jpg)">
+                <div class="carousel-item active" style="background-image: url(assets/images/imgbin-car-rental-renting-bus-fleet-vehicle-car-pwgXSbFHQF4PGweZgYufu20H4.jpg)">
                     <div class="carousel-container">
                         <div class="container">
                             <h2 class="animated fadeInDown">Welcome to <span>NijMar</span></h2>
@@ -85,7 +84,7 @@
                 </div>
 
                 <!-- Slide 2 -->
-                <div class="carousel-item" style="background-image: url(assets/img/slide/slide-2.jpg)">
+                <div class="carousel-item" style="background-image: url(assets/images/image_5.jpg)">
                     <div class="carousel-container">
                         <div class="container">
                             <h2 class="animated fadeInDown">We Make Our Customers Comfortable</h2>
@@ -94,7 +93,7 @@
                 </div>
 
                 <!-- Slide 3 -->
-                <div class="carousel-item" style="background-image: url(/images/image_6.jpg)">
+                <div class="carousel-item" style="background-image: url(assets/images/image_6.jpg)">
                     <div class="carousel-container">
                         <div class="container">
                             <h2 class="animated fadeInDown">Feel At Home</h2>
@@ -114,356 +113,19 @@
 
         </div>
     </section><!-- End Hero -->
+    <br />
+    <br />
+    <br />
 
-    <section class="ftco-section ftco-no-pt bg-light">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-12 heading-section text-center ftco-animate mb-5">
-                    <span class="subheading">What we offer</span>
-                    <h2 class="mb-2">Featured Vehicles</h2>
-                </div>
-            </div>
-            @foreach (var car in Model)
-            {
-                <div class="column">
-                    <div class="row">
-                        <div class="card">
-                            <div class="card-header">
-                                <img src="@WC.ImagePath@car.CarPictureUrl" style="width:300px" />
-                            </div>
-                            <div style="padding:10px;background-color:rosybrown" class="text">
+    
 
-                                <h4>@car.Name&nbsp;@car.Make</h4>
+    
+    
 
-                                <div class="d-flex mb-3">
-                                    <label>Rice:</label>
-                                    <span class="cat">@car.Price</span>
-                                </div>
-                            </div>
-                            <div class="card-header">
-                                <p class="d-flex mb-1 d-block">
-                                    <a asp-controller="Car" asp-action="BookCar" asp-route-Id="@car.Id" class="btn btn-danger">Book</a> &nbsp;
-                                    <a asp-controller="Car" asp-action="Details" asp-route-Id="@car.Id" class="btn btn-dark">Details</a>
-                                </p>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                }
-            </div>
-    </section>
-
-    <section class="ftco-section ftco-about">
-        <div class="container">
-            <div class="row no-gutters">
-                <div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/about.jpg);">
-                </div>
-                <div class="col-md-6 wrap-about ftco-animate">
-                    <div class="heading-section heading-section-white pl-md-5">
-                        <span class="subheading">About us</span>
-                        <h2 class="mb-4">Welcome to NijMar</h2>
-
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                        <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                        <p><a href="#" class="btn btn-primary py-3 px-4">Search Vehicle</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <main id="main">
-        <!-- ======= Testimonials Section ======= -->
-        <section id="testimonials" class="testimonials section-bg">
-            <div class="container-fluid">
-
-                <div class="section-title">
-                    <h2>Testimonials</h2>
-                    <h3>What They <span>Are Saying</span> About Us</h3>
-                    <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
-                </div>
-
-                <div class="row justify-content-center">
-                    <div class="col-xl-10">
-
-                        <div class="row">
-
-                            <div class="col-lg-6">
-                                <div class="testimonial-item">
-                                    <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                                    <h3>Saul Goodman</h3>
-                                    <h4>Ceo &amp; Founder</h4>
-                                    <p>
-                                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                        Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
-                                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                                    </p>
-                                </div>
-                            </div><!-- End testimonial-item -->
-
-                            <div class="col-lg-6">
-                                <div class="testimonial-item mt-4 mt-lg-0">
-                                    <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-                                    <h3>Sara Wilsson</h3>
-                                    <h4>Designer</h4>
-                                    <p>
-                                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                        Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
-                                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                                    </p>
-                                </div>
-                            </div><!-- End testimonial-item -->
-
-                            <div class="col-lg-6">
-                                <div class="testimonial-item mt-4">
-                                    <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-                                    <h3>Jena Karlis</h3>
-                                    <h4>Store Owner</h4>
-                                    <p>
-                                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                        Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
-                                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                                    </p>
-                                </div>
-                            </div><!-- End testimonial-item -->
-
-                            <div class="col-lg-6">
-                                <div class="testimonial-item mt-4">
-                                    <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-                                    <h3>Matt Brandon</h3>
-                                    <h4>Freelancer</h4>
-                                    <p>
-                                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                        Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
-                                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                                    </p>
-                                </div>
-                            </div><!-- End testimonial-item -->
-
-                            <div class="col-lg-6">
-                                <div class="testimonial-item mt-4">
-                                    <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-                                    <h3>John Larson</h3>
-                                    <h4>Entrepreneur</h4>
-                                    <p>
-                                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                        Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
-                                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                                    </p>
-                                </div>
-                            </div><!-- End testimonial-item -->
-
-                            <div class="col-lg-6">
-                                <div class="testimonial-item mt-4">
-                                    <img src="assets/img/testimonials/testimonials-6.jpg" class="testimonial-img" alt="">
-                                    <h3>Emily Harison</h3>
-                                    <h4>Store Owner</h4>
-                                    <p>
-                                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                        Eius ipsam praesentium dolor quaerat inventore rerum odio. Quos laudantium adipisci eius. Accusamus qui iste cupiditate sed temporibus est aspernatur. Sequi officiis ea et quia quidem.
-                                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                                    </p>
-                                </div>
-                            </div><!-- End testimonial-item -->
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section><!-- End Testimonials Section -->
-        <!-- ======= Team Section ======= -->
-        <section id="team" class="team">
-            <div class="container-fluid">
-
-                <div class="section-title">
-                    <h2>Team</h2>
-                    <h3>Our Hard Working <span>Team</span></h3>
-                    <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
-                </div>
-
-                <div class="row justify-content-center">
-                    <div class="col-xl-10">
-                        <div class="row">
-
-                            <div class="col-xl-3 col-lg-4 col-md-6">
-                                <div class="member">
-                                    <img src="assets/img/team/team-1.jpg" class="img-fluid" alt="">
-                                    <div class="member-info">
-                                        <div class="member-info-content">
-                                            <h4>Walter White</h4>
-                                            <span>Chief Executive Officer</span>
-                                        </div>
-                                        <div class="social">
-                                            <a href=""><i class="bi bi-twitter"></i></a>
-                                            <a href=""><i class="bi bi-facebook"></i></a>
-                                            <a href=""><i class="bi bi-instagram"></i></a>
-                                            <a href=""><i class="bi bi-linkedin"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> <!-- End Member Item -->
-
-                            <div class="col-xl-3 col-lg-4 col-md-6" data-wow-delay="0.1s">
-                                <div class="member">
-                                    <img src="assets/img/team/team-2.jpg" class="img-fluid" alt="">
-                                    <div class="member-info">
-                                        <div class="member-info-content">
-                                            <h4>Sarah Jhonson</h4>
-                                            <span>Product Manager</span>
-                                        </div>
-                                        <div class="social">
-                                            <a href=""><i class="bi bi-twitter"></i></a>
-                                            <a href=""><i class="bi bi-facebook"></i></a>
-                                            <a href=""><i class="bi bi-instagram"></i></a>
-                                            <a href=""><i class="bi bi-linkedin"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> <!-- End Member Item -->
-
-                            <div class="col-xl-3 col-lg-4 col-md-6" data-wow-delay="0.2s">
-                                <div class="member">
-                                    <img src="assets/img/team/team-3.jpg" class="img-fluid" alt="">
-                                    <div class="member-info">
-                                        <div class="member-info-content">
-                                            <h4>William Anderson</h4>
-                                            <span>CTO</span>
-                                        </div>
-                                        <div class="social">
-                                            <a href=""><i class="bi bi-twitter"></i></a>
-                                            <a href=""><i class="bi bi-facebook"></i></a>
-                                            <a href=""><i class="bi bi-instagram"></i></a>
-                                            <a href=""><i class="bi bi-linkedin"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> <!-- End Member Item -->
-
-                            <div class="col-xl-3 col-lg-4 col-md-6" data-wow-delay="0.3s">
-                                <div class="member">
-                                    <img src="assets/img/team/team-4.jpg" class="img-fluid" alt="">
-                                    <div class="member-info">
-                                        <div class="member-info-content">
-                                            <h4>Amanda Jepson</h4>
-                                            <span>Accountant</span>
-                                        </div>
-                                        <div class="social">
-                                            <a href=""><i class="bi bi-twitter"></i></a>
-                                            <a href=""><i class="bi bi-facebook"></i></a>
-                                            <a href=""><i class="bi bi-instagram"></i></a>
-                                            <a href=""><i class="bi bi-linkedin"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> <!-- End Member Item -->
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section><!-- End Team Section -->
-        <!-- ======= Contact Section ======= -->
-        <section id="contact" class="contact section-bg">
-            <div class="container-fluid">
-
-                <div class="section-title">
-                    <h2>Contact</h2>
-                    <h3>Get In Touch With <span>Us</span></h3>
-                    <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
-                </div>
-
-                <div class="row justify-content-center">
-                    <div class="col-xl-10">
-                        <div class="row">
-
-                            <div class="col-lg-6">
-
-                                <div class="row justify-content-center">
-
-                                    <div class="col-md-6 info d-flex flex-column align-items-stretch">
-                                        <i class="bx bx-map"></i>
-                                        <h4>Address</h4>
-                                        <p>A108 Adam Street,<br>New York, NY 535022</p>
-                                    </div>
-                                    <div class="col-md-6 info d-flex flex-column align-items-stretch">
-                                        <i class="bx bx-phone"></i>
-                                        <h4>Call Us</h4>
-                                        <p>+1 5589 55488 55<br>+1 5589 22548 64</p>
-                                    </div>
-                                    <div class="col-md-6 info d-flex flex-column align-items-stretch">
-                                        <i class="bx bx-envelope"></i>
-                                        <h4>Email Us</h4>
-                                        <p>contact@example.com<br>info@example.com</p>
-                                    </div>
-                                    <div class="col-md-6 info d-flex flex-column align-items-stretch">
-                                        <i class="bx bx-time-five"></i>
-                                        <h4>Working Hours</h4>
-                                        <p>Mon - Fri: 9AM to 5PM<br>Sunday: 9AM to 1PM</p>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="col-lg-6">
-                                <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-                                    <div class="row">
-                                        <div class="col-md-6 form-group">
-                                            <label for="name">Your Name</label>
-                                            <input type="text" name="name" class="form-control" id="name" required>
-                                        </div>
-                                        <div class="col-md-6 form-group mt-3 mt-md-0">
-                                            <label for="email">Your Email</label>
-                                            <input type="email" class="form-control" name="email" id="email" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group mt-3">
-                                        <label for="subject">Subject</label>
-                                        <input type="text" class="form-control" name="subject" id="subject" required>
-                                    </div>
-                                    <div class="form-group mt-3">
-                                        <label for="message">Message</label>
-                                        <textarea class="form-control" name="message" rows="8" required></textarea>
-                                    </div>
-                                    <div class="my-3">
-                                        <div class="loading">Loading</div>
-                                        <div class="error-message"></div>
-                                        <div class="sent-message">Your message has been sent. Thank you!</div>
-                                    </div>
-                                    <div class="text-center"><button type="submit">Send Message</button></div>
-                                </form>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section><!-- End Contact Section -->
-
-    </main><!-- End #main -->
     <!-- ======= Footer ======= -->
     <footer id="footer">
 
-        <div class="footer-newsletter">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <h4>Our Newsletter</h4>
-                        <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-                    </div>
-                    <div class="col-lg-6">
-                        <form action="" method="post">
-                            <input type="email" name="email"><input type="submit" value="Subscribe">
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        
         <div class="footer-top">
             <div class="container-fluid">
                 <div class="row justify-content-center">
@@ -474,47 +136,27 @@
                                 <h4>Useful Links</h4>
                                 <ul>
                                     <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-                                    <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-                                    <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-                                    <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-                                    <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                                    <li><i class="bx bx-chevron-right"></i> <a asp-controller="Branch" asp-action="SelectBranch">Branch</a></li>
+                                    <li><i class="bx bx-chevron-right"></i> <a asp-controller="Car" asp-action="SelectCar">Cars</a></li>
+                                    <li><i class="bx bx-chevron-right"></i> <a asp-controller="Auth" asp-action="Login">Login </a></li>
+                                    <li><i class="bx bx-chevron-right"></i> <a asp-controller="Auth" asp-action="RegisterCustomer">Sign-up</a></li>
                                 </ul>
                             </div>
 
-                            <div class="col-lg-3 col-md-6 footer-links">
-                                <h4>Our Services</h4>
-                                <ul>
-                                    <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-                                    <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-                                    <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-                                    <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-                                    <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-                                </ul>
-                            </div>
-
+                            
                             <div class="col-lg-3 col-md-6 footer-contact">
                                 <h4>Contact Us</h4>
                                 <p>
-                                    A108 Adam Street <br>
-                                    New York, NY 535022<br>
+                                    Abeokuta <br>
+                                    Abeokuta, Ogun State<br>
                                     United States <br><br>
-                                    <strong>Phone:</strong> +1 5589 55488 55<br>
-                                    <strong>Email:</strong> info@example.com<br>
+                                    <strong>Phone:</strong> +2349071681776<br>
+                                    <strong>Email:</strong> okikiolalawal18@gmail.com<br>
                                 </p>
 
                             </div>
 
-                            <div class="col-lg-3 col-md-6 footer-info">
-                                <h3>About Hidayah</h3>
-                                <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
-                                <div class="social-links mt-3">
-                                    <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                                    <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                                    <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                                    <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                                    <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-                                </div>
-                            </div>
+                           
 
                         </div>
                     </div>
@@ -524,7 +166,7 @@
 
         <div class="container">
             <div class="copyright">
-                &copy; Copyright <strong><span>Hidayah</span></strong>. All Rights Reserved
+                &copy; Copyright <strong><span>NijMar</span></strong>. All Rights Reserved
             </div>
             <div class="credits">
                 <!-- All the links in the footer should remain intact. -->

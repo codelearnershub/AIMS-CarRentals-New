@@ -14,5 +14,7 @@ namespace AimsCarRentals.ServiceInterfaces
         public Bookings Find(int id);
         public List<BookingsViewModel> GetAll();
         public List<Bookings> BookingHistory(int userId);
+        public Bookings VerifyCar(string booking_Ref, Bookings bookings);
+        public Bookings FindByBookingRef(string booking_Ref);
     }
 }

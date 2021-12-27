@@ -1,0 +1,88 @@
+﻿@model AimsCarRentals.Models.Car
+
+<a asp-controller="Home" asp-action="Index" class="btn btn-dark">Back</a>
+
+<div class="row">
+
+
+    <div class="card-header">
+        <img src="@WC.ImagePath@Model.CarPictureUrl" style="width:750px" />
+    </div>
+    <style>
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            text-align: center;
+            padding: 16px;
+        }
+
+            th:first-child, td:first-child {
+                text-align: left;
+            }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
+
+        .fa-check {
+            color: green;
+        }
+
+        .fa-remove {
+            color: red;
+        }
+
+        .sub-heading {
+            font-size: 20px;
+            font-weight: bolder;
+            margin-right: 20%;
+            font-family: 'Times New Roman';
+        }
+    </style>
+    <div class="container">
+        <h2>Car Details</h2>
+
+        <table>
+
+            <tr>
+                <td>Id</td>
+                <td id="name">@Model.Id</td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td><i>@Model.Name</i></td>
+            </tr>
+            <tr>
+                <td>Make</td>
+                <td id="price">@Model.Make</td>
+            </tr>
+            <tr>
+                <td>Serial No</td>
+                <td><i>@Model.SerialNo</i></td>
+            </tr>
+
+            <tr>
+                <td>Description</td>
+                <td><i class="fa fa-check">@Model.Description</i></td>
+            </tr>
+            <tr>
+                <td>Category</td>
+                <td><i class="fa fa-check">@Model.Category.Name</i></td>
+            </tr>
+            <tr>
+                <td>Branch</td>
+                <td><i class="fa fa-check">@Model.Branch.Name</i></td>
+            </tr>
+            <tr>
+                <td>Date Added</td>
+                <td><i class="fa fa-check">@Model.CreatedAt</i></td>
+            </tr>
+        </table>
+    </div>
+</div>
+    <a asp-controller="Car" asp-action="BookCar" class="btn btn-dark">Continue To Book</a>

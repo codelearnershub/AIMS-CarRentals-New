@@ -80,17 +80,16 @@
 </style>
 
 <body>
-    <a asp-controller="Branch" asp-action="Create" class="btn-dark" style="width:100%">Create A New Branch </a>
     <div class="sidenav">
         <a asp-controller="Bookings" asp-action="Index">Booking</a>
         <a asp-controller="Car" asp-action="Index">Car</a>
         <a asp-controller="Category" asp-action="Index">Categories</a>
         <a asp-controller="Branch" asp-action="Index">Branches</a>
         <a asp-controller="Auth" asp-action="Index">Users</a>
-            <a asp-controller="Auth" asp-action="RegisterCustomer">Register Customer</a>
-            <a asp-controller="Auth" asp-action="RegisterAdmin">Register Admin</a>
-        </div>
+        <a asp-controller="Auth" asp-action="GetAllCustomers">Customers</a>
+        <a asp-controller="Auth" asp-action="GetAllAdmins">Admins</a>
         <a asp-controller="Auth" asp-action="Logout">Logout</a>
+    </div>
    
 
          
@@ -135,25 +134,38 @@
 
     <h2>Branch Table</h2>
     <a asp-action="Create" class="btn btn-secondary">Create Branch</a>
-    <table>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Address</th>
-            <th>Actions</th>
-        </tr>
-        @foreach (var branch in Model)
-        {
+    <br />
+    <br />
+  @if (ViewBag.Message == "Can not Create Branch")
+    {
+        <p style="color:dodgerblue;background-color:greenyellow"><h5>Can not create branch</h5></p>
+    }
+    @if (Model.Count() > 0)
+    {
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var branch in Model)
+    {
 <tr>
     <td>@(id++)</td>
     <td>@branch.Name</td>
     <td>@branch.Address</td>
     <td>
         <a asp-action="Details" class="btn btn-success" asp-route-Id="@branch.Id">Details</a>
-        <a asp-action="Update" class="btn btn-black" asp-route-Id="@branch.Id">Update</a>
+        <a asp-action="Update" class="btn btn-secondary" asp-route-Id="@branch.Id">Update</a>
         <a asp-action="Delete" class="btn btn-danger" asp-route-Id="@branch.Id">Delete</a>
     </td>
-</tr>}
-    </table>
+</tr>
+}
+</table> }
+            else
+            {
+<p style="float:inline-start"><h5><i>No branch found</i></h5></p>}
 </div>
+   
 
