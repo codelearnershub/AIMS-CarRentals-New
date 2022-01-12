@@ -20,28 +20,24 @@ namespace AimsCarRentals.Services
         {
             this.paymentRepository = paymentRepository;
         }
-        public Payment AddPayment(CreatePaymentViewModel createPaymentViewModel)
+        public Payment AddPayment(Payment payment)
         {
-            var payment = new Payment
-            {
-              
-            };
-
+           
             return paymentRepository.AddPayment(payment);
         }
-        public Payment FindPaymentByBookingRef(string bookingRef)
+        public Payment FindPaymentByTransactionRef(string transactionRef)
         {
-            return paymentRepository.FindPaymentByBookingRef(bookingRef);
+            return paymentRepository.FindPaymentByTransactionRef(transactionRef);
         }
        
         public Payment Find(int id)
         {
            return paymentRepository.Find(id);
         }
-
-        public async static void VerifyPayment(string transactionRef)
+        public async void VerifyPayment(string transactionRef)
         {
-           using (var client = new HttpClient())
+            
+            using (var client = new HttpClient())
             {
                 var verifyPayment = await client.GetAsync( $"https://api.paystack.co/transaction/verify/:{transactionRef}");
                 if(verifyPayment.IsSuccessStatusCode )
@@ -51,11 +47,16 @@ namespace AimsCarRentals.Services
                     
                    if(verify.Status == true && verify.Data.Status == "Success")
                     {
-                        var paymentDto = new SavePaymentDto()
+                        var paymentDto = new Payment()
                         {
                             TransactionRef = verify.Data.Reference,
-                            Id = verify.Data.Id,
+                            AmountPaid = verify.Data.Amount,
+                            Email = verify.Customer.Email,
+                            PhoneNo = verify.Customer.PhoneNo,
+                            CreatedAt = verify.Data.CreatedAt,
                         };
+                        
+                        paymentRepository.AddPayment(paymentDto);
                     }
                 }
              

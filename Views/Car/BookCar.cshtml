@@ -65,11 +65,14 @@
                     </div>
                     <div class="card-body">
                         <div class="input-group">
-
+                            @if(ViewBag.Message == "Not Allowed")
+            {
+                <p style="color:red;background-color:black">Date Not Valid. Date should be present date or greater than the present bate</p>
+            }
                             <label>Pickup Date</label>
                             <div class="col-md-4">
                                 <input asp-for="PickUpDate" class="form-control" placeholder="Pick-Up Date" />
-                                <spa type="datetime" asp-validation-for="Booking_Date" class="text-danger"></spa><br>
+                                <span type="datetime" asp-validation-for="PickUpDate" class="text-danger"></span><br>
 
                             </div>
 

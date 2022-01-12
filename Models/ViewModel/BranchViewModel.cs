@@ -16,14 +16,13 @@ namespace AimsCarRentals.Models.ViewModel
     }
         public class CreateBranchViewModel
         {
-            [Required(ErrorMessage = "Fill out this field")]
-            [Display(Name = "Name")]
-            public string Name { get; set; }
-            [Required(ErrorMessage = "Fill out this field")]
-            [Display(Name = "Address")]
-            public string Address { get; set; }
-            public int Id { get; set; }
+        [Required(ErrorMessage = "Fill out this field")]
+        [Display(Name = "Name")]
+        public string Name { get; set; }
 
+        [Required(ErrorMessage = "Fill out this field")]
+        [Display(Name = "Address")]
+        public string Address { get; set; }
         }
         public class UpdateBranchViewModel
         {

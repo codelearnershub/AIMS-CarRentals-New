@@ -9,10 +9,12 @@ namespace AimsCarRentals.ServiceInterfaces
 {
     public interface IPaymentService
     {
-        public Payment AddPayment(CreatePaymentViewModel model);
-        public Payment FindPaymentByBookingRef(string bookingRef);
+        public Payment AddPayment(Payment payment);
+        public Payment FindPaymentByTransactionRef(string transactionRef);
         public Payment Find(int id);
         public List<PaymentViewModel> GetAll();
- 
+        public void VerifyPayment(string transactionRef);
+
+
     }
 }

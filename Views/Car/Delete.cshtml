@@ -1,21 +1,135 @@
-﻿@model AimsCarRentals.Models.ViewModel.CarViewModel
+﻿@model AimsCarRentals.Models.Car
+
 <style>
-    .container {
-        padding: 0 16px;
+    body {
+        font-family: "Lato", sans-serif;
     }
 
-        .container::after, .row::after {
-            content: "";
-            clear: both;
-            display: table;
+    /* Fixed sidenav, full height */
+    .sidenav {
+        height: 100%;
+        width: 200px;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: red;
+        overflow-x: hidden;
+        padding-top: 20px;
+    }
+
+        /* Style the sidenav links and the dropdown button */
+        .sidenav a, .dropdown-btn {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 20px;
+            color: black;
+            display: block;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            outline: none;
+        }
+
+            /* On mouse-over */
+            .sidenav a:hover, .dropdown-btn:hover {
+                color: #f1f1f1;
+            }
+
+    /* Main content */
+    .main {
+        margin-left: 200px; /* Same as the width of the sidenav */
+        font-size: 20px; /* Increased text to enable scrolling */
+        padding: 0px 10px;
+    }
+
+    /* Add an active class to the active dropdown button */
+    .active {
+        background-color: green;
+        color: white;
+    }
+
+    /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+    .dropdown-container {
+        display: none;
+        background-color: white;
+        padding-left: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2
+    }
+    /* Optional: Style the caret down icon */
+    .fa-caret-down {
+        float: right;
+        padding-right: 8px;
+    }
+
+
+    .sidenav {
+        padding-top: 15px;
+    }
+
+        .sidenav a {
+            font-size: 18px;
         }
 </style>
-<div class="container">
-    <div>
-        Are you sure you want to delete Car @Model.Name @Model.Make  
-        <div class="input-group">
-            <a asp-action="Index" class="btn btn-dark">Cancel</a><br />
-            <a asp-action="Delete" class="btn btn-danger">Delete</a><br />
-        </div>
+
+<body style="background-color: indianred">
+    <div class="sidenav">
+        <a asp-controller="Bookings" asp-action="Index">Booking</a>
+        <a asp-controller="Car" asp-action="Index">Car</a>
+        <a asp-controller="Category" asp-action="Index">Categories</a>
+        <a asp-controller="Branch" asp-action="Index">Branches</a>
+        <a asp-controller="Auth" asp-action="Index">Users</a>
+        <a asp-controller="Auth" asp-action="GetAllCustomers">Customers</a>
+        <a asp-controller="Auth" asp-action="GetAllAdmins">Admins</a>
+        <a asp-controller="Auth" asp-action="Logout">Logout</a>
+    </div>
+
+
+
+    <script>
+            /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+            var dropdown = document.getElementsByClassName("dropdown-btn");
+            var i;
+
+            for (i = 0; i < dropdown.length; i++) {
+                dropdown[i].addEventListener("click", function () {
+                    this.classList.toggle("active");
+                    var dropdownContent = this.nextElementSibling;
+                    if (dropdownContent.style.display === "block") {
+                        dropdownContent.style.display = "none";
+                    } else {
+                        dropdownContent.style.display = "block";
+                    }
+                });
+            }
+    </script>
+
+</body>
+<div>
+
+
+    <div class="justify-content-xl-center" style="max-width:50%;box-sizing:border-box;
+             box-shadow:1px 2px 2px 1px rgba(0,0,0,0.13);
+             padding-left:20px;padding-right:20px;padding-bottom:20px;margin-top:100px;
+             margin-left:auto;margin-right:auto;background-color:white
+             ">
+        <h4>
+            <p style="text-align:center;font-size:24px">Are you sure you want to delete Car <i style="color:red">@Model.Name&nbsp;@Model.Make</i></p>
+        </h4>
+        <br />
+        <form asp-action="Delete" class="row" style="margin-left:100px">
+            <div>
+                <input style="margin-left:150px" type="submit" value="Delete" class="btn btn-danger" />
+            </div>
+            <div>
+                <a style="margin-left:100px" asp-action="Index" asp-controller="Car" class="btn btn-dark">Back</a>
+            </div>
+        </form>
     </div>
 </div>
+

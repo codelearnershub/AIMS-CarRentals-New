@@ -1,10 +1,11 @@
-﻿var name = document.getElementById('name').innerText;
+﻿ var name = document.getElementById('name').innerText;
 var price = document.getElementById('price').innerText;
-var amount = parseInt(price)*100;
+var amount = parseInt(price) * 100;
+var PhoneNo = document.getElementById('PhoneNo').innerText;
 function payWithPaystack() {
 
 
-    var handler = PaystackPop.setup({
+    var handler = PaystackPop.Setup({
         key: 'pk_test_ea4c9b4f0591ec661174704f63adaadf2b2a2423', //put your public key here
         email: name, //put your customer's email here
         amount: amount, //amount the customer is supposed to pay
@@ -13,7 +14,7 @@ function payWithPaystack() {
                 {
                     display_name: "Mobile Number",
                     variable_name: "mobile_number",
-                    value: "+2348012345678" //customer's mobile number
+                    value: "PhoneNo" //customer's mobile number
                 }
             ]
         },
@@ -22,7 +23,7 @@ function payWithPaystack() {
             //after the transaction have been completed
             //make post call  to the server with to verify payment 
             //using transaction reference as post data
-            $.post("verify.php", { reference: response.reference }, function (status) {
+            $.post("http://localhost:44357/PaymentProcess/ProcesssPayment", { reference: response.reference }, function (status) {
                 if (status == "success") {
                     console.log(response);
                     //successful transaction
@@ -31,11 +32,11 @@ function payWithPaystack() {
                 else {
                     alert(response);
                 }
-                    //transaction failed
-                    /*
-        console.log(response);*/
-    });
-            
+                //transaction failed
+                /*
+    console.log(response);*/
+            });
+
         },
         onClose: function () {
             //when the user close the payment modal
@@ -43,6 +44,6 @@ function payWithPaystack() {
         }
     });
     handler.openIframe(); //open the paystack's payment modal
-   
-        
+
+
 }

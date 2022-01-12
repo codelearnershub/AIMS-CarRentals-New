@@ -127,48 +127,48 @@
     </style>
     <div class="container">
 
-        <h2>Admins</h2>
+
+        <h2 style="margin-left:400px" class="display-4">Customers</h2>
         <br />
-        <br />
-        <a asp-action="RegisterAdmin" class="btn btn-secondary">Register Customer</a>
-        <br />
+        <a asp-action="RegisterCustomer" class="btn btn-secondary">Register Customer</a>
         <br />
         <br />
 
         @if (Model.Count() > 0)
         {
-<table>
+    <table>
 
 
 
 
+        <tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Middle Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+        @foreach (var user in Model)
+        {
     <tr>
-        <th>Id</th>
-        <th>First Name</th>
-        <th>Middle Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-        <th>Actions</th>
+        <td>@(id++)</td>
+        <td>@user.FirstName</td>
+        <td>@user.MiddleName</td>
+        <td>@user.LastName</td>
+        <td>@user.Email</td>
+        <td>
+            <a asp-action="Details" class="btn btn-success" asp-route-Id="@user.Id">Details</a>
+            <a asp-action="UpdateCustomer" class="btn btn-secondary" asp-route-Id="@user.Id">Edit</a>
+            <a asp-action="Delete" class="btn btn-danger" asp-route-Id="@user.Id">Delete</a>
+        </td>
     </tr>
-    @foreach (var user in Model)
-    {
-<tr>
-    <td>@(id++)</td>
-    <td>@user.FirstName</td>
-    <td>@user.MiddleName</td>
-    <td>@user.LastName</td>
-    <td>@user.Email</td>
-    <td>
-        <a asp-action="Details" class="btn btn-success" asp-route-Id="@user.Id">Details</a>
-        <a asp-action="UpdateCustomer" class="btn btn-secondary" asp-route-Id="@user.Id">Edit</a>
-        <a asp-action="Delete" class="btn btn-danger" asp-route-Id="@user.Id">Delete</a>
-    </td>
-</tr>}
+}
 
-</table> }
+    </table> }
 
 else
 {
-<p style="float:inline-start"><h5><i>No registered Customer found</i></h5></p>}
+    <p style="float:inline-start"><h5><i>No registered Customer found</i></h5></p>}
     </div>
 </div>

@@ -110,38 +110,52 @@
 
 </body>
 <div class="main">
-    <div class="card header"><h3>Add Branch</h3></div>
+    <h2 style="margin-left:450px" class="display-4">Create Branch</h2>
     <div class="container">
-        <div class="container">
+        <div class="row">
             <form method="post" class="input-group">
                 @*   @if (ViewBag.Message = "Created Successfully")
-        {
-            <p style="color:dodgerblue;background-color:greenyellow"><h5>Created Successfully</h5></p>
-        }
-        else
-        {
-            <p style="color:white;background-color:red"><h5>Branch Not Created</h5></p>
-        }*@
-                <label>Name:</label>
-                <div>
-                    <input type="text" name="Name" placeholder=" Name" class="form-control" />
-                    <span asp-validation-for="Name" class="text-danger"></span>&nbsp;
+                    {
+                        <p style="color:dodgerblue;background-color:greenyellow"><h5>Created Successfully</h5></p>
+                    }
+                    else
+                    {
+                        <p style="color:white;background-color:red"><h5>Branch Not Created</h5></p>
+                    }*@
+                <div class="col-12">
+                    <label for="yourUsername" class="form-label">Branch Name</label>
+                    <div class="input-group has-validation">
+                        <div class="invalid-feedback">Please enter Branch Name</div>
+                        <input type="text" name="Email" asp-for="Name" class="form-control" required>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
                 </div>
-                <label>Address:</label>
-                <div>
-                    <input type="text" name="Address" placeholder=" Address" class="form-control" />
-                    <span asp-validation-for="Address" class="text-danger"></span>
+
+                <div class="col-12">
+                    <label for="yourUsername" class="form-label">Address</label>
+                    <div class="input-group has-validation">
+                        <div class="invalid-feedback">Please enter your Email</div>
+                        <input type="text" name="Email" asp-for="Address" class="form-control" id="yourUsername" required>
+                        <span asp-validation-for="Address" class="text-danger" id="inputGroupPrepend"></span>
+                    </div>
+                    <br />
                 </div>
-                <div>
-                    <input type="submit" value="Create" class="btn btn-dark" />
+                <br />
+                <br />
+                <div class="row" style="margin-left:350px">
+                    <div>
+                        <input type="submit" value="Create" class="btn btn-dark" />
+                    </div>
+                    &nbsp;&nbsp;
+                    <div>
+                        <a asp-action="Index" class="btn btn-dark">Back To Index</a>
+                    </div>
                 </div>
             </form>
         </div>
     </div>
-    <div class="container">
-        <a asp-action="Index" class="btn btn-danger">Back To Index</a>
-    </div>
-    </div>
+
+</div>
     @section Scripts {
         @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     }

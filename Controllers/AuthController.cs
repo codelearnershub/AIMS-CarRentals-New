@@ -98,13 +98,7 @@ namespace AimsCarRentals.Controllers
             return View();
         }
 
-        [HttpPost]
-        [Authorize(Roles = "Admin, SuperAdmin")]
-        public IActionResult Delete(int id)
-        {
-            _userService.Delete(id);
-            return RedirectToAction("Index");
-        }
+       
         public IActionResult Details(int id)
         {
             var user = _userService.FindUserById(id);
@@ -220,11 +214,23 @@ namespace AimsCarRentals.Controllers
             var admin = _userService.GetAllAdmins();
             return View(admin);
         }
+        public IActionResult Delete(int id)
+        {
+            var delete = _userService.FindUserById(id);
+            if (delete == null)
+            {
+                ViewBag.Message = "Can not delete branch";
+                return NotFound();
+            }
+            return View(delete);
+        }
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
-            return RedirectToAction("Login");
+            return RedirectToAction("Index" , "Home");
         }
 
     }

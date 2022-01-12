@@ -13,18 +13,16 @@ namespace AimsCarRentals.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly ICarService carService;
 
-        public HomeController(ILogger<HomeController> logger,ICarService carService)
-        {
-            this.carService = carService;
+        public HomeController(ILogger<HomeController> logger)
+        { 
             _logger = logger;
         }
 
         public IActionResult Index()
         {
-            var car = carService.GetAll();
-            return View(car);
+           
+            return View();
         }
 
         public IActionResult Privacy()

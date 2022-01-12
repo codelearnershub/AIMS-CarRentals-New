@@ -1,6 +1,5 @@
-﻿@model IEnumerable<AimsCarRentals.Models.ViewModel.CarViewModel>
-@{ ViewData["Title"] = "Car";
-                int id = 1; }
+﻿@model AimsCarRentals.Models.Branch
+
 <style>
     body {
         font-family: "Lato", sans-serif;
@@ -78,7 +77,7 @@
         }
 </style>
 
-<body>
+<body style="background-color: indianred">
     <div class="sidenav">
         <a asp-controller="Bookings" asp-action="Index">Booking</a>
         <a asp-controller="Car" asp-action="Index">Car</a>
@@ -92,7 +91,8 @@
 
 
 
-    <script>/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+    <script>
+        /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
         var dropdown = document.getElementsByClassName("dropdown-btn");
         var i;
 
@@ -106,70 +106,30 @@
                     dropdownContent.style.display = "block";
                 }
             });
-        }</script>
+        }
+    </script>
 
 </body>
-<div class="main">
-    <style>
-        table {
-            border-collapse: collapse;
-            border-spacing: 0;
-            width: 100%;
-            border: 1px solid #ddd;
-        }
-
-        th, td {
-            text-align: left;
-            padding: 16px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2
-        }
-    </style>
+<div>
 
 
-    <h2 style="margin-left:450px" class="display-4">Car Table</h2>
-   
-    <div class="row" style="margin-left:30px">
-        <div>
-            <a style="margin-left:80px" asp-controller="Branches" asp-action="Index" class="btn btn-danger">Back To Index</a>
-        </div>
-        <div>
-            <a style="margin-left:140px" asp-controller="Car" asp-action="Create" class="btn btn-dark">Add A Car</a>
-        </div>
-        <div>
-            <a style="margin-left:180px" asp-controller="Car" asp-action="GetAllBookedCars" class="btn btn-danger">Booked Cars</a>
-        </div>
-        <div>
-            <a style="margin-left:220px" asp-controller="Car" asp-action="GetAllUnBookedCars" class="btn btn-danger">UnBooked Cars</a>
-        </div>
+    <div class="justify-content-xl-center" style="max-width:50%;box-sizing:border-box;
+             box-shadow:1px 2px 2px 1px rgba(0,0,0,0.13);
+             padding-left:20px;padding-right:20px;padding-bottom:20px;margin-top:100px;
+             margin-left:auto;margin-right:auto;background-color:white
+             ">
+        <h4>
+            <p style="text-align:center;font-size:24px">Are you sure you want to delete Branch <i style="color:red">@Model.Name</i> with Address: <i style="color:red">@Model.Address</i></p>
+        </h4>
+        <br />
+        <form asp-action="Delete" class="row" style="margin-left:100px">
+            <div>
+                <input style="margin-left:150px" type="submit" value="Delete" class="btn btn-danger" />
+            </div>
+            <div>
+                <a style="margin-left:100px" asp-action="Index" asp-controller="Branch" class="btn btn-dark">Back</a>
+            </div>
+        </form>
     </div>
-    <br />
-    <table>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Make</th>
-            <th>Serial No</th>
-            <th>Available?</th>
-            <th>Actions</th>
-        </tr>
-        @foreach (var car in Model)
-        {
-<tr>
-    <td>@(id++)</td>
-    <td>@car.Name</td>
-    <td>@car.Make</td>
-    <td>@car.SerialNo</td>
-    <td>@car.IsAvailable</td>
-    <td>
-        <a asp-action="Details" class="btn btn-success" asp-route-Id="@car.Id">Details</a>
-        <a asp-action="Update" class="btn btn-secondary" asp-route-Id="@car.Id">Edit</a>
-        <a asp-action="Delete" class="btn btn-danger" asp-route-Id="@car.Id">Delete</a>
-    </td>
-</tr>
-}
-    </table>
-
 </div>
+

@@ -131,7 +131,8 @@
     </style>
 
 
-    <h2>Category Table</h2>
+
+    <h2 style="margin-left:450px" class="display-4">Category Table</h2>
     <div style="margin-right:10%">
         <a asp-controller="Category" asp-action="Create" class="btn btn-dark">Add A Category</a>
     </div>
@@ -144,16 +145,17 @@
         </tr>
         @foreach (var car in Model)
         {
-<tr>
-    <td>@(id++)</td>
-    <td>@car.Name</td>
-   
-    <td>
-        <a asp-action="Details" class="btn btn-success" asp-route-Id="@car.Id">Details</a>
-        <a asp-action="Update" class="btn btn-secondary" asp-route-Id="@car.Id">Edit</a>
-        <a asp-action="Delete" class="btn btn-danger" asp-route-Id="@car.Id">Delete</a>
-    </td>
-</tr>}
+            <tr>
+                <td>@(id++)</td>
+                <td>@car.Name</td>
+
+                <td>
+                    <a asp-action="Details" class="btn btn-success" asp-route-Id="@car.Id">Details</a>
+                    <a asp-action="Update" class="btn btn-secondary" asp-route-Id="@car.Id">Edit</a>
+                    <a asp-action="Delete" class="btn btn-danger" asp-route-Id="@car.Id">Delete</a>
+                </td>
+            </tr>
+}
     </table>
 
 </div>

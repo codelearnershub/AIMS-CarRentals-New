@@ -1,6 +1,8 @@
 ﻿using AimsCarRentals.Context;
 using AimsCarRentals.Interfaces;
 using AimsCarRentals.Models;
+using AimsCarRentals.Models.ViewModel;
+using AimsCarRentals.NewFolder;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -25,7 +27,7 @@ namespace AimsCarRentals.Repositories
        
         public Payment Find(int id)
         {
-            return aimsDbContext.Payments.Include(c => c.Bookings).Include(c => c.Car).FirstOrDefault(c => c.Id == id);
+            return aimsDbContext.Payments.FirstOrDefault(c => c.Id == id);
         }
         public Payment Delete(int id)
         {
@@ -45,9 +47,9 @@ namespace AimsCarRentals.Repositories
         {
             return aimsDbContext.Bookings.Where(c => c.UserId == userId).Include(c => c.User).ToList();
         } */
-        public Payment FindPaymentByBookingRef(string booking_ref)
+        public Payment FindPaymentByTransactionRef(string transactionRef)
         {
-            return aimsDbContext.Payments.Find(booking_ref);
+            return aimsDbContext.Payments.Find(transactionRef);
         }
 
     }

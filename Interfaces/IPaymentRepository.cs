@@ -16,7 +16,7 @@ namespace AimsCarRentals.Interfaces
          {
              return aimsDbContext.Bookings.Where(c => c.UserId == userId).Include(c => c.User).ToList();
          } */
-        public Payment FindPaymentByBookingRef(string booking_ref);
+        public Payment FindPaymentByTransactionRef(string transactioRef);
     }
     
 

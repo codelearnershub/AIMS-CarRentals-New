@@ -1,7 +1,6 @@
 ﻿@model IEnumerable<AimsCarRentals.Models.ViewModel.CarViewModel>
-<!DOCTYPE html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>    
+<meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
             margin: 0;
@@ -36,82 +35,57 @@
             float: right;
         }
     </style>
-</head>
-<body>
+    </head>
+    <body>
 
-    <div class="topnav">
-        <a class="active" asp-controller="Home" asp-action="Index">Home</a>
-        <a asp-controller="Branch" asp-action="SelectBranch">Branches</a>
-        <a asp-controller="Car" asp-action="SelectCar">Car</a>
-        <div class="topnav-right">
-            <a href="#about">About</a>
-            <a asp-controller="Auth" asp-action="Login">Login/Register</a>
+        <div class="topnav">
+            <a class="active" asp-controller="Home" asp-action="Index">NijMar</a>
+            <a asp-controller="Home" asp-action="Index">Home</a>
+            <a asp-controller="Branch" asp-action="SelectBranch">Branches</a>
+            <a asp-controller="Car" asp-action="SelectCar">Car</a>
+          
         </div>
-    </div>
-</body>
-<section class="ftco-section ftco-no-pt bg-light">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12 heading-section text-center ftco-animate mb-5">
-                <span class="subheading">What we offer</span>
-                <h2 class="mb-2">Featured Vehicles</h2>
-            </div>
+    </body>
+    <div class="card-header">
+        <div class="text-center">
+            <h1 class="display-2" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Available Cars</h1>
         </div>
-        <div class="container">
+        <br />
+    </div><div class="row">
+        @foreach (var car in Model)
+        {
+            @* <div class="col-md-4">*@
 
-            <style>
-                * {
-                    box-sizing: border-box;
-                }
-
-                .column {
-                    float: left;
-                    width: 33.33%;
-                    padding: 5px;
-                }
-
-                /* Clearfix (clear floats) */
-                .row::after {
-                    content: "";
-                    clear: both;
-                    display: table;
-                }
-            </style>
-
-            <div class="card-header">
-                <div class="text-center">
-                    <h1 class="display-3" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;color:rosybrown">Available Cars</h1>
-                </div>
-            </div>
-
-            @foreach (var car in Model)
-            {
-                <div class="column">
-                    <div class="row">
-                        <div class="card">
-                            <div class="card-header">
-                                <img src="@WC.ImagePath@car.CarPictureUrl" style="width:300px" />
-                            </div>
-                            <div style="padding:10px;background-color:black" class="text">
-
-                                <h4 style="color:blue">@car.Name&nbsp;@car.Make</h4>
-
-                                <div @*class="d-flex mb-3"*@>
-                                    <label style="color:darkcyan"><b>Price:</b></label>
-                                    @*class="price ml-auto"*@<span style="color:orangered"><b>NGN</b></span><span style="color:darkslategrey">@car.Price</span><span style="color:cornflowerblue">/hour</span>
-                                </div>
-                            </div>
-                            <div class="card-header">
-                                <p class="d-flex mb-1 d-block">
-                                    <a asp-controller="Car" asp-action="BookCar" asp-route-Id="@car.Id" class="btn btn-danger">Book</a> &nbsp;
-                                    <a asp-controller="Car" asp-action="Details" asp-route-Id="@car.Id" class="btn btn-dark">Details</a>
-                                </p>
-                            </div>
-
+            <div class="col-lg-4 col-md-4 pb-4">
+                <!-- Card-->
+                <div class="card bg-white rounded shadow-sm" style="border:1px solid #222">
+                    <div class="card-body px-3 pt-3 pb-1 row">
+                        <div class="col-7"><label class="float-left" style="color:cornflowerblue">@car.Name&nbsp;@car.Make</label></div>
+                        <div class="col-5"><label class="float-right"><span class="text-info h5"><span><b>N</b></span>@car.Price</span></label> </div>
+                    </div>
+                    <img class="card-img-top img-fluid d-block mx-auto mb-3" src="@WC.ImagePath@car.CarPictureUrl" alt="Card image cap">
+                    <div class="card-body p-1 px-3 row">
+                        <div class="col-12 p-1">
+                            <a class="btn btn-dark form-control btn-sm p-2" style="height:40px">@car.Category.Name</a>
                         </div>
+                        <div class="col-6">
+                            <span class="badge p-2 border w-100" style="background-color:lavenderblush">
+                                <a asp-controller="Car" asp-action="BookCar" asp-route-Id="@car.Id">Book</a>
+                            </span>
+                        </div>
+                        <div class="col-6 border-0">
+                            <span class="badge p-2 border w-100" style="background-color:aliceblue">
+                                <a asp-controller="Car" asp-action="Details" asp-route-Id="@car.Id">Details</a>
+                            </span>
+                        </div>
+                        <div class="col-12 pt-2" style="font-size:13px; text-align:justify">
+                            <p> ShortDesc</p>
+                        </div>
+
                     </div>
                 </div>
-            }
-        </div>
+            </div>
+            @* </div>*@
+
+        }
     </div>
-</section>

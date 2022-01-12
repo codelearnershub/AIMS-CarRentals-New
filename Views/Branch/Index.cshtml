@@ -130,42 +130,40 @@
             background-color: #f2f2f2
         }
     </style>
-
-
-    <h2>Branch Table</h2>
+    <h2 style="margin-left:400px" class="display-4">Branches</h2>
     <a asp-action="Create" class="btn btn-secondary">Create Branch</a>
     <br />
     <br />
-  @if (ViewBag.Message == "Can not Create Branch")
+    @if (ViewBag.Message == "Can not Create Branch")
     {
         <p style="color:dodgerblue;background-color:greenyellow"><h5>Can not create branch</h5></p>
     }
     @if (Model.Count() > 0)
     {
-<table>
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Address</th>
-        <th>Actions</th>
-    </tr>
-    @foreach (var branch in Model)
-    {
-<tr>
-    <td>@(id++)</td>
-    <td>@branch.Name</td>
-    <td>@branch.Address</td>
-    <td>
-        <a asp-action="Details" class="btn btn-success" asp-route-Id="@branch.Id">Details</a>
-        <a asp-action="Update" class="btn btn-secondary" asp-route-Id="@branch.Id">Update</a>
-        <a asp-action="Delete" class="btn btn-danger" asp-route-Id="@branch.Id">Delete</a>
-    </td>
-</tr>
-}
-</table> }
-            else
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Actions</th>
+            </tr>
+            @foreach (var branch in Model)
             {
-<p style="float:inline-start"><h5><i>No branch found</i></h5></p>}
+                <tr>
+                    <td>@(id++)</td>
+                    <td>@branch.Name</td>
+                    <td>@branch.Address</td>
+                    <td>
+                        <a asp-action="Details" class="btn btn-success" asp-route-Id="@branch.Id">Details</a>
+                        <a asp-action="Update" class="btn btn-secondary" asp-route-Id="@branch.Id">Update</a>
+                        <a asp-action="Delete" class="btn btn-danger" asp-route-Id="@branch.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </table> }
+    else
+    {
+        <p style="float:inline-start"><h5><i>No branch found</i></h5></p>}
 </div>
    
 

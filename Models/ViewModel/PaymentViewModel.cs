@@ -25,9 +25,11 @@ namespace AimsCarRentals.Models.ViewModel
         public int Id { get; set; }
         public string BookingRef { get; set; }
         public string TransactionId { get; set; }
+        public string Email { get; set; }
+       public string PhoneNo { get; set; }
         public int BookingsId { get; set; }
-        public int AmountPaid{ get; set; }
+        public double AmountPaid{ get; set; }
         public int CarId { get; set; }
-        public DateTime DatePayed { get; set; }
+        public DateTime CreatedAt { get; set; }
     }
 }

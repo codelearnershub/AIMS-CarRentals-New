@@ -1,5 +1,5 @@
-﻿@model AimsCarRentals.Models.ViewModel.UpdateBranchViewModel
-@{ ViewData["Title"] = "Update Branch"; }
+﻿@model AimsCarRentals.Models.ViewModel.CreateBranchViewModel
+@{ ViewData["Title"] = "Add Branch"; }
 <style>
     body {
         font-family: "Lato", sans-serif;
@@ -92,7 +92,8 @@
 
 
 
-    <script>/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+    <script>
+    /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
         var dropdown = document.getElementsByClassName("dropdown-btn");
         var i;
 
@@ -110,31 +111,52 @@
 
 </body>
 <div class="main">
-    <div class="card header"><h3>Update Branch</h3></div>
-  @*  @if (ViewBag.Message = "Updated Successfully")
-    {
-        <p style="color:dodgerblue;background-color:greenyellow"><h5>Branch Updated Successfully</h5></p>
-    }
-    else
-    {
-        <p style="color:white;background-color:red"><h5>Branch Not Created</h5></p>
-    }*@
+    <h2 style="margin-left:450px" class="display-4">Update Branch</h2>
     <div class="container">
-        <div class="card-body">
-            <label for="uname"><b>Name</b></label>
-            <input type="text" placeholder="Name" name="Name" required>
-            <span asp-validation-for="Name"></span>
+        <div class="row">
+            <form method="post" class="input-group">
+                @*   @if (ViewBag.Message = "Created Successfully")
+                    {
+                        <p style="color:dodgerblue;background-color:greenyellow"><h5>Created Successfully</h5></p>
+                    }
+                    else
+                    {
+                        <p style="color:white;background-color:red"><h5>Branch Not Created</h5></p>
+                    }*@
+                <div class="col-12">
+                    <label for="yourUsername" class="form-label">Branch Name</label>
+                    <div class="input-group has-validation">
+                        <div class="invalid-feedback">Please enter Branch Name</div>
+                        <input type="text" name="Email" asp-for="Name" class="form-control" required>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
 
-            <label for="psw"><b>Address</b></label>
-            <input type="text" placeholder="Address" name="Address" required>
-            <span asp-validation-for="Address"></span>
-
-            <div>
-                <input type="submit" value="Update" class="btn btn-dark" />
-            </div>
+                <div class="col-12">
+                    <label for="yourUsername" class="form-label">Address</label>
+                    <div class="input-group has-validation">
+                        <div class="invalid-feedback">Please enter your Email</div>
+                        <input type="text" name="Email" asp-for="Address" class="form-control" id="yourUsername" required>
+                        <span asp-validation-for="Address" class="text-danger" id="inputGroupPrepend"></span>
+                    </div>
+                    <br />
+                </div>
+                <br />
+                <br />
+                <div class="row" style="margin-left:350px">
+                    <div>
+                        <input type="submit" value="Create" class="btn btn-dark" />
+                    </div>
+                    &nbsp;&nbsp;
+                    <div>
+                        <a asp-action="Index" class="btn btn-dark">Back To Index</a>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
+
 </div>
-    @section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    }
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -136,6 +136,19 @@ namespace AimsCarRentals.Controllers
         [Authorize(Roles = "Admin, SuperAdmin")]
         public IActionResult Delete(int id)
         {
+            var delete = carService.Find(id);
+            if (delete == null)
+            {
+                ViewBag.Message = "Can not delete branch";
+                return NotFound();
+            }
+            return View(delete);
+        }
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(int id)
+        {
+
             carService.Delete(id);
             return RedirectToAction("Index");
         }
@@ -169,7 +182,11 @@ namespace AimsCarRentals.Controllers
         [HttpPost]
         public IActionResult BookCar(int id, CreateBookingsViewModel model)
         {
+            if(model.PickUpDate < DateTime.Now)
+            {
 
+                ViewBag.Message = "Not Allowed";
+            }
             var car = carService.Find(id);
             int userId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
             var user = userService.FindUserById(userId);
@@ -177,7 +194,7 @@ namespace AimsCarRentals.Controllers
             ViewBag.Message = "Created Successfully";
             return RedirectToAction("Invoice",  new { id  = id, bookingId = book.Id});
         }
-        [HttpGet]
+       
         public IActionResult SelectCar()
         {
             var car = carService.GetAll();
@@ -207,7 +224,8 @@ namespace AimsCarRentals.Controllers
                 BookingRef = booking.Booking_ref.ToUpper(),
                 AmountToBePaid = (booking.ReturnDate-booking.PickUpDate).Hours*car.Price,
                 PickUpDate = booking.PickUpDate,
-                ReturnDate = booking.ReturnDate
+                ReturnDate = booking.ReturnDate,
+                PhoneNo = user.PhoneNo
             };
             return View(vm);
         }
