@@ -40,14 +40,18 @@ namespace AimsCarRentals
 
             services.AddScoped<IUserRoleRepository, UserRoleRepository>();
 
-                        services.AddScoped<IBranchRepository, BranchRepository>();
-                        services.AddScoped<IBranchService, BranchService>();
+            services.AddScoped<IBranchRepository, BranchRepository>();
+            services.AddScoped<IBranchService, BranchService>();
 
-                        services.AddScoped<IUserRepository, UserRepository>();
-                        services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
 
-                        services.AddScoped<IRoleRepository, RoleRepository>();
-                        services.AddScoped<IRoleService, RoleService>();
+            services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddScoped<IRoleService, RoleService>();
+
+            services.AddScoped<IPaymentRepository, PaymentRepository>();
+            services.AddScoped<IPaymentService, PaymentService>();
+
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(config =>
             {
@@ -60,7 +64,7 @@ namespace AimsCarRentals
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-       
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

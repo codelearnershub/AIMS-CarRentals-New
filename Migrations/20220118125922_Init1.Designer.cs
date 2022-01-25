@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AimsCarRentals.Migrations
 {
     [DbContext(typeof(AimsDbContext))]
-    [Migration("20211103122838_Init1")]
+    [Migration("20220118125922_Init1")]
     partial class Init1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -240,6 +240,32 @@ namespace AimsCarRentals.Migrations
                     b.ToTable("Customers");
                 });
 
+            modelBuilder.Entity("AimsCarRentals.Models.Payment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<double>("AmountPaid")
+                        .HasColumnType("double");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PhoneNo")
+                        .HasColumnType("text");
+
+                    b.Property<string>("TransactionRef")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Payments");
+                });
+
             modelBuilder.Entity("AimsCarRentals.Models.Role", b =>
                 {
                     b.Property<int>("Id")
@@ -263,19 +289,19 @@ namespace AimsCarRentals.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2021, 11, 3, 1, 28, 37, 127, DateTimeKind.Local).AddTicks(8313),
+                            CreatedAt = new DateTime(2022, 1, 18, 13, 59, 21, 682, DateTimeKind.Local).AddTicks(5095),
                             Name = "SuperAdmin"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2021, 11, 3, 1, 28, 37, 127, DateTimeKind.Local).AddTicks(9481),
+                            CreatedAt = new DateTime(2022, 1, 18, 13, 59, 21, 682, DateTimeKind.Local).AddTicks(6210),
                             Name = "Admin"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2021, 11, 3, 1, 28, 37, 127, DateTimeKind.Local).AddTicks(9494),
+                            CreatedAt = new DateTime(2022, 1, 18, 13, 59, 21, 682, DateTimeKind.Local).AddTicks(6222),
                             Name = "Customer"
                         });
                 });
@@ -343,7 +369,7 @@ namespace AimsCarRentals.Migrations
                             Id = 1,
                             Address = "asd",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(2021, 11, 3, 1, 28, 37, 122, DateTimeKind.Local).AddTicks(7513),
+                            DateOfBirth = new DateTime(2022, 1, 18, 13, 59, 21, 678, DateTimeKind.Local).AddTicks(1994),
                             Email = "jafar@gmail.com",
                             FirstName = "Jafar",
                             Gender = "Male",
@@ -382,7 +408,7 @@ namespace AimsCarRentals.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2021, 11, 3, 1, 28, 37, 128, DateTimeKind.Local).AddTicks(2588),
+                            CreatedAt = new DateTime(2022, 1, 18, 13, 59, 21, 682, DateTimeKind.Local).AddTicks(9206),
                             RoleId = 1,
                             UserId = 1
                         });

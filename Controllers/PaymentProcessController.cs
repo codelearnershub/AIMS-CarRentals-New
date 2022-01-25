@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace AimsCarRentals.Controllers
 {
+    [Route("/[controller]")]
     public class PaymentProcessController : Controller
     {
         public readonly IPaymentService paymentService;
@@ -24,10 +25,12 @@ namespace AimsCarRentals.Controllers
               Console.WriteLine($"This is the transactionRef{TransactionRef}");
               return View();
           }*/
-       
-        [HttpPost]
+        [Route("{reference}")]
+        [HttpGet]
         public IActionResult ProcesssPayment(string reference)
         {
+            
+
             var transactionRef = paymentService.FindPaymentByTransactionRef(reference);
             if (transactionRef != null)
             {

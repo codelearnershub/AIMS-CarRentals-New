@@ -287,19 +287,19 @@ namespace AimsCarRentals.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2022, 1, 8, 6, 42, 10, 498, DateTimeKind.Local).AddTicks(5092),
+                            CreatedAt = new DateTime(2022, 1, 18, 13, 59, 21, 682, DateTimeKind.Local).AddTicks(5095),
                             Name = "SuperAdmin"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2022, 1, 8, 6, 42, 10, 498, DateTimeKind.Local).AddTicks(7982),
+                            CreatedAt = new DateTime(2022, 1, 18, 13, 59, 21, 682, DateTimeKind.Local).AddTicks(6210),
                             Name = "Admin"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2022, 1, 8, 6, 42, 10, 498, DateTimeKind.Local).AddTicks(8012),
+                            CreatedAt = new DateTime(2022, 1, 18, 13, 59, 21, 682, DateTimeKind.Local).AddTicks(6222),
                             Name = "Customer"
                         });
                 });
@@ -367,7 +367,7 @@ namespace AimsCarRentals.Migrations
                             Id = 1,
                             Address = "asd",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(2022, 1, 8, 6, 42, 10, 486, DateTimeKind.Local).AddTicks(3919),
+                            DateOfBirth = new DateTime(2022, 1, 18, 13, 59, 21, 678, DateTimeKind.Local).AddTicks(1994),
                             Email = "jafar@gmail.com",
                             FirstName = "Jafar",
                             Gender = "Male",
@@ -406,7 +406,7 @@ namespace AimsCarRentals.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2022, 1, 8, 6, 42, 10, 499, DateTimeKind.Local).AddTicks(6185),
+                            CreatedAt = new DateTime(2022, 1, 18, 13, 59, 21, 682, DateTimeKind.Local).AddTicks(9206),
                             RoleId = 1,
                             UserId = 1
                         });

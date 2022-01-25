@@ -4,7 +4,7 @@ using MySql.Data.EntityFrameworkCore.Metadata;
 
 namespace AimsCarRentals.Migrations
 {
-    public partial class Init : Migration
+    public partial class Init1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -38,6 +38,23 @@ namespace AimsCarRentals.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Payments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    TransactionRef = table.Column<string>(nullable: true),
+                    PhoneNo = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    AmountPaid = table.Column<double>(nullable: false),
+                    CreatedAt = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Payments", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Roles",
                 columns: table => new
                 {
@@ -67,7 +84,8 @@ namespace AimsCarRentals.Migrations
                     DateOfBirth = table.Column<DateTime>(nullable: false),
                     PhoneNo = table.Column<string>(nullable: false),
                     Address = table.Column<string>(nullable: true),
-                    Gender = table.Column<string>(nullable: false)
+                    Gender = table.Column<string>(nullable: false),
+                    UserType = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -88,7 +106,7 @@ namespace AimsCarRentals.Migrations
                     SerialNo = table.Column<string>(nullable: false),
                     CategoryId = table.Column<int>(nullable: false),
                     Price = table.Column<double>(nullable: false),
-                    Description = table.Column<double>(nullable: false),
+                    Description = table.Column<string>(nullable: false),
                     CarPictureUrl = table.Column<string>(maxLength: 1024, nullable: true),
                     IsAvailable = table.Column<bool>(nullable: false)
                 },
@@ -202,7 +220,7 @@ namespace AimsCarRentals.Migrations
                     CarId = table.Column<int>(nullable: false),
                     PickUpDate = table.Column<DateTime>(nullable: false),
                     ReturnDate = table.Column<DateTime>(nullable: false),
-                    ISPaid = table.Column<bool>(nullable: false)
+                    IsVerified = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -226,20 +244,20 @@ namespace AimsCarRentals.Migrations
                 columns: new[] { "Id", "CreatedAt", "Name" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2021, 10, 29, 6, 21, 42, 838, DateTimeKind.Local).AddTicks(9037), "SuperAdmin" },
-                    { 2, new DateTime(2021, 10, 29, 6, 21, 42, 838, DateTimeKind.Local).AddTicks(9999), "Admin" },
-                    { 3, new DateTime(2021, 10, 29, 6, 21, 42, 839, DateTimeKind.Local).AddTicks(12), "Customer" }
+                    { 1, new DateTime(2022, 1, 18, 13, 59, 21, 682, DateTimeKind.Local).AddTicks(5095), "SuperAdmin" },
+                    { 2, new DateTime(2022, 1, 18, 13, 59, 21, 682, DateTimeKind.Local).AddTicks(6210), "Admin" },
+                    { 3, new DateTime(2022, 1, 18, 13, 59, 21, 682, DateTimeKind.Local).AddTicks(6222), "Customer" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "Address", "CreatedAt", "DateOfBirth", "Email", "FirstName", "Gender", "HashSalt", "LastName", "MiddleName", "PasswordHash", "PhoneNo" },
-                values: new object[] { 1, "asd", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 10, 29, 6, 21, 42, 834, DateTimeKind.Local).AddTicks(9346), "jafar@gmail.com", "Jafar", "Male", "ftuIrIDS+TJqDpa0wGVv1w==", "Lawal", "Okiki", "Pq0zPzvnkKkIoa5prU80VcV6+i9BF1RhDTnDyuF7FMs=", "09071681776" });
+                columns: new[] { "Id", "Address", "CreatedAt", "DateOfBirth", "Email", "FirstName", "Gender", "HashSalt", "LastName", "MiddleName", "PasswordHash", "PhoneNo", "UserType" },
+                values: new object[] { 1, "asd", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 1, 18, 13, 59, 21, 678, DateTimeKind.Local).AddTicks(1994), "jafar@gmail.com", "Jafar", "Male", "ftuIrIDS+TJqDpa0wGVv1w==", "Lawal", "Okiki", "Pq0zPzvnkKkIoa5prU80VcV6+i9BF1RhDTnDyuF7FMs=", "09071681776", null });
 
             migrationBuilder.InsertData(
                 table: "UserRoles",
                 columns: new[] { "Id", "CreatedAt", "RoleId", "UserId" },
-                values: new object[] { 1, new DateTime(2021, 10, 29, 6, 21, 42, 839, DateTimeKind.Local).AddTicks(2877), 1, 1 });
+                values: new object[] { 1, new DateTime(2022, 1, 18, 13, 59, 21, 682, DateTimeKind.Local).AddTicks(9206), 1, 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Admins_UserId",
@@ -304,6 +322,9 @@ namespace AimsCarRentals.Migrations
 
             migrationBuilder.DropTable(
                 name: "Customers");
+
+            migrationBuilder.DropTable(
+                name: "Payments");
 
             migrationBuilder.DropTable(
                 name: "UserRoles");
