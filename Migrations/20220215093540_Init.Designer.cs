@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AimsCarRentals.Migrations
 {
     [DbContext(typeof(AimsDbContext))]
-    [Migration("20220118125922_Init1")]
-    partial class Init1
+    [Migration("20220215093540_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -289,19 +289,19 @@ namespace AimsCarRentals.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2022, 1, 18, 13, 59, 21, 682, DateTimeKind.Local).AddTicks(5095),
+                            CreatedAt = new DateTime(2022, 2, 14, 22, 35, 37, 797, DateTimeKind.Local).AddTicks(9864),
                             Name = "SuperAdmin"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2022, 1, 18, 13, 59, 21, 682, DateTimeKind.Local).AddTicks(6210),
+                            CreatedAt = new DateTime(2022, 2, 14, 22, 35, 37, 798, DateTimeKind.Local).AddTicks(917),
                             Name = "Admin"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2022, 1, 18, 13, 59, 21, 682, DateTimeKind.Local).AddTicks(6222),
+                            CreatedAt = new DateTime(2022, 2, 14, 22, 35, 37, 798, DateTimeKind.Local).AddTicks(930),
                             Name = "Customer"
                         });
                 });
@@ -369,7 +369,7 @@ namespace AimsCarRentals.Migrations
                             Id = 1,
                             Address = "asd",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(2022, 1, 18, 13, 59, 21, 678, DateTimeKind.Local).AddTicks(1994),
+                            DateOfBirth = new DateTime(2022, 2, 14, 22, 35, 37, 793, DateTimeKind.Local).AddTicks(7602),
                             Email = "jafar@gmail.com",
                             FirstName = "Jafar",
                             Gender = "Male",
@@ -408,7 +408,7 @@ namespace AimsCarRentals.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2022, 1, 18, 13, 59, 21, 682, DateTimeKind.Local).AddTicks(9206),
+                            CreatedAt = new DateTime(2022, 2, 14, 22, 35, 37, 798, DateTimeKind.Local).AddTicks(3705),
                             RoleId = 1,
                             UserId = 1
                         });

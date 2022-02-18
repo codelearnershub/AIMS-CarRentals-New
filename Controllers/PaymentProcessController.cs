@@ -27,14 +27,14 @@ namespace AimsCarRentals.Controllers
           }*/
         [Route("{reference}")]
         [HttpGet]
-        public IActionResult ProcesssPayment(string reference)
+        public IActionResult ProcesssPayment([FromRoute]string reference)
         {
             
 
-            var transactionRef = paymentService.FindPaymentByTransactionRef(reference);
-            if (transactionRef != null)
+            //var transactionRef = paymentService.FindPaymentByTransactionRef(reference);
+            if (reference != null)
             {
-                paymentService.VerifyPayment(transactionRef.TransactionRef);
+                paymentService.VerifyPayment(reference);
             }
             
             return View();

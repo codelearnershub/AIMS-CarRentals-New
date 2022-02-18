@@ -4,7 +4,7 @@ using MySql.Data.EntityFrameworkCore.Metadata;
 
 namespace AimsCarRentals.Migrations
 {
-    public partial class Init1 : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -244,20 +244,20 @@ namespace AimsCarRentals.Migrations
                 columns: new[] { "Id", "CreatedAt", "Name" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 1, 18, 13, 59, 21, 682, DateTimeKind.Local).AddTicks(5095), "SuperAdmin" },
-                    { 2, new DateTime(2022, 1, 18, 13, 59, 21, 682, DateTimeKind.Local).AddTicks(6210), "Admin" },
-                    { 3, new DateTime(2022, 1, 18, 13, 59, 21, 682, DateTimeKind.Local).AddTicks(6222), "Customer" }
+                    { 1, new DateTime(2022, 2, 14, 22, 35, 37, 797, DateTimeKind.Local).AddTicks(9864), "SuperAdmin" },
+                    { 2, new DateTime(2022, 2, 14, 22, 35, 37, 798, DateTimeKind.Local).AddTicks(917), "Admin" },
+                    { 3, new DateTime(2022, 2, 14, 22, 35, 37, 798, DateTimeKind.Local).AddTicks(930), "Customer" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Address", "CreatedAt", "DateOfBirth", "Email", "FirstName", "Gender", "HashSalt", "LastName", "MiddleName", "PasswordHash", "PhoneNo", "UserType" },
-                values: new object[] { 1, "asd", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 1, 18, 13, 59, 21, 678, DateTimeKind.Local).AddTicks(1994), "jafar@gmail.com", "Jafar", "Male", "ftuIrIDS+TJqDpa0wGVv1w==", "Lawal", "Okiki", "Pq0zPzvnkKkIoa5prU80VcV6+i9BF1RhDTnDyuF7FMs=", "09071681776", null });
+                values: new object[] { 1, "asd", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 2, 14, 22, 35, 37, 793, DateTimeKind.Local).AddTicks(7602), "jafar@gmail.com", "Jafar", "Male", "ftuIrIDS+TJqDpa0wGVv1w==", "Lawal", "Okiki", "Pq0zPzvnkKkIoa5prU80VcV6+i9BF1RhDTnDyuF7FMs=", "09071681776", null });
 
             migrationBuilder.InsertData(
                 table: "UserRoles",
                 columns: new[] { "Id", "CreatedAt", "RoleId", "UserId" },
-                values: new object[] { 1, new DateTime(2022, 1, 18, 13, 59, 21, 682, DateTimeKind.Local).AddTicks(9206), 1, 1 });
+                values: new object[] { 1, new DateTime(2022, 2, 14, 22, 35, 37, 798, DateTimeKind.Local).AddTicks(3705), 1, 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Admins_UserId",

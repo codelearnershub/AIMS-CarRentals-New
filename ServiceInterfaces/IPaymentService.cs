@@ -13,7 +13,7 @@ namespace AimsCarRentals.ServiceInterfaces
         public Payment FindPaymentByTransactionRef(string transactionRef);
         public Payment Find(int id);
         public List<PaymentViewModel> GetAll();
-        public void VerifyPayment(string transactionRef);
+        public void VerifyPayment(string reference);
 
 
     }

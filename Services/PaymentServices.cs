@@ -34,14 +34,15 @@ namespace AimsCarRentals.Services
         {
            return paymentRepository.Find(id);
         }
-        public async void VerifyPayment(string transactionRef)
+        public async void VerifyPayment(string reference)
         {
             
             using (var client = new HttpClient())
             {
-                var verifyPayment = await client.GetAsync( $"https://api.paystack.co/transaction/verify/:{transactionRef}");
+                var verifyPayment = await client.GetAsync( $"https://api.paystack.co/transaction/verify/{reference}");
                 if(verifyPayment.IsSuccessStatusCode )
                 {
+
                     var verification = await verifyPayment.Content.ReadAsStringAsync();
                     var verify = JsonConvert.DeserializeObject<PaymentDto>(verification);
                     
